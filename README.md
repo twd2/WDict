@@ -1,0 +1,2 @@
+# WDict
+An English dictionary.
