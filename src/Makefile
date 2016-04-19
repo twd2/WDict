@@ -7,7 +7,7 @@ LD_FLAGS = -L./libtextdb -L./libdict
 LD_LIBS = -ltextdb -ldict
 
 .PHONY: all
-all: libtextdb.$(DSO_POSTFIX) libdict.$(DSO_POSTFIX) $(PROJECT)
+all: libtextdb_ libdict_ $(PROJECT)
 
 $(PROJECT): $(PROJECT).o $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
@@ -18,10 +18,9 @@ main.o: main.cpp $(HEADERS)
 %.o: %.cpp %.h
 	g++ $(CC_FLAGS) -o $@ -c $<
 
-.PHONY: lib%.$(DSO_POSTFIX)
-lib%.$(DSO_POSTFIX): lib%
+lib%_: lib%
 	cd $< && make
-	$(CP) $<$(SLASH)$@ .
+	$(CP) $<$(SLASH)$<.$(DSO_POSTFIX) .
 
 .PHONY: clean
 clean:
