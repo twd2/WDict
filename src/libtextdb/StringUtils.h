@@ -1,5 +1,5 @@
-#ifndef _STRINGUTILS_HPP_
-#define _STRINGUTILS_HPP_
+#ifndef _STRINGUTILS_H_
+#define _STRINGUTILS_H_
 
 #include <sstream>
 
@@ -34,4 +34,4 @@ T StringUtils::FromString(const std::string &a)
 	return t;
 }
 
-#endif // _STRINGUTILS_HPP_
+#endif // _STRINGUTILS_H_

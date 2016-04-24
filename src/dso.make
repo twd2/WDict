@@ -1,6 +1,6 @@
 include ../config.make
 
-CC_FLAGS = -g -fPIC -Wall -std=c++11
+CC_FLAGS = $(CC_DBG_FLAGS) -fPIC -Wall -std=c++11
 
 .PHONY: all
 all: $(PROJECT).$(DSO_POSTFIX)

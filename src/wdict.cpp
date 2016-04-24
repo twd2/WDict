@@ -2,36 +2,31 @@
 
 int main()
 {
+#ifdef _WIN32
+    system("chcp 65001");
+#endif
     try
     {
         TextDB db("dict.txt");
-        /*ifstream ifs("dict.txt", ios_base::in);
-        string s = FileUtils::ReadAllText(static_cast<istream&>(ifs));
         
-        if (s == "")
+        string s;
+        
+        while (getline(cin, s))
         {
-            return 1;
+            cout << s.length() << endl;
+            if (s == "") 
+            {
+                break;
+            }
+            for (auto &desc: db[s])
+            {
+                cout << "\t" << desc << endl;
+            }
         }
-        
-        Lexer lex(s);
-        
-        auto tokens = lex.Do();
-        
-        for (Token tok : tokens)
-        {
-            cout << Token::Name(tok.Type) << " " << StringUtils::Unescape(tok.Value) << endl;
-        }
-        cout << endl;*/
     }
     catch (SyntaxError err)
     {
         cerr << err.what << endl;
     }
-    
-    /*string s;
-    while (getline(cin, s))
-    {
-        cout << StringUtils::Escape(s) << " " << (StringUtils::Unescape(StringUtils::Escape(s)) == s) << endl;
-    }*/
     return 0;
 }

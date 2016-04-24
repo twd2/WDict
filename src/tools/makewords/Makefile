@@ -1,13 +1,13 @@
-include config.make
+include ../../config.make
 
-PROJECT = wdict
+PROJECT = makewords
 
-CC_FLAGS = -I./libtextdb -I./libdict $(CC_DBG_FLAGS) -Wall -std=c++11
-LD_FLAGS = -L./libtextdb -L./libdict
+CC_FLAGS = -I../../libtextdb -I../../libdict $(CC_DBG_FLAGS) -Wall -std=c++11
+LD_FLAGS = -L../../libtextdb -L../../libdict
 LD_LIBS = -ltextdb -ldict
 
 .PHONY: all
-all: libtextdb_ libdict_ $(PROJECT)
+all: libtextdb libdict $(PROJECT)
 
 $(PROJECT): $(PROJECT).o $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
@@ -18,9 +18,9 @@ main.o: main.cpp $(HEADERS)
 %.o: %.cpp %.h
 	g++ $(CC_FLAGS) -o $@ -c $<
 
-lib%_: lib%
+lib%: ..$(SLASH)..$(SLASH)lib%
 	cd $< && make
-	$(CP) $<$(SLASH)$<.$(DSO_POSTFIX) .
+	$(CP) $<$(SLASH)$@.$(DSO_POSTFIX) .
 
 .PHONY: clean
 clean:

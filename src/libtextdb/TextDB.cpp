@@ -56,11 +56,12 @@ void TextDB::load()
         val.insert(val.begin(), vecbuff.begin() + 1, vecbuff.end());
         vecbuff.clear();
     }
+    ifs.close();
 }
 
 void TextDB::Sync()
 {
-    std::ofstream ofs(fileName + ".txt", std::ios_base::out);
+    std::ofstream ofs(fileName, std::ios_base::out);
     for (TextDBCollection::iterator iter = begin(); iter != end(); ++iter)
     {
         ofs << StringUtils::Escape(iter->first);
@@ -79,6 +80,7 @@ void TextDB::Sync()
         }
         ofs << std::endl;
     }
+    ofs.close();
 }
 
 TextDB::~TextDB()

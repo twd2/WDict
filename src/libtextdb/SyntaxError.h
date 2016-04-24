@@ -1,8 +1,12 @@
 #ifndef _SYNTAXERROR_H_
 #define _SYNTAXERROR_H_
 
-#include "StringUtils.hpp"
+#include "StringUtils.h"
 #include <string>
+#include <cstddef>
+
+using std::size_t;
+using std::ptrdiff_t;
 
 class SyntaxError
 {

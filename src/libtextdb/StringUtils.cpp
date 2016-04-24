@@ -1,4 +1,4 @@
-#include "StringUtils.hpp"
+#include "StringUtils.h"
 
 std::string StringUtils::Escape(const std::string &str)
 {

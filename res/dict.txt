@@ -1,4 +1,3 @@
-a
 abacus, n.算盘
 abandon, "vt.放弃,遗弃", "n.放任,狂热"
 abandonment, n.放弃
@@ -3714,7 +3713,6 @@ courtesy, "n.谦恭,允许,礼貌"
 courtroom, "n.法庭,审判室"
 courtyard, "n.庭院,院子"
 cousin, "n.堂兄弟姊妹,表兄弟姊妹"
-cout << s.length() << endl;
 coven, "n.女巫大聚会,十三女巫大集会"
 covenant, "n.契约,盟约", "v.缔结(盟约),立约"
 cover, "n.盖子,封面,藉口", "vt.覆盖,铺,掩饰,保护,掩护,包括,包含,适用", "vi.覆盖,涂,代替"
@@ -10575,7 +10573,6 @@ majestically, 有威严
 majesty, "n.最高权威,王权,雄伟"
 major, "n.<美>[教]主修课,[律]成年人,[乐]大调", "adj.主修的,成年的,大调的", vi.主修
 majority, "n.多数,大半", n.[律]成年
-mak
 make, "vt.制造,安排,使成为,认为,产生,获得,进行,构成", "vi.开始,前进,增大,被制造,被处理", "n.制造,构造,性情"
 makeshift, "n.将就,凑合,权宜之计", "adj.权宜之计的,凑合的"
 makeup, "n.天性,化妆品,补充,虚构,组成,结构,补考,体格"

@@ -6,7 +6,7 @@
 #include <map>
 #include <vector>
 #include "FileUtils.h"
-#include "StringUtils.hpp"
+#include "StringUtils.h"
 #include "Token.h"
 #include "Lexer.h"
 

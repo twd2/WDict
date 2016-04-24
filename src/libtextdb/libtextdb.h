@@ -3,7 +3,7 @@
 
 #include "Lexer.h"
 #include "FileUtils.h"
-#include "StringUtils.hpp"
+#include "StringUtils.h"
 #include "SyntaxError.h"
 #include "Token.h"
 #include "TextDB.h"

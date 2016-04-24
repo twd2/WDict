@@ -20,6 +20,12 @@ endif
 
 endif
 
+ifdef DEBUG
+	CC_DBG_FLAGS = -g
+else
+	CC_DBG_FLAGS = -O2 -D__NO_INLINE__
+endif
+
 SOURCES := $(shell $(LS) *.cpp)
 HEADERS := $(shell $(LS) *.h *.hpp)
 OBJECTS := $(patsubst %.cpp, %.o, $(SOURCES))
