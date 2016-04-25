@@ -10,7 +10,7 @@
 #include "Token.h"
 #include "Lexer.h"
 
-typedef std::map<std::string, std::vector<std::string> > TextDBCollection;
+typedef std::map<std::wstring, std::vector<std::wstring> > TextDBCollection;
 
 class TextDB : public TextDBCollection
 {

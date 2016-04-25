@@ -15,17 +15,17 @@ bool Token::operator!=(const Token &b)
     return !(*this == b);
 }
 
-std::string Token::Name(TokenType type)
+std::wstring Token::Name(TokenType type)
 {
-    static std::map<TokenType, std::string> names;
-    if (names[TOKENTYPE_EOF] == "")
+    static std::map<TokenType, std::wstring> names;
+    if (names[TOKENTYPE_EOF] == L"")
     {
         //init
-        names[TOKENTYPE_NOTTOKEN] = "?";
-        names[TOKENTYPE_VALUE] = "VALUE";
-        names[TOKENTYPE_SEPARATOR] = "SEPARATOR";
-        names[TOKENTYPE_NEWLINE] = "NEWLINE";
-        names[TOKENTYPE_EOF] = "EOF";
+        names[TOKENTYPE_NOTTOKEN] = L"?";
+        names[TOKENTYPE_VALUE] = L"VALUE";
+        names[TOKENTYPE_SEPARATOR] = L"SEPARATOR";
+        names[TOKENTYPE_NEWLINE] = L"NEWLINE";
+        names[TOKENTYPE_EOF] = L"EOF";
     }
 
     return names[type];

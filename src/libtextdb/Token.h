@@ -21,17 +21,17 @@ class Token
 {
 public:
     TokenType Type;
-    std::string Value; // raw string / StringValue / CharValue
+    std::wstring Value; // raw string / StringValue / CharValue
 
     ptrdiff_t LineNumber, ColumnStart, ColumnEnd;
 
-    Token(TokenType type, std::string value)
+    Token(TokenType type, std::wstring value)
         : Type(type), Value(value), LineNumber(-1), ColumnStart(-1), ColumnEnd(-1)
     {
         
     }
 
-    Token(TokenType type, std::string value, ptrdiff_t lineNumber, ptrdiff_t columnStart, ptrdiff_t columnEnd) 
+    Token(TokenType type, std::wstring value, ptrdiff_t lineNumber, ptrdiff_t columnStart, ptrdiff_t columnEnd) 
         : Type(type), Value(value), LineNumber(lineNumber), ColumnStart(columnStart), ColumnEnd(columnEnd)
     {
         
@@ -42,7 +42,7 @@ public:
     bool operator==(const Token &b);
     bool operator!=(const Token &b);
 
-    static std::string Name(TokenType);
+    static std::wstring Name(TokenType);
 };
 
 #endif // _TOKEN_H_

@@ -1,4 +1,8 @@
+[
 a
+aaaa
+aaaaaa
+aaaaaaaaaaaaaaaaa
 abacus, n.算盘
 abandon, "vt.放弃,遗弃", "n.放任,狂热"
 abandonment, n.放弃
@@ -1359,6 +1363,7 @@ axle, "n.轮轴,车轴"
 aye, "n.赞成票,投赞成票者", int.是
 azalea, n.[植]杜鹃花
 azure, "n.天蓝色,苍天,碧空", adj.蔚蓝的
+b
 babble, "v.呀呀学语,喋喋不休,作潺潺声,泄露(秘密)", "n.儿语,胡言乱语,潺潺声"
 babbler, "n.说话模糊不清者,胡说之人"
 baby, n.婴孩
@@ -2214,6 +2219,7 @@ byline, n.标题下署名之行
 bypass, n.旁路, "vt.设旁路,迂回"
 byre, n.牛栏
 bystander, "n.看热闹的人,旁观者"
+c
 cabal, "n.(政治)阴谋小集团,(尤指政治上的)阴谋", vi.策划阴谋
 cabbage, "n.[植]甘蓝,卷心菜"
 cabbalah
@@ -3714,7 +3720,6 @@ courtesy, "n.谦恭,允许,礼貌"
 courtroom, "n.法庭,审判室"
 courtyard, "n.庭院,院子"
 cousin, "n.堂兄弟姊妹,表兄弟姊妹"
-cout << s.length() << endl;
 coven, "n.女巫大聚会,十三女巫大集会"
 covenant, "n.契约,盟约", "v.缔结(盟约),立约"
 cover, "n.盖子,封面,藉口", "vt.覆盖,铺,掩饰,保护,掩护,包括,包含,适用", "vi.覆盖,涂,代替"
@@ -3967,6 +3972,7 @@ cynicism, "n.犬儒主义,玩世不恭,冷嘲热讽"
 cynosure, "n.小熊座,北极星"
 cypress, "n.[植]柏科树的,柏木属植物(原产北美、欧、亚),柏树枝(用作哀悼的标志)"
 cytology, n.[生]细胞学
+d
 dabble, "v.弄湿,弄水,涉足"
 dabbler, "n.戏水者,业余家"
 dabbling, 弄湿
@@ -7087,6 +7093,7 @@ frump, "n.守旧者,邋遢的女人"
 frustrate, "v.挫败,阻挠,使感到灰心,阻止"
 frustration, "n.挫败,挫折,受挫"
 fry, "n.油炸食物,油炸锅,鱼苗,鱼秧", "v.油炸,油煎"
+fuck
 fuddle, "vt.灌醉,使迷糊,使烂醉", vi.狂饮, n.烂醉
 fuel, n.燃料, "vt.加燃料,供以燃料", vi.得到燃料
 fugacious, "adj.短暂的,易逃逸的,难捕捉的,无常的"
@@ -10447,6 +10454,7 @@ loyal, "adj.忠诚的,忠心的"
 loyalist, "n.忠诚的人,反对独立者"
 loyally, adv.忠诚
 loyalty, "n.忠诚,忠心"
+ls
 lubricant, n.滑润剂
 lubricate, vt.润滑, v.加润滑油
 lubricious, "adj.滑的,淫荡的,光滑的,不稳定的"
@@ -10575,7 +10583,6 @@ majestically, 有威严
 majesty, "n.最高权威,王权,雄伟"
 major, "n.<美>[教]主修课,[律]成年人,[乐]大调", "adj.主修的,成年的,大调的", vi.主修
 majority, "n.多数,大半", n.[律]成年
-mak
 make, "vt.制造,安排,使成为,认为,产生,获得,进行,构成", "vi.开始,前进,增大,被制造,被处理", "n.制造,构造,性情"
 makeshift, "n.将就,凑合,权宜之计", "adj.权宜之计的,凑合的"
 makeup, "n.天性,化妆品,补充,虚构,组成,结构,补考,体格"
@@ -11144,6 +11151,7 @@ mitten, "n.棒球手套,拳击手套"
 mix, "v.使混和,混淆,混合", n.混合
 mixer, 混频器, "n.混合者,搅拌器,[电]混频器"
 mixture, "n.混合,混合物,混合剂"
+mke
 mnemonic, "adj.记忆的,记忆术的"
 mnemonics, n.记忆术
 moan, "n.呻吟,哀悼,呼啸", "vi.发出呻吟声,抱怨,哀悼", vt.呻吟
@@ -11205,6 +11213,7 @@ mollusk, n.[动]软体动物
 mollycoddle, "n.娇惯的男人,懦夫", "vt.溺爱,娇生惯养"
 molt, "n.换毛,脱皮,换毛期", "v.脱毛,换毛"
 molten, v.熔化, adj.熔铸的
+mom
 moment, "adj.片刻的,瞬间的,力矩的", n.瞬间
 momentary, "adj.瞬间的,刹那间的"
 momentous, "adj.重大的,重要的"
@@ -11634,11 +11643,13 @@ nil, n.零
 nimble, adj.敏捷的
 nimbleness, 敏捷性
 nimbly, "adv.敏捷地,机敏地"
+nin
 nine, "num.九,九个"
 nineteen, num.十九
 nineteenth, "num.第十九,十九分之一"
 ninetieth, "num.第九十,九十分之一"
 ninety, num.九十
+ninnin
 ninth, "num.第九,九分之一"
 nip, "n.捏,夹,(寒冷等)刺骨,小饮", "vt.捏,夹,冻伤,剪断,阻止", "vi.夹,捏,刺骨,小饮,(口语)急忙"
 nipper, "n.<主英口>少年,镊子,<俚>手铐"
@@ -13675,7 +13686,10 @@ progeny, n.后裔
 prognosis, n.预后
 prognosticate, v.预言
 program, "n.节目,程序,纲要,计划", "vt.规划,拟...计划,安排...入节目", "vi.安排节目,编程序(电脑)程序,(电视)节目"
+programer
 programmability, 可编程序性
+programme
+programmer
 progress, "n.前进,进步,发展", "vi.前进,进步,进行"
 progression, "n.行进,级数"
 progressive, "n.改革论者,进步论者", "adj.前进的,(税收)累进的,进步的"
@@ -14013,6 +14027,7 @@ pyromaniac, n.放火狂, adj.放火狂的
 pyrotechnic, "adj.烟火的,令人眼光的,出色的"
 python, "n.[动]大蟒,巨蟒"
 pyx, "n.(基督教会的)圣体容器,(造币厂用的)货币检查箱", vt.放入货币检查箱检查
+q
 quack, "v.(指鸭)呷呷地叫,大声闲聊,吹嘘", "n.(鸭子)呷呷叫声,庸医,骗子", adj.骗人
 quackery, "n.庸医的医术,骗子的行为"
 quadrangle, "n.四角形,四边形,方院,方庭(尤指牛津大学等学院中者)"
@@ -15803,6 +15818,7 @@ shipwreck, "n.船只失事,海难,遇难"
 shipwright, "n.造船工人,造船木匠"
 shirk, "vi.逃避,推卸", vt.逃避
 shirt, "n.衬衫,衬衣"
+shit
 shiver, "v.颤抖,打碎,碎裂", "n.(无法控制的)颤抖,碎片"
 shoal, "n.浅滩,沙洲,鱼群,大量", adj.水浅的, "v.(使)变浅,驶入(浅水等),(鱼等)群集"
 shock, "n.打击,震动,冲突,休克,突击,禾束堆,乱蓬的头发", "vt.使震动,使休克,使受电击,震惊得", "vi.震动,吓人", "adj.蓬乱的,浓密的"
@@ -18176,6 +18192,7 @@ tutor, "n.家庭教师,(大学)指导教师,助教,监护人,辅导教师", v.�
 tutorship, "n.家庭教师,辅导"
 tuxedo, n.男士无尾半正式晚礼服
 twaddle, "n.废话,闲聊", vi.讲废话, vt.胡说八道地讲
+twd
 twee, "adj.矫饰的,可爱的"
 twelfth, num.第十二
 twelve, num.十二
@@ -18475,6 +18492,7 @@ unlettered, "adj.无字的,未受教育的,无学问的,文盲的"
 unlike, "adj.不同的,不相似的", "prep.不象...,和...不同"
 unlikely, "adj.未必的,不太可能的,靠不住的"
 unlimited, "adj.无限的,无约束的"
+unlink
 unload, "vi.卸货,退子弹", "vt.摆脱...之负担,倾销,卸"
 unlock, "vt.开...锁,开启,显露,放开", "vi.开着,解开,解出锁定"
 unlucky, "adj.不幸的,不吉利的,不祥的,使人感到不足"
@@ -19143,6 +19161,7 @@ weave, "n.编法,织法,编织", "vt.编织,组合,编排,使迂回前进", "vi.
 weaver, "n.织布者,织工"
 web, "n.网,蛛丝,蹼,翼手,织物,圈套,卷筒纸", "vi.使陷入罗网,形成网", "vt.织蜘蛛网于,使落入圈套环球网"
 webbed, "adj.作成蜘蛛网状的,有蹼的"
+wechat
 wed, "v.娶,嫁,结婚"
 wedge, n.楔, "vt.楔入,楔进"
 wee, "adj.很少的,微小的,很早的", "n.一点点,一会儿,极小的空间"
@@ -19362,6 +19381,7 @@ woollen, n.毛织品, adj.羊毛制的
 woolly, adj.羊毛的
 woozy, "adj.糊涂的,虚弱的"
 word, "n.字,词,话,消息,诺言,命令", vt.为...措辞
+words
 wordsmith, "n.词语大师,语言艺术家"
 wore, vbl., wear的过去式
 work, "n.工作,劳动,操作,职业,[物]功,手工,作品,机件", "v.(使)工作,(使)运转,起作用,造成,产生,经营,(使)渐渐移动,煅制"
@@ -19493,4 +19513,6 @@ zone, "n.地域,地带,地区,环带,圈", "vt.环绕,使分成地带", vi.分�
 zoo, n.动物园
 zoologist, n.动物学家
 zoology, "n.动物学,生态"
+zooloo
 zygote, "n.[生物]受精卵,接合子,接合体"
+您好

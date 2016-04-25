@@ -9,7 +9,7 @@
 class FileUtils
 {
 public:
-    static std::string ReadAllText(std::istream&);
+    static std::wstring ReadAllText(std::wistream&);
     static bool Exists(const std::string&);
 };
 

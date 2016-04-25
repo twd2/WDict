@@ -11,13 +11,13 @@ using std::ptrdiff_t;
 class SyntaxError
 {
 public:
-    std::string what;
+    std::wstring what;
     ptrdiff_t LineNumber = 1, ColumnStart = -1, ColumnEnd = -1;
 
     SyntaxError();
-    SyntaxError(std::string);
-    SyntaxError(std::string, ptrdiff_t, ptrdiff_t);
-    SyntaxError(std::string, ptrdiff_t, ptrdiff_t, ptrdiff_t);
+    SyntaxError(std::wstring);
+    SyntaxError(std::wstring, ptrdiff_t, ptrdiff_t);
+    SyntaxError(std::wstring, ptrdiff_t, ptrdiff_t, ptrdiff_t);
 
     ~SyntaxError();
 };

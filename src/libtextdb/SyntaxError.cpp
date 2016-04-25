@@ -5,29 +5,29 @@ SyntaxError::SyntaxError()
     
 }
 
-SyntaxError::SyntaxError(std::string what) : what(what)
+SyntaxError::SyntaxError(std::wstring what) : what(what)
 {
     
 }
 
-SyntaxError::SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart)
+SyntaxError::SyntaxError(std::wstring what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart)
     : what(what), LineNumber(LineNumber), ColumnStart(ColumnStart)
 {
     if (LineNumber < 0 || ColumnStart < 0) return;
-    this->what = "Line " + StringUtils::ToString(LineNumber) + ", Col " + StringUtils::ToString(ColumnStart) + ": " + this->what;
+    this->what = L"Line " + StringUtils::ToString(LineNumber) + L", Col " + StringUtils::ToString(ColumnStart) + L": " + this->what;
 }
 
-SyntaxError::SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart, ptrdiff_t ColumnEnd)
+SyntaxError::SyntaxError(std::wstring what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart, ptrdiff_t ColumnEnd)
     : what(what), LineNumber(LineNumber), ColumnStart(ColumnStart), ColumnEnd(ColumnEnd)
 {
     if (LineNumber < 0 || ColumnStart < 0) return;
     if (ColumnStart != ColumnEnd)
     {
-        this->what = "Line " + StringUtils::ToString(LineNumber) + ", Col " + StringUtils::ToString(ColumnStart) + "~" + StringUtils::ToString(ColumnEnd) + ": " + this->what;
+        this->what = L"Line " + StringUtils::ToString(LineNumber) + L", Col " + StringUtils::ToString(ColumnStart) + L"~" + StringUtils::ToString(ColumnEnd) + L": " + this->what;
     }
     else
     {
-        this->what = "Line " + StringUtils::ToString(LineNumber) + ", Col " + StringUtils::ToString(ColumnStart) + ": " + this->what;
+        this->what = L"Line " + StringUtils::ToString(LineNumber) + L", Col " + StringUtils::ToString(ColumnStart) + L": " + this->what;
     }
 }
 

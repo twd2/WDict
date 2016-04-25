@@ -1,9 +1,9 @@
 #include "FileUtils.h"
 
-std::string FileUtils::ReadAllText(std::istream& is)
+std::wstring FileUtils::ReadAllText(std::wistream& is)
 {
-    std::string line;
-    std::stringstream ss;
+    std::wstring line;
+    std::wstringstream ss;
     
     while (std::getline(is, line))
     {
@@ -15,7 +15,7 @@ std::string FileUtils::ReadAllText(std::istream& is)
 
 bool FileUtils::Exists(const std::string &path)
 {
-    std::ifstream ifs(path, std::ios_base::in);
+    std::wifstream ifs(path, std::ios_base::in);
     
     bool succeeded = (bool)ifs;
     if (succeeded)

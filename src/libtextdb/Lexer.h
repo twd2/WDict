@@ -11,7 +11,7 @@
 class Lexer
 {
 public:
-    Lexer(std::string &str) : data(str)
+    Lexer(std::wstring &str) : data(str)
     {
         length = str.length();
     }
@@ -19,29 +19,29 @@ public:
     ~Lexer();
     std::vector<Token> Do();
 
-    static bool isBlank(char);
-    static bool isIdFirst(char);
-    static bool isId(char);
-    static bool isDigitFirst(char);
-    static bool isDigit(char);
-    static bool isLetter(char);
-    static bool isUppercase(char);
-    static bool isLowercase(char);
+    static bool isBlank(wchar_t);
+    static bool isIdFirst(wchar_t);
+    static bool isId(wchar_t);
+    static bool isDigitFirst(wchar_t);
+    static bool isDigit(wchar_t);
+    static bool isLetter(wchar_t);
+    static bool isUppercase(wchar_t);
+    static bool isLowercase(wchar_t);
 
 private:
-    std::string &data;
+    std::wstring &data;
 
     size_t length = 0;
     size_t index = 0;
     ptrdiff_t lineNumber = 1, lineStart = -1, tokenStart = 0;
 
     bool hasNext();
-    char getNext();
-    std::string nextChar();
-    bool nextIs(char);
-    bool nextIs(bool(*)(char));
-    SyntaxError Error(std::string, std::string);
-    Token MakeToken(TokenType, std::string);
+    wchar_t getNext();
+    std::wstring nextChar();
+    bool nextIs(wchar_t);
+    bool nextIs(bool(*)(wchar_t));
+    SyntaxError Error(std::wstring, std::wstring);
+    Token MakeToken(TokenType, std::wstring);
 };
 
 #endif // _LEXER_H_

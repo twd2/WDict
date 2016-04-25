@@ -11,23 +11,23 @@ std::vector<Token> Lexer::Do()
     while (index < length)
     {
         tokenStart = index;
-        char current = data[index];
+        wchar_t current = data[index];
         if (isBlank(current))
         {
-            if (current == '\n')
+            if (current == L'\n')
             {
                 ++lineNumber;
                 lineStart = index;
-                tokens.push_back(MakeToken(TOKENTYPE_NEWLINE, "\n"));
+                tokens.push_back(MakeToken(TOKENTYPE_NEWLINE, L"\n"));
             }
         }
-        else if (current == ',')
+        else if (current == L',')
         {
-            tokens.push_back(MakeToken(TOKENTYPE_SEPARATOR, ","));
+            tokens.push_back(MakeToken(TOKENTYPE_SEPARATOR, L","));
         }
         else if (isIdFirst(current))
         {
-            std::string word;
+            std::wstring word;
             word += current;
             while (nextIs(isId))
             {
@@ -37,20 +37,20 @@ std::vector<Token> Lexer::Do()
 
             tokens.push_back(MakeToken(TOKENTYPE_VALUE, word));
         }
-        else if (current == '\"')
+        else if (current == L'\"')
         {
-            std::string str;
+            std::wstring str;
             str += current;
             bool escape = false, ended = false;
             while (hasNext())
             {
                 ++index;
                 str += data[index];
-                if (data[index] == '\\' && !escape)
+                if (data[index] == L'\\' && !escape)
                 {
                     escape = true;
                 }
-                else if (data[index] == '\"' && !escape)
+                else if (data[index] == L'\"' && !escape)
                 {
                     ended = true;
                     break;
@@ -63,14 +63,14 @@ std::vector<Token> Lexer::Do()
 
             if (!ended)
             {
-                throw Error("EOF", "'\\\"'");
+                throw Error(L"EOF", L"'\\\"'");
             }
 
             tokens.push_back(MakeToken(TOKENTYPE_VALUE, str));
         }
         else
         {
-            throw Error(std::string() + "'" + current + "'", "A-Z, a-z, 0-9, '.', '$', '_', '(', ')', '!', '&', '|', '^', '~', '-', '<', '>', '=', '+', '*', '/', '%'");
+            throw Error(std::wstring() + L"'" + current + L"'", L"A-Z, a-z, 0-9, '.', '$', '_', '(', ')', '!', '&', '|', '^', '~', '-', '<', '>', '=', '+', '*', '/', '%'");
         }
         ++index;
     }
@@ -82,80 +82,80 @@ bool Lexer::hasNext()
     return index < length - 1;
 }
 
-char Lexer::getNext()
+wchar_t Lexer::getNext()
 {
     return data[index + 1];
 }
 
-std::string Lexer::nextChar()
+std::wstring Lexer::nextChar()
 {
     if (!hasNext())
     {
-        return "EOF";
+        return L"EOF";
     }
     else
     {
-        return "'" + std::string(1, data[index + 1]) + "'";
+        return L"'" + std::wstring(1, data[index + 1]) + L"'";
     }
 }
 
-bool Lexer::nextIs(char what)
+bool Lexer::nextIs(wchar_t what)
 {
     return hasNext() && data[index + 1] == what;
 }
 
-bool Lexer::nextIs(bool (*cond)(char))
+bool Lexer::nextIs(bool (*cond)(wchar_t))
 {
     return hasNext() && cond(data[index + 1]);
 }
 
-SyntaxError Lexer::Error(std::string unexp, std::string exp)
+SyntaxError Lexer::Error(std::wstring unexp, std::wstring exp)
 {
-    return SyntaxError("Lexer: Unexpected " + unexp + ", expecting " + exp + ".", lineNumber, index - lineStart);
+    return SyntaxError(L"Lexer: Unexpected " + unexp + L", expecting " + exp + L".", lineNumber, index - lineStart);
 }
 
-Token Lexer::MakeToken(TokenType type, std::string word)
+Token Lexer::MakeToken(TokenType type, std::wstring word)
 {
     Token token(type, word, lineNumber, tokenStart - lineStart, index - lineStart);
     return token;
 }
 
-bool Lexer::isBlank(char a)
+bool Lexer::isBlank(wchar_t a)
 {
-    return a == ' ' || a == '\n' || a == '\r' || a == '\t';
+    return a == L' ' || a == L'\n' || a == L'\r' || a == L'\t';
 }
 
-bool Lexer::isDigitFirst(char a)
+bool Lexer::isDigitFirst(wchar_t a)
 {
-    return (a >= '0' && a <= '9') || a == '.';
+    return (a >= L'0' && a <= L'9') || a == L'.';
 }
 
-bool Lexer::isDigit(char a)
+bool Lexer::isDigit(wchar_t a)
 {
-    return a >= '0' && a <= '9';
+    return a >= L'0' && a <= L'9';
 }
 
-bool Lexer::isIdFirst(char a)
+bool Lexer::isIdFirst(wchar_t a)
 {
-    return a != '\"' && a != ',' && a != '\n' && a != '\r';
+    return a != L'\"' && a != L',' && a != L'\n' && a != L'\r';
 }
 
-bool Lexer::isId(char a)
+bool Lexer::isId(wchar_t a)
 {
     return isIdFirst(a) || isDigit(a);
 }
 
-bool Lexer::isLetter(char a)
+bool Lexer::isLetter(wchar_t a)
 {
-    return (a >= 'A' && a <= 'Z') || (a >= 'a' && a <= 'z');
+    return (a >= L'A' && a <= L'Z') || (a >= L'a' && a <= L'z');
 }
 
-bool Lexer::isUppercase(char a)
+bool Lexer::isUppercase(wchar_t a)
 {
-    return a >= 'A' && a <= 'Z';
+    return a >= L'A' && a <= L'Z';
 }
 
-bool Lexer::isLowercase(char a)
+bool Lexer::isLowercase(wchar_t a)
 {
-    return a >= 'a' && a <= 'z';
+    return a >= L'a' && a <= L'z';
 }

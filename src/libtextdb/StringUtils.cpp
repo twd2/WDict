@@ -1,14 +1,14 @@
 #include "StringUtils.h"
 
-std::string StringUtils::Escape(const std::string &str)
+std::wstring StringUtils::Escape(const std::wstring &str)
 {
-    std::stringstream ss;
+    std::wstringstream ss;
     
     bool need = false;
     
-    for (char ch : str)
+    for (wchar_t ch : str)
     {
-        if (ch == '\"' || ch == '\r' || ch == '\n' || ch == ',' || ch == '\\')
+        if (ch == L'\"' || ch == L'\r' || ch == L'\n' || ch == L',' || ch == L'\\')
         {
             need = true;
             break;
@@ -20,64 +20,64 @@ std::string StringUtils::Escape(const std::string &str)
         return str;
     }
     
-    ss << "\"";
-    for (char ch : str)
+    ss << L"\"";
+    for (wchar_t ch : str)
     {
-        if (ch == '\"')
+        if (ch == L'\"')
         {
-            ss << "\\\"";
+            ss << L"\\\"";
         }
-        else if (ch == '\r')
+        else if (ch == L'\r')
         {
-            ss << "\\r";
+            ss << L"\\r";
         }
-        else if (ch == '\n')
+        else if (ch == L'\n')
         {
-            ss << "\\n";
+            ss << L"\\n";
         }
-        else if (ch == '\\')
+        else if (ch == L'\\')
         {
-            ss << "\\\\";
+            ss << L"\\\\";
         }
         else
         {
             ss << ch;
         }
     }
-    ss << "\"";
+    ss << L"\"";
     
     return ss.str();
 }
 
-std::string StringUtils::Unescape(const std::string &str)
+std::wstring StringUtils::Unescape(const std::wstring &str)
 {
-    std::stringstream ss;
+    std::wstringstream ss;
     
-    if (str == "" || str[0] != '\"')
+    if (str == L"" || str[0] != L'\"')
     {
         return str;
     }
     
     for (size_t i = 1; i < str.length() - 1; ++i)
     {
-        const char &ch = str[i];
-        if (ch == '\\')
+        const wchar_t &ch = str[i];
+        if (ch == L'\\')
         {
             ++i;
-            const char &nch = str[i];
-            if (nch == 'n')
+            const wchar_t &nch = str[i];
+            if (nch == L'n')
             {
-                ss << '\n';
+                ss << L'\n';
             }
-            else if (nch == 't')
+            else if (nch == L't')
             {
-                ss << '\t';
+                ss << L'\t';
             }
-            else if (nch == 'r')
+            else if (nch == L'r')
             {
-                ss << '\r';
+                ss << L'\r';
             }
-            else if (nch == '\"' || '\\')
+            else if (nch == L'\"' || L'\\')
             {
                 ss << nch;
             }
