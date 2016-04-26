@@ -1,5 +1,5 @@
-#ifndef _LIBCONSOLE_H_
-#define _LIBCONSOLE_H_
+#ifndef _LIBUI_H_
+#define _LIBUI_H_
 
 #include "Console.h"
 #include "ConsoleComponent.h"
@@ -9,4 +9,4 @@
 #include "ButtonConsole.h"
 #include "UI.h"
 
-#endif // _LIBCONSOLE_H_
+#endif // _LIBUI_H_

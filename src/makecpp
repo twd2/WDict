@@ -17,6 +17,7 @@ echo "class $1" >> $1.h
 echo "{" >> $1.h
 echo >> $1.h
 echo "};" >> $1.h
+echo >> $1.h
 echo "#endif // $MNAME" >> $1.h
 
 echo "#include \"$1.h\"" > $1.cpp

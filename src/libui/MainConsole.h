@@ -4,6 +4,7 @@
 #include "ConsoleComponent.h"
 #include "Console.h"
 #include "ButtonConsole.h"
+#include "ConfirmConsole.h"
 #include <iostream>
 #include <functional>
 
@@ -11,11 +12,7 @@ class MainConsole
     : public ConsoleComponent
 {
 public:
-    MainConsole(Console &Root)
-        : ConsoleComponent(Root)
-    {
-        
-    }
+    MainConsole(Console &Root);
     bool Show() override;
 };
 

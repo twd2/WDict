@@ -15,7 +15,7 @@ public:
     char Key;
     std::string Title;
     
-    ButtonConsole(Console &Root, char key, std::string title, std::function<void ()> onClick)
+    ButtonConsole(Console &Root, char key, const std::string &title, std::function<void ()> onClick)
         : ConsoleComponent(Root), onClick(onClick), Key(key), Title(title)
     {
         

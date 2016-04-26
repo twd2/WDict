@@ -1,9 +1,9 @@
 #ifndef _WDICT_H_
 #define _WDICT_H_
 
-#include <libconsole.h>
 #include <libtextdb.h>
 #include <libdict.h>
+#include <libui.h>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>

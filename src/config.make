@@ -1,5 +1,5 @@
 LS = ls
-RM = rm -fr
+RM = rm -f
 CP = cp
 SLASH = /
 
