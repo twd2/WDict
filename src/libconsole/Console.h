@@ -1,6 +1,8 @@
 #ifndef _CONSOLE_H_
 #define _CONSOLE_H_
 
+#include <stack>
+#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include "UIImpl.h"
@@ -10,8 +12,11 @@ class Console
     : public UIImpl
 {
 public:
-    std::shared_ptr<ConsoleComponent> Activity = nullptr;
+    std::stack<std::shared_ptr<ConsoleComponent> > Activities;
     bool Show() override;
+    void Clear();
+    void Goto(std::shared_ptr<ConsoleComponent> act);
+    void Back();
 };
 
 #endif // _CONSOLE_H_

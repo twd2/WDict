@@ -9,6 +9,7 @@ int main()
     try
     {
         shared_ptr<Console> cons(new Console());
+        cons->Goto(shared_ptr<ConsoleComponent>(new WithTitleConsole("WDict", shared_ptr<ConsoleComponent>(new MainConsole(*cons)))));
         UI::Init(cons);
         UI::Start();
         return 0;

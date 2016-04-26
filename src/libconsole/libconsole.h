@@ -5,6 +5,8 @@
 #include "ConsoleComponent.h"
 #include "UIImpl.h"
 #include "WithTitleConsole.h"
+#include "MainConsole.h"
+#include "ButtonConsole.h"
 #include "UI.h"
 
 #endif // _LIBCONSOLE_H_

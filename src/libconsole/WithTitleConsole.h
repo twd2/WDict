@@ -5,6 +5,8 @@
 #include <string>
 #include <memory>
 #include "ConsoleComponent.h"
+#include "Console.h"
+#include <cstdlib>
 
 class WithTitleConsole
     : public ConsoleComponent
@@ -13,7 +15,7 @@ private:
     std::string title;
     std::shared_ptr<ConsoleComponent> comp;
 public:
-    WithTitleConsole(std::string title, std::shared_ptr<ConsoleComponent> comp)
+    WithTitleConsole(const std::string &title, std::shared_ptr<ConsoleComponent> comp)
         : ConsoleComponent(comp->Root), title(title), comp(comp)
     {
         
