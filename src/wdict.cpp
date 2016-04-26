@@ -5,8 +5,14 @@ int main()
 #ifdef _WIN32
     system("chcp 65001");
 #endif
+    
     try
     {
+        shared_ptr<Console> cons(new Console());
+        UI::Init(cons);
+        UI::Start();
+        return 0;
+        
         TextDB db("dict.txt");
         
         string s;
@@ -27,6 +33,10 @@ int main()
     catch (SyntaxError err)
     {
         cerr << err.what << endl;
+    }
+    catch (string err)
+    {
+        cerr << "Error: " << err << endl;
     }
     return 0;
 }
