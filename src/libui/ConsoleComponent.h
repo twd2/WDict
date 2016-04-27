@@ -9,7 +9,7 @@ class Console;
 class ConsoleComponent
 {
 public:
-    std::vector<std::shared_ptr<ConsoleComponent> > Components;
+    std::vector<ConsoleComponent*> Components;
     Console &Root;
     ConsoleComponent(Console &Root)
         : Root(Root)
@@ -17,7 +17,6 @@ public:
         
     }
     void Add(ConsoleComponent &comp);
-    void Add(std::shared_ptr<ConsoleComponent> comp);
     virtual bool Show() = 0;
     virtual void DoButtons();
     virtual void DoButtons(char key);

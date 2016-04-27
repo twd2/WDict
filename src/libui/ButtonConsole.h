@@ -9,23 +9,17 @@
 class ButtonConsole
     : public ConsoleComponent
 {
-private:
-    std::function<void ()> onClick;
 public:
+    std::function<void ()> OnClick;
     char Key;
     std::string Title;
     
-    ButtonConsole(Console &Root, char key, const std::string &title, std::function<void ()> onClick)
-        : ConsoleComponent(Root), onClick(onClick), Key(key), Title(title)
+    ButtonConsole(Console &Root, char key, const std::string &title)
+        : ConsoleComponent(Root), Key(key), Title(title)
     {
         
     }
     
-    
-    void OnClick()
-    {
-        onClick();
-    }
     bool Show() override;
 };
 

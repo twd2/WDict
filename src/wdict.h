@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <memory>
+#include "MainConsole.h"
 
 #ifdef _WIN32
 #include <windows.h>

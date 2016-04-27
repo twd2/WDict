@@ -1,16 +1,15 @@
 #ifndef _MAINCONSOLE_H_
 #define _MAINCONSOLE_H_
 
-#include "ConsoleComponent.h"
-#include "Console.h"
-#include "ButtonConsole.h"
-#include "ConfirmConsole.h"
+#include <libui.h>
 #include <iostream>
 #include <functional>
 
 class MainConsole
     : public ConsoleComponent
 {
+protected:
+    ButtonConsole btn0, btnX;
 public:
     MainConsole(Console &Root);
     bool Show() override;

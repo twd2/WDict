@@ -3,12 +3,7 @@
 
 void ConsoleComponent::Add(ConsoleComponent &comp)
 {
-    Components.push_back(std::shared_ptr<ConsoleComponent>(&comp));
-}
-
-void ConsoleComponent::Add(std::shared_ptr<ConsoleComponent> comp)
-{
-    Components.push_back(comp);
+    Components.push_back(&comp);
 }
 
 void ConsoleComponent::DoButtons()
@@ -18,9 +13,9 @@ void ConsoleComponent::DoButtons()
 
 void ConsoleComponent::DoButtons(char key)
 {
-    for (auto &ptr : Components)
+    for (auto ptr : Components)
     {
-        auto bcptr = std::dynamic_pointer_cast<ButtonConsole>(ptr);
+        auto bcptr = dynamic_cast<ButtonConsole*>(ptr);
         if (!bcptr)
         {
             continue;
