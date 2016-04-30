@@ -8,6 +8,7 @@ int main(int argc, char **argv)
     
     try
     {
+        cout << "Loading databases..." << endl;
         // init globals
         Globals::Init();
         if (argc >= 2)
@@ -20,6 +21,10 @@ int main(int argc, char **argv)
         controller->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*controller)));
         UI::Init(controller);
         UI::Start(); // blocked
+        
+        #ifdef DEBUG
+        cout << "Persistencing databases..." << endl;
+        #endif
         return 0;
     }
     catch (SyntaxError err)

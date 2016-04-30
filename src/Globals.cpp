@@ -1,7 +1,8 @@
 #include "Globals.h"
 
-unique_ptr<TextDB> Globals::DictDB, Globals::SentDB,
+unique_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
                    Globals::UserInfoDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
+unique_ptr<Dictionary> Globals::Dict;
 unique_ptr<UserInfo> Globals::CurrentUser;
 
 void Globals::SwitchUser(const string &UserName)
@@ -17,5 +18,7 @@ void Globals::Init()
 {
     DictDB = make_unique<TextDB>("dict.txt");
     SentDB = make_unique<TextDB>("sentances.txt");
+    LevelDB = make_unique<TextDB>("level.txt");
+    Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
     SwitchUser("default");
 }

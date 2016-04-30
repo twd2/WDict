@@ -6,25 +6,24 @@
 #include <string>
 #include <vector>
 #include "IDictionary.h"
+#include "StringUtils.h"
 
+// 对基本词典接口扩展, 加入等级信息, 作为全局词典
 class Dictionary
     : public IDictionary
 {
 private:
-    //      词典,     例句
-    IDictDB &dictDB, &sentDB;
+    //      等级
+    IDictDB &levelDB;
     
 public:
-    Dictionary(IDictDB &dictDB, IDictDB &sentDB)
-        : dictDB(dictDB), sentDB(sentDB)
+    Dictionary(IDictDB &dictDB, IDictDB &sentDB, IDictDB &levelDB)
+        : IDictionary(dictDB, sentDB), levelDB(dictDB)
     {
 
     }
-    
-    // implementation for IDictionary
-    WordInfo GetDesc(const std::string &word) override;
-    WordInfo GetSentences(const std::string &word) override;
-    void AddSentence(const std::string &word, const std::string &sent, const std::string &desc) override;
+
+    int GetLevel(const std::string &word);
 };
 
 #endif // _DICTIONARY_H_

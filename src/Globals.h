@@ -10,8 +10,9 @@ using namespace std;
 class Globals
 {
 public:
-    static unique_ptr<TextDB> DictDB, SentDB,
+    static unique_ptr<TextDB> DictDB, SentDB, LevelDB,
                               UserInfoDB, UserCounterDB, UserDictDB, UserSentDB;
+    static unique_ptr<Dictionary> Dict;
     static unique_ptr<UserInfo> CurrentUser;
     static void SwitchUser(const string &UserName);
     static void Init();

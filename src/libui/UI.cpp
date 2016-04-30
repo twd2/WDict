@@ -15,6 +15,6 @@ void UI::Start()
     }
     while (ui->Show());
 #ifdef DEBUG
-    std::cout << "UI exited" << std::endl;
+    std::cout << "UI exited." << std::endl;
 #endif
 }
