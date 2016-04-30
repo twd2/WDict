@@ -3,25 +3,10 @@
 MainConsole::MainConsole(Console &Root)
     : ConsoleComponent(Root), btn0(Root, '0', "关于"), btnX(Root, 'x', "退出")
 {
-    btn0.OnClick = std::function<void ()>(
-        [this]()
-        { 
-            std::cout << "twd2" << std::endl;
-        }
-    );
+    btn0.OnClick = std::bind(&MainConsole::About, this);
     Add(btn0);
 
-    btnX.OnClick = std::function<void ()>(
-        [this]()
-        {
-            ConfirmConsole cc(this->Root, "您确定要退出吗?", true);
-            cc.Show();
-            if (cc.Value)
-            {
-                this->Root.Goto(nullptr);
-            }
-        }
-    );
+    btnX.OnClick = std::bind(&MainConsole::Exit, this);
     Add(btnX);
 }
 
@@ -37,4 +22,21 @@ bool MainConsole::Show()
     DoButtons();
 
     return true;
+}
+
+void MainConsole::About()
+{
+    std::cout << "一个背单词程序。" << std::endl;
+    ConfirmConsole cc(Root, "好?", true);
+    cc.Show();
+}
+
+void MainConsole::Exit()
+{
+    ConfirmConsole cc(Root, "您确定要退出吗?", true);
+    cc.Show();
+    if (cc.Value)
+    {
+        Root.Goto(nullptr);
+    }
 }

@@ -13,6 +13,10 @@ protected:
 public:
     MainConsole(Console &Root);
     bool Show() override;
+
+private:
+    void About();
+    void Exit();
 };
 
 #endif // _MAINCONSOLE_H_
