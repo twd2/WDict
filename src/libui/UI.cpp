@@ -13,7 +13,9 @@ void UI::Start()
     {
         throw std::string("UI is not initialized.");
     }
+    
     while (ui->Show());
+    
 #ifdef DEBUG
     std::cout << "UI exited." << std::endl;
 #endif
