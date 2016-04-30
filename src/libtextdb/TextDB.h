@@ -10,9 +10,9 @@
 #include "Token.h"
 #include "Lexer.h"
 
-typedef std::map<std::string, std::vector<std::string> > TextDBCollection;
+typedef std::map<std::string, std::vector<std::string> > ITextDB;
 
-class TextDB : public TextDBCollection
+class TextDB : public ITextDB
 {
 private:
     std::string fileName;
@@ -23,6 +23,10 @@ public:
 
 private:
     void load();
+    
+    // avoid copy or assign
+    TextDB(const TextDB&) = delete;
+    TextDB &operator=(const TextDB&) = delete;
 };
 
 #endif // _TEXTDB_H_

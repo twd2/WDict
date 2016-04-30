@@ -17,6 +17,7 @@ public:
     void Clear();
     void Goto(std::shared_ptr<ConsoleComponent> act);
     void Back();
+    void IgnoreLeftNewline();
 };
 
 #endif // _CONSOLE_H_

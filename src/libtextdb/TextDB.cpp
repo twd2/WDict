@@ -62,7 +62,7 @@ void TextDB::load()
 void TextDB::Sync()
 {
     std::ofstream ofs(fileName, std::ios_base::out);
-    for (TextDBCollection::iterator iter = begin(); iter != end(); ++iter)
+    for (auto iter = begin(); iter != end(); ++iter)
     {
         ofs << StringUtils::Escape(iter->first);
         std::vector<std::string> &val = iter->second;

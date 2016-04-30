@@ -27,3 +27,16 @@ void Console::Back()
 {
     Activities.pop();
 }
+
+void Console::IgnoreLeftNewline()
+{
+    while (std::cin.peek() == '\r' || std::cin.peek() == '\n') 
+    {
+        char ch = std::cin.peek();
+        std::cin.ignore();
+        if (ch == '\n')
+        {
+            break;
+        }
+    }
+}

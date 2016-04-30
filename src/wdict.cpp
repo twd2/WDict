@@ -1,6 +1,6 @@
 #include "wdict.h"
 
-int main()
+int main(int argc, char **argv)
 {
 #ifdef _WIN32
     system("chcp 65001");
@@ -8,28 +8,19 @@ int main()
     
     try
     {
-        auto cons = make_shared<Console>();
-        cons->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*cons)));
-        UI::Init(cons);
-        UI::Start();
-        return 0;
-        
-        TextDB db("dictcn_level_1_.txt");
-        
-        string s;
-        
-        while (getline(cin, s))
+        // init globals
+        Globals::Init();
+        if (argc >= 2)
         {
-            cout << s.length() << endl;
-            if (s == "") 
-            {
-                break;
-            }
-            for (auto &desc: db[s])
-            {
-                cout << "\t" << desc << endl;
-            }
+            Globals::SwitchUser(argv[1]);
         }
+        
+        // init user interface
+        auto controller = make_shared<Console>();
+        controller->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*controller)));
+        UI::Init(controller);
+        UI::Start(); // blocked
+        return 0;
     }
     catch (SyntaxError err)
     {
@@ -39,5 +30,5 @@ int main()
     {
         cerr << "Error: " << err << endl;
     }
-    return 0;
+    return 1;
 }

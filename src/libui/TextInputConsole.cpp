@@ -9,15 +9,7 @@ bool TextInputConsole::Show()
         std::cin >> Text;
         break;
     case TEXTINPUT_LINE:
-        while (std::cin.peek() == '\r' || std::cin.peek() == '\n') 
-        {
-            char ch = std::cin.peek();
-            std::cin.ignore();
-            if (ch == '\n')
-            {
-                break;
-            }
-        }
+        Root.IgnoreLeftNewline();
         std::getline(std::cin, Text);
         break;
     }

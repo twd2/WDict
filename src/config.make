@@ -21,7 +21,7 @@ endif
 endif
 
 ifdef DEBUG
-	CC_DBG_FLAGS = -g
+	CC_DBG_FLAGS = -g -DDEBUG
 else
 	CC_DBG_FLAGS = -O2 -D__NO_INLINE__
 endif
