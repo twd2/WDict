@@ -24,6 +24,11 @@ public:
     }
 
     int GetLevel(const std::string &word);
+    
+    void AddDesc(const std::string &word, const std::string &desc) override;
+    void AddSentence(const std::string &word, const std::string &sent, const std::string &desc) override;
+    void DelDesc(const std::string &word, size_t id) override;
+    void DelSentence(const std::string &word, size_t id) override;
 };
 
 #endif // _DICTIONARY_H_

@@ -2,6 +2,6 @@
 
 bool ButtonConsole::Show()
 {
-    std::cout << Key << "    " << Title << std::endl;
+    std::cout << "[" << Key << "]    " << Title << std::endl;
     return true;
 }

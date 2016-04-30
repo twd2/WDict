@@ -22,6 +22,8 @@ public:
     virtual WordInfo GetWord(const std::string &word);
     virtual void AddDesc(const std::string &word, const std::string &desc);
     virtual void AddSentence(const std::string &word, const std::string &sent, const std::string &desc);
+    virtual void DelDesc(const std::string &word, size_t id);
+    virtual void DelSentence(const std::string &word, size_t id);
 };
 
 #endif // _IDICTIONARY_H_

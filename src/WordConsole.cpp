@@ -2,43 +2,64 @@
 #include <typeinfo>
 
 WordConsole::WordConsole(Console &Root, const string &Word)
-    : ConsoleComponent(Root), btnBack(Root, 'b', "返回"), Word(Word)
+    : ConsoleComponent(Root), btnAddDesc(Root, '0', "添加释义"), btnAddSent(Root, '1', "添加例句"),
+                              btnDelDesc(Root, '2', "删除释义"), btnDelSent(Root, '3', "删除例句"), btnBack(Root, 'b', "返回"), Word(Word)
 {
+    btnAddDesc.OnClick = bind(&WordConsole::AddDesc, this);
+    Add(btnAddDesc);
+    
+    btnAddSent.OnClick = bind(&WordConsole::AddSent, this);
+    Add(btnAddSent);
+    
+    btnDelDesc.OnClick = bind(&WordConsole::DelDesc, this);
+    Add(btnDelDesc);
+    
+    btnDelSent.OnClick = bind(&WordConsole::DelSent, this);
+    Add(btnDelSent);
+    
     btnBack.OnClick = bind(&WordConsole::Back, this);
     Add(btnBack);
 }
 
-bool WordConsole::Show()
+void WordConsole::PrintWord(const string &str, WordInfo wi)
 {
-    auto wi = Globals::Dict->GetWord(Word);
-    
     if (wi.Desc.size() > 0)
     {
-        cout << "系统释义:" << endl;
+        cout << str + "释义:" << endl;
+        size_t i = 0;
         for (string desc : wi.Desc)
         {
-            cout << "    " << desc << endl;
+            cout << "    " << i++ << ". " << desc << endl;
         }
     }
     else
     {
-        cout << "未找到系统释义。" << endl;
+        cout << string("未找到") + str + "释义。" << endl;
     }
+    cout << endl;
     
-    if (wi.Sentances.size() > 0)
+    if (wi.Sentences.size() > 0)
     {
-        cout << "系统例句:" << endl;
-        for (auto p : wi.Sentances)
+        cout << str + "例句:" << endl;
+        size_t i = 0;
+        for (auto p : wi.Sentences)
         {
-            cout << "    " << p.first << endl
+            cout << "  " << i++ << ". " << p.first << endl
                  << "    " << p.second << endl
                  << endl;
         }
     }
     else
     {
-        cout << "未找到系统例句。" << endl;
+        cout << string("未找到") + str + "例句。" << endl;
     }
+    cout << endl;
+}
+
+bool WordConsole::Show()
+{
+    PrintWord("系统", Globals::Dict->GetWord(Word));
+    PrintWord("您添加的", Globals::CurrentUser->GetWord(Word));
     
     for (auto ptr : Components)
     {
@@ -48,6 +69,60 @@ bool WordConsole::Show()
     DoButtons();
 
     return true;
+}
+
+void WordConsole::AddDesc()
+{
+    TextInputConsole txtDesc(Root, "释义:", TEXTINPUT_LINE);
+    txtDesc.Show();
+    if (txtDesc.Value != "")
+    {
+        Globals::CurrentUser->AddDesc(Word, txtDesc.Value);
+    }
+}
+
+void WordConsole::AddSent()
+{
+    TextInputConsole txtSent(Root, "例句:", TEXTINPUT_LINE);
+    txtSent.Show();
+    if (txtSent.Value != "")
+    {
+        TextInputConsole txtDesc(Root, "释义:", TEXTINPUT_LINE);
+        txtDesc.Show();
+        Globals::CurrentUser->AddSentence(Word, txtSent.Value, txtDesc.Value);
+    }
+}
+
+void WordConsole::DelDesc()
+{
+    TextInputConsole txtId(Root, "请输入编号:", TEXTINPUT_LINE);
+    txtId.Show();
+    if (txtId.Value != "")
+    {
+        size_t id = StringUtils::FromString<size_t>(txtId.Value);
+        if (txtId.Value != StringUtils::ToString(id))
+        {
+            // is not number
+            return;
+        }
+        Globals::CurrentUser->DelDesc(Word, id);
+    }
+}
+
+void WordConsole::DelSent()
+{
+    TextInputConsole txtId(Root, "请输入编号:", TEXTINPUT_LINE);
+    txtId.Show();
+    if (txtId.Value != "")
+    {
+        size_t id = StringUtils::FromString<size_t>(txtId.Value);
+        if (txtId.Value != StringUtils::ToString(id))
+        {
+            // is not number
+            return;
+        }
+        Globals::CurrentUser->DelSentence(Word, id);
+    }
 }
 
 void WordConsole::Back()

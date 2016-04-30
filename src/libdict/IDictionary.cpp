@@ -1,6 +1,5 @@
 #include "IDictionary.h"
 
-
 WordInfo IDictionary::GetWord(const std::string &word)
 {
     WordInfo wi;
@@ -21,7 +20,7 @@ WordInfo IDictionary::GetWord(const std::string &word)
             auto &vec = iter->second;
             for (size_t i = 0; i < vec.size() - 1; i += 2)
             {
-                wi.Sentances.push_back(make_pair(vec[i], vec[i + 1]));
+                wi.Sentences.push_back(make_pair(vec[i], vec[i + 1]));
             }
         }
     }
@@ -38,4 +37,23 @@ void IDictionary::AddSentence(const std::string &word, const std::string &sent, 
 {
     sentDB[word].push_back(sent);
     sentDB[word].push_back(desc);
+}
+
+void IDictionary::DelDesc(const std::string &word, size_t id)
+{
+    auto &vec = dictDB[word];
+    if (id < vec.size())
+    {
+        vec.erase(vec.begin() + id);
+    }
+}
+
+void IDictionary::DelSentence(const std::string &word, size_t id)
+{
+    size_t pos = id * 2;
+    auto &vec = sentDB[word];
+    if (pos < vec.size())
+    {
+        vec.erase(vec.begin() + pos, vec.begin() + pos + 2);
+    }
 }

@@ -12,13 +12,18 @@ class WordConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnBack;
+    ButtonConsole btnAddDesc, btnAddSent, btnDelDesc, btnDelSent, btnBack;
 public:
     string Word;
     WordConsole(Console &Root, const string &Word);
     bool Show() override;
 
 private:
+    static void PrintWord(const string &str, WordInfo wi);
+    void AddDesc();
+    void AddSent();
+    void DelDesc();
+    void DelSent();
     void Back();
     // void
 };
