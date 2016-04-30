@@ -8,13 +8,13 @@ int main()
     
     try
     {
-        auto cons = make_shared<Console>();
+        /*auto cons = make_shared<Console>();
         cons->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*cons)));
         UI::Init(cons);
         UI::Start();
-        return 0;
+        return 0;*/
         
-        TextDB db("dict.txt");
+        TextDB db("dictcn_level_1_.txt");
         
         string s;
         
