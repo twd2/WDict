@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include "WordConsole.h"
+#include "EvaluateStrategy.h"
 
 using namespace std;
 

@@ -12,6 +12,7 @@ void Globals::SwitchUser(const string &UserName)
     UserDictDB = make_unique<TextDB>(UserName + "_dict");
     UserSentDB = make_unique<TextDB>(UserName + "_sentences");
     CurrentUser = make_unique<UserInfo>(*UserInfoDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
+    CurrentUser->WordEvaluate = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
 }
 
 void Globals::Init()

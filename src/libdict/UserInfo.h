@@ -10,6 +10,8 @@
 #include "StringUtils.h"
 #include "Dictionary.h"
 
+class EvaluateStrategy;
+
 enum user_counter_t
 {
     COUNTER_RETRIVE, // 查询次数
@@ -30,6 +32,7 @@ private:
     std::string historyFilename;
 public:
     std::string Name;
+    std::shared_ptr<EvaluateStrategy> WordEvaluate = nullptr;
     
     UserInfo(IDictDB &infoDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
         : IDictionary(dictDB, sentDB), infoDB(infoDB), counterDB(counterDB), Name(Name)

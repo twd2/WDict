@@ -6,5 +6,7 @@
 #include "IDictionary.h"
 #include "Dictionary.h"
 #include "UserInfo.h"
+#include "EvaluateStrategy.h"
+#include "DefaultEvaluateStrategy.h"
 
 #endif // _LIBDICT_H_

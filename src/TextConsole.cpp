@@ -18,15 +18,31 @@ bool TextConsole::Show()
             return true;
         }
     }
-       
+    
+    size_t counter = 0;
     for (string word : Words)
     {
-        cout << word << " ";
+        if (!Globals::CurrentUser->WordEvaluate->IsKnown(word))
+        {
+            cout << word << endl;
+            WordInfo wi = Globals::Dict->GetWord(word);
+            if (wi.Desc.size() > 0)
+            {
+                for (string desc : wi.Desc)
+                {
+                    cout << "    " << desc << endl;
+                }
+            }
+            else
+            {
+                cout << "    *未找到释义*" << endl;
+            }
+        }
+        ++counter;
     }
     cout << endl;
-    cout << "共" << Words.size() << "个不同的单词。" << endl;
     
-    // TODO: auto display words that the user do not know
+    cout << "共" << Words.size() << "个不同的单词，显示了" << counter << "个释义。" << endl;
     
     txtWord.Show();
     if (txtWord.Value != "")

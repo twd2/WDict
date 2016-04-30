@@ -19,6 +19,11 @@ public:
 
     }
     
+    size_t Size()
+    {
+        return dictDB.size();
+    }
+    
     virtual WordInfo GetWord(const std::string &word);
     virtual void AddDesc(const std::string &word, const std::string &desc);
     virtual void AddSentence(const std::string &word, const std::string &sent, const std::string &desc);

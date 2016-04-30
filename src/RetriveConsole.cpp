@@ -2,14 +2,14 @@
 
 bool RetriveConsole::Show()
 {
-    auto history = Globals::CurrentUser->GetHistory(2);
+    auto history = Globals::CurrentUser->GetHistory(20);
     
     if (history.size() > 0)
     {
         cout << "查询历史" << endl;
         for (auto &word : history)
         {
-            cout << word << "\t";
+            cout << word << " ";
         }
         cout << endl;
     }
