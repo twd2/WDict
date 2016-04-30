@@ -19,8 +19,8 @@ public:
 
     }
     
-    virtual WordInfo GetDesc(const std::string &word);
-    virtual WordInfo GetSentences(const std::string &word);
+    virtual WordInfo GetWord(const std::string &word);
+    virtual void AddDesc(const std::string &word, const std::string &desc);
     virtual void AddSentence(const std::string &word, const std::string &sent, const std::string &desc);
 };
 

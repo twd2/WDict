@@ -13,7 +13,7 @@ class TextInputConsole
     : public ConsoleComponent
 {
 public:
-    std::string Text, Message;
+    std::string Value, Message;
     int TokenOrLine;
     TextInputConsole(Console &Root, const std::string &Message, int TokenOrLine)
         : ConsoleComponent(Root), Message(Message), TokenOrLine(TokenOrLine)

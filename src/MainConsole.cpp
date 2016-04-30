@@ -1,13 +1,16 @@
 #include "MainConsole.h"
 
 MainConsole::MainConsole(Console &Root)
-    : ConsoleComponent(Root), btn0(Root, '0', "关于"), btnX(Root, 'x', "退出")
+    : ConsoleComponent(Root), btnRetrive(Root, '0', "查词"), btnAbout(Root, 'z', "关于"), btnExit(Root, 'x', "退出")
 {
-    btn0.OnClick = std::bind(&MainConsole::About, this);
-    Add(btn0);
+    btnRetrive.OnClick = std::bind(&MainConsole::Retrive, this);
+    Add(btnRetrive);
+    
+    btnAbout.OnClick = std::bind(&MainConsole::About, this);
+    Add(btnAbout);
 
-    btnX.OnClick = std::bind(&MainConsole::Exit, this);
-    Add(btnX);
+    btnExit.OnClick = std::bind(&MainConsole::Exit, this);
+    Add(btnExit);
 }
 
 bool MainConsole::Show()
@@ -22,6 +25,11 @@ bool MainConsole::Show()
     DoButtons();
 
     return true;
+}
+
+void MainConsole::Retrive()
+{
+    Root.Goto(make_shared<WithTitleConsole>("单词查询", make_shared<RetriveConsole>(Root)));
 }
 
 void MainConsole::About()

@@ -4,17 +4,22 @@
 #include <libui.h>
 #include <iostream>
 #include <functional>
+#include <memory>
+#include "RetriveConsole.h"
+
+using namespace std;
 
 class MainConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btn0, btnX;
+    ButtonConsole btnRetrive, btnAbout, btnExit;
 public:
     MainConsole(Console &Root);
     bool Show() override;
 
 private:
+    void Retrive();
     void About();
     void Exit();
 };

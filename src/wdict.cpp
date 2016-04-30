@@ -8,7 +8,11 @@ int main(int argc, char **argv)
     
     try
     {
+        #ifdef DEBUG
         cout << "Loading databases..." << endl;
+        // TODO: show ADs.
+        #endif
+        
         // init globals
         Globals::Init();
         if (argc >= 2)
@@ -17,10 +21,10 @@ int main(int argc, char **argv)
         }
         
         // init user interface
-        auto controller = make_shared<Console>();
-        controller->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*controller)));
-        UI::Init(controller);
-        UI::Start(); // blocked
+        auto controller = make_shared<Console>(); // create a controller
+        controller->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*controller))); // goto MainConsole activity
+        UI::Init(controller); // init UI
+        UI::Start(); // ui loop, blocked
         
         #ifdef DEBUG
         cout << "Persistencing databases..." << endl;

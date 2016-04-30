@@ -6,11 +6,11 @@ bool TextInputConsole::Show()
     switch (TokenOrLine)
     {
     case TEXTINPUT_TOKEN:
-        std::cin >> Text;
+        std::cin >> Value;
         break;
     case TEXTINPUT_LINE:
         Root.IgnoreLeftNewline();
-        std::getline(std::cin, Text);
+        std::getline(std::cin, Value);
         break;
     }
     
