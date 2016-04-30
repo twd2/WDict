@@ -1,7 +1,10 @@
 #ifndef _STRINGUTILS_H_
 #define _STRINGUTILS_H_
 
+#include <algorithm>
 #include <sstream>
+#include <string>
+#include <vector>
 
 class StringUtils
 {
@@ -11,6 +14,8 @@ public:
     
     template <typename T>
     static T FromString(const std::string&);
+	
+	static std::vector<std::string> GetWords(std::string text, bool unique = false);
 };
 
 template <typename T>

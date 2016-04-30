@@ -6,6 +6,7 @@
 #include <functional>
 #include <memory>
 #include "RetriveConsole.h"
+#include "TextConsole.h"
 
 using namespace std;
 
@@ -13,13 +14,14 @@ class MainConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnRetrive, btnAbout, btnExit;
+    ButtonConsole btnRetrive, btnText, btnAbout, btnExit;
 public:
     MainConsole(Console &Root);
     bool Show() override;
 
 private:
     void Retrive();
+    void Text();
     void About();
     void Exit();
 };
