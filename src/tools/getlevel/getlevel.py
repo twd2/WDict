@@ -61,7 +61,7 @@ def main():
   level = {}
   
   with open('dict.txt', 'rt') as f:
-   words = [line.split(',')[0] for line in f]
+   words = [line.split(',')[0].strip() for line in f]
   
   print(words)
   
