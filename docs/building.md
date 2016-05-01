@@ -10,7 +10,7 @@
 
 ## 对于Windows的特别说明
 
-您可能需要创建一个名为`make.exe`, 到`mingw32-make.exe`的符号链接:
+您可能需要创建一个名为`make.exe`，到`mingw32-make.exe`的符号链接：
 
 ```
 mklink make.exe mingw32-make.exe
