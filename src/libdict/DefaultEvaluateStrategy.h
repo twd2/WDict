@@ -11,10 +11,11 @@ class DefaultEvaluateStrategy
     : public EvaluateStrategy
 {
 protected:
+    UserInfo &user;
     Dictionary &dict;
 public:
     DefaultEvaluateStrategy(UserInfo &user, Dictionary &dict)
-        : EvaluateStrategy(user), dict(dict)
+        : user(user), dict(dict)
     {
         
     }

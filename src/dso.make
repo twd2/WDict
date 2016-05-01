@@ -19,4 +19,4 @@ $(PROJECT).o: $(PROJECT).cpp $(HEADERS)
 
 .PHONY: clean
 clean:
-	-$(RM) *.o $(PROJECT).$(DSO_POSTFIX)
+	-$(RM) *.o *.d $(PROJECT).$(DSO_POSTFIX)

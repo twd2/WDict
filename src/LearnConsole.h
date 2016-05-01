@@ -6,6 +6,7 @@
 #include <libtextdb.h>
 #include <iostream>
 #include <string>
+#include "Globals.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class LearnConsole
 protected:
     ButtonConsole btnBack;
 public:
-    size_t Limit = 50;
+    size_t Limit = 5;
     LearnConsole(Console &Root);
     
     bool Show() override;

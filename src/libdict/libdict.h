@@ -8,5 +8,8 @@
 #include "UserInfo.h"
 #include "EvaluateStrategy.h"
 #include "DefaultEvaluateStrategy.h"
+#include "WordIterator.h"
+#include "WithLimitIterator.h"
+#include "RandomWordIterator.h"
 
 #endif // _LIBDICT_H_

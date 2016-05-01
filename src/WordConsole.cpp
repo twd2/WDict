@@ -135,6 +135,7 @@ void WordConsole::DelDesc()
     txtId.Show();
     if (txtId.Value != "")
     {
+        // TODO: confirm
         size_t id = StringUtils::FromString<size_t>(txtId.Value);
         if (txtId.Value != StringUtils::ToString(id))
         {
@@ -152,6 +153,7 @@ void WordConsole::DelSent()
     txtId.Show();
     if (txtId.Value != "")
     {
+        // TODO: confirm
         size_t id = StringUtils::FromString<size_t>(txtId.Value);
         if (txtId.Value != StringUtils::ToString(id))
         {

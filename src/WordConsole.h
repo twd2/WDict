@@ -26,7 +26,6 @@ private:
     void DelDesc();
     void DelSent();
     void Back();
-    // void
 };
 
 #endif // _WORDCONSOLE_H_
