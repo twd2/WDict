@@ -10,7 +10,14 @@ else
 ifeq ($(shell uname),Darwin)
 	DSO_POSTFIX = dylib
 else
+    # May be Windows	
+    WIN32 = 1
+    LS = dir /b
+    RM = del /f
+    CP = copy
+    SLASH = \\
 	DSO_POSTFIX = dll
+	ICONV = tools\\iconv\\iconv.exe
 endif
 
 endif

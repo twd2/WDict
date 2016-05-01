@@ -16,7 +16,12 @@ $(PROJECT): $(PROJECT).o $(OBJECTS)
 
 %.o: %.cpp %.h
 	g++ $(CC_FLAGS) -MD -MM -MP -c $<
+ifdef WIN32
+	$(ICONV) -f UTF-8 -t GBK $< > $<.win.cc
+	g++ $(CC_FLAGS) -o $@ -c $<.win.cc
+else
 	g++ $(CC_FLAGS) -o $@ -c $<
+endif
 
 lib%_: lib%
 	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
