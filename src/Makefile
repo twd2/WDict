@@ -23,7 +23,7 @@ else
 	g++ $(CC_FLAGS) -o $@ -c $<
 endif
 
-.$(SLASH)%.txt: ..$(SLASH)res$(SLASH)%.txt
+..$(SLASH)src$(SLASH)%.txt: ..$(SLASH)res$(SLASH)%.txt
 ifdef WIN32
 	$(ICONV) -f UTF-8 -t GBK $< > $@
 else
@@ -34,12 +34,12 @@ lib%_: lib%
 	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
 
 .PHONY: resources
-resources: .$(SLASH)dict.txt .$(SLASH)level.txt .$(SLASH)sentences.txt
+resources: ..$(SLASH)src$(SLASH)dict.txt ..$(SLASH)src$(SLASH)level.txt ..$(SLASH)src$(SLASH)sentences.txt
 	
 
 .PHONY: clean
 clean:
-	-$(RM) *.o *.d *.win.cc dict.txt level.txt $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
+	-$(RM) *.o *.d *.win.cc dict.txt level.txt sentences.txt $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
 	cd libtextdb && make clean
 	cd libdict && make clean
 	cd libui && make clean
