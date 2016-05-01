@@ -33,5 +33,7 @@
 # Dependences file
 *.d
 
+*.win.cc
+
 wdict
 default_*

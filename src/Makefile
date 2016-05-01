@@ -28,7 +28,7 @@ lib%_: lib%
 
 .PHONY: clean
 clean:
-	-$(RM) *.o *.d $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
+	-$(RM) *.o *.d *.win.cc $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
 	cd libtextdb && make clean
 	cd libdict && make clean
 	cd libui && make clean
