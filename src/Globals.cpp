@@ -1,5 +1,7 @@
 #include "Globals.h"
 
+default_random_engine Globals::RandomEngine;
+
 unique_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
                    Globals::UserInfoDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
 unique_ptr<Dictionary> Globals::Dict;
@@ -17,6 +19,7 @@ void Globals::SwitchUser(const string &UserName)
 
 void Globals::Init()
 {
+    RandomEngine.seed(std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1));
     DictDB = make_unique<TextDB>("dict.txt");
     SentDB = make_unique<TextDB>("sentences.txt");
     LevelDB = make_unique<TextDB>("level.txt");

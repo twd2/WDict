@@ -31,7 +31,7 @@ std::string RandomWordIterator::Next()
     std::string word;
     do
     {
-        word = dict[(*dist)(dev)];
+        word = dict[(*dist)(engine)];
     }
     while (!pred(word));
     

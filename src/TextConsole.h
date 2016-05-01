@@ -21,12 +21,7 @@ protected:
     string filename;
     vector<string> Words;
 public:
-    TextConsole(Console &Root)
-        : ConsoleComponent(Root), txtFilename(Root, "请输入要分析的文本的路径(可将文件拖入控制台来获得文件路径，输入空行返回):", TEXTINPUT_LINE),
-                                  txtWord(Root, "请输入要查询的单词(输入空行返回):", TEXTINPUT_LINE)
-    {
-        
-    }
+    TextConsole(Console &Root);
     
     bool Show() override;
 };

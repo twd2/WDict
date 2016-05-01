@@ -10,7 +10,7 @@ LearnConsole::LearnConsole(Console &Root)
 bool LearnConsole::Show()
 {
     
-    WithLimitIterator wli(Limit, make_shared<RandomWordIterator>(*Globals::Dict));
+    WithLimitIterator wli(Limit, make_shared<RandomWordIterator>(Globals::RandomEngine, *Globals::Dict));
     while (wli.HaveNext())
     {
         cout << wli.Next() << endl;

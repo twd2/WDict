@@ -3,6 +3,8 @@
 
 #include <libtextdb.h>
 #include <libdict.h>
+#include <random>
+#include <chrono>
 #include <memory>
 
 using namespace std;
@@ -10,6 +12,7 @@ using namespace std;
 class Globals
 {
 public:
+    static default_random_engine RandomEngine;
     static unique_ptr<TextDB> DictDB, SentDB, LevelDB,
                               UserInfoDB, UserCounterDB, UserDictDB, UserSentDB;
     static unique_ptr<Dictionary> Dict;

@@ -1,5 +1,11 @@
 #include "RetriveConsole.h"
 
+RetriveConsole::RetriveConsole(Console &Root)
+    : ConsoleComponent(Root), txtWord(Root, "请输入要查询的单词(输入空行返回):", TEXTINPUT_LINE)
+{
+    
+}
+
 bool RetriveConsole::Show()
 {
     auto history = Globals::CurrentUser->GetHistory(20);

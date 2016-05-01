@@ -37,4 +37,6 @@
 
 config.personal
 wdict
+src/dict.txt
+src/level.txt
 default_*

@@ -14,11 +14,7 @@ class RetriveConsole
 protected:
     TextInputConsole txtWord;
 public:
-    RetriveConsole(Console &Root)
-        : ConsoleComponent(Root), txtWord(Root, "请输入要查询的单词(输入空行返回):", TEXTINPUT_LINE)
-    {
-        
-    }
+    RetriveConsole(Console &Root);
     
     bool Show() override;
 };

@@ -7,7 +7,7 @@ LD_FLAGS = -L./libtextdb -L./libdict -L./libui
 LD_LIBS = -ltextdb -ldict -lui
 
 .PHONY: all
-all: libtextdb_ libdict_ libui_ $(PROJECT)
+all: libtextdb_ libdict_ libui_ resources $(PROJECT)
 
 -include $(DEPS)
 
@@ -23,12 +23,23 @@ else
 	g++ $(CC_FLAGS) -o $@ -c $<
 endif
 
+.$(SLASH)%.txt: ..$(SLASH)res$(SLASH)%.txt
+ifdef WIN32
+	$(ICONV) -f UTF-8 -t GBK $< > $@
+else
+	$(CP) $< $@
+endif
+
 lib%_: lib%
 	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
 
+.PHONY: resources
+resources: .$(SLASH)dict.txt .$(SLASH)level.txt
+	
+
 .PHONY: clean
 clean:
-	-$(RM) *.o *.d *.win.cc $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
+	-$(RM) *.o *.d *.win.cc dict.txt level.txt $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
 	cd libtextdb && make clean
 	cd libdict && make clean
 	cd libui && make clean

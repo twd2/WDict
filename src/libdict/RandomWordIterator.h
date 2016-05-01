@@ -3,7 +3,6 @@
 
 #include "IDictionary.h"
 #include "WordIterator.h"
-#include <ctime>
 #include <memory>
 #include <string>
 #include <random>
@@ -16,19 +15,19 @@ private:
     size_t lastSize = -1;
 protected:
     std::function<bool (std::string)> pred;
+    std::default_random_engine &engine;
     IDictionary &dict;
-    std::random_device dev;
     std::unique_ptr<std::uniform_int_distribution<size_t> > dist;
 public:
-    RandomWordIterator(IDictionary &dict)
-        : dict(dict)
+    RandomWordIterator(std::default_random_engine &engine, IDictionary &dict)
+        : engine(engine), dict(dict)
     {
         initRandom();
         pred = [] (std::string w) { return true; };
     }
     
-    RandomWordIterator(IDictionary &dict, std::function<bool (std::string)> pred)
-        : pred(pred), dict(dict)
+    RandomWordIterator(std::default_random_engine &engine, IDictionary &dict, std::function<bool (std::string)> pred)
+        : pred(pred), engine(engine), dict(dict)
     {
         initRandom();
     }
