@@ -58,6 +58,44 @@ void WordConsole::PrintWord(const string &str, WordInfo wi)
 
 bool WordConsole::Show()
 {
+    auto &evalPtr = Globals::CurrentUser->WordEvaluate;
+    bool haveFlags = false;
+    
+    if (evalPtr->IsCommon(Word))
+    {
+        cout << "*常见词*    ";
+        haveFlags = true;
+    }
+    else
+    {
+        cout << "*生僻词*    ";
+        haveFlags = true;
+    }
+    
+    if (evalPtr->IsForgettable(Word))
+    {
+        cout << "*您容易忘记*    ";
+        haveFlags = true;
+    }
+    
+    if (evalPtr->IsKnown(Word))
+    {
+        cout << "*熟词*    ";
+        haveFlags = true;
+    }
+    else
+    {
+        cout << "*生词*    ";
+        haveFlags = true;
+    }
+    
+    if (haveFlags)
+    {
+        cout << endl;
+    }
+    
+    cout << string(80, '-') << endl;
+    
     PrintWord("系统", Globals::Dict->GetWord(Word));
     PrintWord("您添加的", Globals::CurrentUser->GetWord(Word));
     
@@ -74,6 +112,7 @@ void WordConsole::AddDesc()
     if (txtDesc.Value != "")
     {
         Globals::CurrentUser->AddDesc(Word, txtDesc.Value);
+        Globals::UserDictDB->Sync();
     }
 }
 
@@ -86,6 +125,7 @@ void WordConsole::AddSent()
         TextInputConsole txtDesc(Root, "释义:", TEXTINPUT_LINE);
         txtDesc.Show();
         Globals::CurrentUser->AddSentence(Word, txtSent.Value, txtDesc.Value);
+        Globals::UserSentDB->Sync();
     }
 }
 
@@ -102,6 +142,7 @@ void WordConsole::DelDesc()
             return;
         }
         Globals::CurrentUser->DelDesc(Word, id);
+        Globals::UserDictDB->Sync();
     }
 }
 
@@ -118,6 +159,7 @@ void WordConsole::DelSent()
             return;
         }
         Globals::CurrentUser->DelSentence(Word, id);
+        Globals::UserSentDB->Sync();
     }
 }
 

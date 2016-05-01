@@ -14,5 +14,9 @@ bool DefaultEvaluateStrategy::IsForgettable(const std::string &word)
 bool DefaultEvaluateStrategy::IsKnown(const std::string &word)
 {
     WordInfo wi = user.GetCounters(word);
+    if (wi.Counters[COUNTER_PASS] > 0 && wi.Counters[COUNTER_TEST] == 0)
+    {
+        throw std::string("assert failed");
+    }
     return (wi.Counters[COUNTER_PASS] >= 3) && (wi.Counters[COUNTER_PASS] * 100 / wi.Counters[COUNTER_TEST] > 60);
 }

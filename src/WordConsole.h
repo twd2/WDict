@@ -2,6 +2,7 @@
 #define _WORDCONSOLE_H_
 
 #include <libui.h>
+#include <string>
 #include <iostream>
 #include <functional>
 #include "Globals.h"

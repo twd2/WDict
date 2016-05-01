@@ -61,6 +61,9 @@ void TextDB::load()
 
 void TextDB::Sync()
 {
+    #ifdef DEBUG
+    std::cout << "Persistencing databases..." << std::endl;
+    #endif
     std::ofstream ofs(fileName, std::ios_base::out);
     for (auto iter = begin(); iter != end(); ++iter)
     {

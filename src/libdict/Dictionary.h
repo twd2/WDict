@@ -18,7 +18,7 @@ private:
     
 public:
     Dictionary(IDictDB &dictDB, IDictDB &sentDB, IDictDB &levelDB)
-        : IDictionary(dictDB, sentDB), levelDB(dictDB)
+        : IDictionary(dictDB, sentDB), levelDB(levelDB)
     {
 
     }

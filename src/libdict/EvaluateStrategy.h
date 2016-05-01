@@ -3,7 +3,7 @@
 
 #include "UserInfo.h"
 
-// 根据用户情况对单词难度评估
+// 根据用户情况对单词进行难度评估
 class EvaluateStrategy
 {
 protected:
