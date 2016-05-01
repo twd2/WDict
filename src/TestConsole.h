@@ -14,6 +14,7 @@ class TestConsole
 {
 protected:
     ButtonConsole btnBack;
+    SelectConsole selAnswer;
 public:
     size_t Limit = 50;
     TestConsole(Console &Root);

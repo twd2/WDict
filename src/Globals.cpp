@@ -23,3 +23,18 @@ void Globals::Init()
     Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
     SwitchUser("default");
 }
+
+void Globals::Open(const string &path)
+{
+    #ifdef _WIN32
+    system((string("explorer ") + path).c_str());
+    #endif
+
+    #ifdef __linux
+    system((string("gnome-open ") + path).c_str());
+    #endif
+
+    #if defined(__APPLE__) && defined(__MACH__)
+    system((string("open ") + path).c_str());
+    #endif
+}

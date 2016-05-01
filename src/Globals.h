@@ -16,6 +16,7 @@ public:
     static unique_ptr<UserInfo> CurrentUser;
     static void SwitchUser(const string &UserName);
     static void Init();
+    static void Open(const string &path);
 };
 
 template <typename T, typename... Args>

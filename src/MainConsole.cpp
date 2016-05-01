@@ -56,8 +56,12 @@ void MainConsole::Test()
 void MainConsole::About()
 {
     cout << "一个背单词程序。" << endl;
-    ConfirmConsole cc(Root, "好?", true);
+    ConfirmConsole cc(Root, "Fork me on GitHub?", true);
     cc.Show();
+    if (cc.Value)
+    {
+        Globals::Open("https://github.com/twd2/WDict");
+    }
 }
 
 void MainConsole::Exit()

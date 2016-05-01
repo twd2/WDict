@@ -8,6 +8,7 @@
 #include "ButtonConsole.h"
 #include "ConfirmConsole.h"
 #include "TextInputConsole.h"
+#include "SelectConsole.h"
 #include "UI.h"
 
 #endif // _LIBUI_H_
