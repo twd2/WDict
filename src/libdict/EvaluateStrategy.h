@@ -3,13 +3,13 @@
 
 #include "UserInfo.h"
 
-// 根据用户情况对单词进行难度评估
+// evaluate words by user's situation, basic interface
 class EvaluateStrategy
 {
 public:
-    virtual bool IsCommon(const std::string &word) = 0; // 是常见词
-    virtual bool IsForgettable(const std::string &word) = 0; // 是易忘词
-    virtual bool IsKnown(const std::string &word) = 0; // 是熟词
+    virtual bool IsCommon(const std::string &word) = 0;
+    virtual bool IsForgettable(const std::string &word) = 0;
+    virtual bool IsKnown(const std::string &word) = 0;
 };
 
 #endif // _EVALUATESTRATEGY_H_

@@ -6,11 +6,11 @@
 #include "types.h"
 #include "WordInfo.h"
 
-// 基本词典接口
+// basic dictionary interface
 class IDictionary
 {
 protected:
-    //      词典,     例句
+    //      dict,    sentences
     IDictDB &dictDB, &sentDB;
     std::vector<std::string> words;
 public:

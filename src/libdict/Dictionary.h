@@ -8,12 +8,12 @@
 #include "IDictionary.h"
 #include "StringUtils.h"
 
-// 对基本词典接口扩展, 加入等级信息, 作为全局词典
+// extending basic interface, adding level data, used as global dictionary
 class Dictionary
     : public IDictionary
 {
 private:
-    //      等级
+    //      level database
     IDictDB &levelDB;
     
 public:

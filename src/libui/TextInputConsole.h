@@ -6,17 +6,20 @@
 #include <string>
 #include <iostream>
 
-#define TEXTINPUT_TOKEN 0
-#define TEXTINPUT_LINE 1
+enum textinput_type_t
+{
+    TEXTINPUT_TOKEN,
+    TEXTINPUT_LINE
+};
 
 class TextInputConsole
     : public ConsoleComponent
 {
 public:
     std::string Value, Message;
-    int TokenOrLine;
-    TextInputConsole(Console &Root, const std::string &Message, int TokenOrLine)
-        : ConsoleComponent(Root), Message(Message), TokenOrLine(TokenOrLine)
+    textinput_type_t Type;
+    TextInputConsole(Console &Root, const std::string &Message, textinput_type_t Type)
+        : ConsoleComponent(Root), Message(Message), Type(Type)
     {
         
     }

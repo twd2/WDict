@@ -3,7 +3,7 @@
 bool TextInputConsole::Show()
 {
     std::cout << Message << " ";
-    switch (TokenOrLine)
+    switch (Type)
     {
     case TEXTINPUT_TOKEN:
         std::cin >> Value;

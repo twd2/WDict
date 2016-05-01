@@ -21,7 +21,7 @@ class Token
 {
 public:
     TokenType Type;
-    std::string Value; // raw string / StringValue / CharValue
+    std::string Value; // raw string / Value
 
     ptrdiff_t LineNumber, ColumnStart, ColumnEnd;
 

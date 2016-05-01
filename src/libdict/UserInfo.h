@@ -14,20 +14,20 @@ class EvaluateStrategy;
 
 enum user_counter_t
 {
-    COUNTER_RETRIVE, // 查询次数
-    COUNTER_LEARN, // 学习次数
-    COUNTER_TEST, // 测试次数
-    COUNTER_PASS, // 回答正确次数
-    COUNTER_LEVEL, // 用户评级
-    COUNTER_COUNT // 如上记录数(现在为5)
+    COUNTER_RETRIVE,
+    COUNTER_LEARN,
+    COUNTER_TEST,
+    COUNTER_PASS,
+    COUNTER_LEVEL,
+    COUNTER_COUNT // above counter(now is 5)
 };
 
-// 对基本词典接口扩展, 加入用户信息, 作为用户词典, 同时作为用户类
+// extending basic interface, adding user data, used as user class
 class UserInfo
     : public IDictionary
 {
 private:
-    //     基本信息, 学习记录
+    //     basic info, learning log
     IDictDB &infoDB, &counterDB;
     std::string historyFilename;
 public:

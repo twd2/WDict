@@ -6,7 +6,7 @@
 #include "WordInfo.h"
 #include "UserInfo.h"
 
-// 根据用户情况对单词难度评估
+// evaluate words by user's situation
 class DefaultEvaluateStrategy 
     : public EvaluateStrategy
 {
