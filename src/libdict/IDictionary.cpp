@@ -18,9 +18,12 @@ WordInfo IDictionary::GetWord(const std::string &word)
         if (iter != sentDB.end())
         {
             auto &vec = iter->second;
-            for (size_t i = 0; i < vec.size() - 1; i += 2)
+            if (vec.size() > 0)
             {
-                wi.Sentences.push_back(make_pair(vec[i], vec[i + 1]));
+                for (size_t i = 0; i < vec.size() - 1; i += 2)
+                {
+                    wi.Sentences.push_back(make_pair(vec[i], vec[i + 1]));
+                }
             }
         }
     }

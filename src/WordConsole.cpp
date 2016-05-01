@@ -61,11 +61,7 @@ bool WordConsole::Show()
     PrintWord("系统", Globals::Dict->GetWord(Word));
     PrintWord("您添加的", Globals::CurrentUser->GetWord(Word));
     
-    for (auto ptr : Components)
-    {
-        ptr->Show();
-    }
-        
+    ShowSubComponents();
     DoButtons();
 
     return true;

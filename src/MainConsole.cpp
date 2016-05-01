@@ -27,11 +27,7 @@ bool MainConsole::Show()
 {
     cout << "欢迎使用词典, 您可以输入对应字符来进入相应功能:" << endl;
     
-    for (auto ptr : Components)
-    {
-        ptr->Show();
-    }
-        
+    ShowSubComponents();
     DoButtons();
 
     return true;
@@ -49,12 +45,12 @@ void MainConsole::Text()
 
 void MainConsole::Learn()
 {
-    // Root.Goto(make_shared<WithTitleConsole>("学习", nullptr)); // TODO
+    Root.Goto(make_shared<WithTitleConsole>("学习", make_shared<LearnConsole>(Root)));
 }
 
 void MainConsole::Test()
 {
-    // Root.Goto(make_shared<WithTitleConsole>("测验", nullptr)); // TODO
+    Root.Goto(make_shared<WithTitleConsole>("测验", make_shared<TestConsole>(Root)));
 }
 
 void MainConsole::About()

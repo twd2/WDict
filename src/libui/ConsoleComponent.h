@@ -17,6 +17,7 @@ public:
         
     }
     void Add(ConsoleComponent &comp);
+    void ShowSubComponents();
     virtual bool Show() = 0;
     virtual void DoButtons();
     virtual void DoButtons(char key);

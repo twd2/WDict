@@ -6,6 +6,14 @@ void ConsoleComponent::Add(ConsoleComponent &comp)
     Components.push_back(&comp);
 }
 
+void ConsoleComponent::ShowSubComponents()
+{
+    for (auto ptr : Components)
+    {
+        ptr->Show();
+    }
+}
+
 void ConsoleComponent::DoButtons()
 {
     DoButtons(std::cin.get());

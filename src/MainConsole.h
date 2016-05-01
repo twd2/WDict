@@ -7,6 +7,8 @@
 #include <memory>
 #include "RetriveConsole.h"
 #include "TextConsole.h"
+#include "LearnConsole.h"
+#include "TestConsole.h"
 
 using namespace std;
 

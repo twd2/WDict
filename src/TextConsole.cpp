@@ -5,8 +5,15 @@ bool TextConsole::Show()
     if (filename == "")
     {
         txtFilename.Show();
+        
         if (txtFilename.Value != "")
         {
+            if (txtFilename.Value[0] == '\'' && txtFilename.Value.size() > 2)
+            {
+                txtFilename.Value = txtFilename.Value.substr(1, txtFilename.Value.size() - 2);
+            }
+            cout << txtFilename.Value << endl;
+            
             ifstream ifs(txtFilename.Value, ios_base::in);
             Words = StringUtils::GetWords(FileUtils::ReadAllText(ifs), true);
             ifs.close();
