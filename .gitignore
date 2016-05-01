@@ -30,5 +30,8 @@
 *.out
 *.app
 
+# Dependences file
+*.d
+
 wdict
 default_*

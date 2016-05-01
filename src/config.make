@@ -27,5 +27,6 @@ else
 endif
 
 SOURCES := $(shell $(LS) *.cpp)
+DEPS := $(SOURCES:.cpp=.d)
 HEADERS := $(shell $(LS) *.h *.hpp)
 OBJECTS := $(patsubst %.cpp, %.o, $(SOURCES))

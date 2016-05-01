@@ -9,13 +9,13 @@ LD_LIBS = -ltextdb -ldict -lui
 .PHONY: all
 all: libtextdb_ libdict_ libui_ $(PROJECT)
 
+-include $(DEPS)
+
 $(PROJECT): $(PROJECT).o $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
 
-main.o: main.cpp $(HEADERS)
-	g++ $(CC_FLAGS) -o $@ -c $<
-
 %.o: %.cpp %.h
+	g++ $(CC_FLAGS) -MD -MM -MP -c $<
 	g++ $(CC_FLAGS) -o $@ -c $<
 
 lib%_: lib%
@@ -24,7 +24,7 @@ lib%_: lib%
 
 .PHONY: clean
 clean:
-	-$(RM) *.o $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
+	-$(RM) *.o *.d $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
 	cd libtextdb && make clean
 	cd libdict && make clean
 	cd libui && make clean
