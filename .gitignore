@@ -40,6 +40,10 @@ wdict
 src/dict.txt
 src/level.txt
 src/sentences.txt
-default_*
+*_dict
+*_history
+*_sentences
+*_info
+*_learn
 release
 *~

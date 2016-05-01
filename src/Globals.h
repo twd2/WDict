@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define DEFAULT_USERNAME "user"
+
 class Globals
 {
 public:
