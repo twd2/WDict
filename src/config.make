@@ -3,14 +3,17 @@ RM = rm -f
 CP = cp
 SLASH = /
 
-ifeq ($(shell uname),Linux)
+OS_NAME = $(shell uname)
+
+ifeq ($(OS_NAME),Linux)
 	DSO_POSTFIX = so
 else
 
-ifeq ($(shell uname),Darwin)
+ifeq ($(OS_NAME),Darwin)
 	DSO_POSTFIX = dylib
 else
-	# May be Windows	
+	# May be Windows
+	OS_NAME = Windows
 	WIN32 = 1
 	LS = dir /b
 	RM = del /f

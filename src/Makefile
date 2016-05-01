@@ -37,6 +37,20 @@ lib%_: lib%
 resources: ..$(SLASH)src$(SLASH)dict.txt ..$(SLASH)src$(SLASH)level.txt ..$(SLASH)src$(SLASH)sentences.txt
 	
 
+.PHONY: release
+release: all
+	-mkdir ..$(SLASH)release
+	-mkdir ..$(SLASH)release$(SLASH)$(OS_NAME)
+	$(CP) *.$(DSO_POSTFIX) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	-$(CP) $(PROJECT) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	-$(CP) $(PROJECT).exe ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) dict.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) level.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) sentences.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+ifeq ($(OS_NAME),Linux)
+	$(CP) run_on_linux ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+endif
+
 .PHONY: clean
 clean:
 	-$(RM) *.o *.d *.win.cc dict.txt level.txt sentences.txt $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
