@@ -20,6 +20,8 @@ else
 	ICONV = tools\\iconv\\iconv.exe
 endif
 
+-include config.personal
+
 endif
 
 ifdef DEBUG

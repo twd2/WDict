@@ -35,5 +35,6 @@
 
 *.win.cc
 
+config.personal
 wdict
 default_*
