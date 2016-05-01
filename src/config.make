@@ -10,11 +10,6 @@ else
 ifeq ($(shell uname),Darwin)
 	DSO_POSTFIX = dylib
 else
-	# May be Windows
-	LS = dir /b
-	RM = del /f
-	CP = copy
-	SLASH = \\
 	DSO_POSTFIX = dll
 endif
 

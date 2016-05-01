@@ -19,8 +19,7 @@ $(PROJECT): $(PROJECT).o $(OBJECTS)
 	g++ $(CC_FLAGS) -o $@ -c $<
 
 lib%_: lib%
-	cd $< && make
-	$(CP) $<$(SLASH)$<.$(DSO_POSTFIX) .
+	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
 
 .PHONY: clean
 clean:
