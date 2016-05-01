@@ -135,15 +135,20 @@ void WordConsole::DelDesc()
     txtId.Show();
     if (txtId.Value != "")
     {
-        // TODO: confirm
         size_t id = StringUtils::FromString<size_t>(txtId.Value);
         if (txtId.Value != StringUtils::ToString(id))
         {
             // is not number
             return;
         }
-        Globals::CurrentUser->DelDesc(Word, id);
-        Globals::UserDictDB->Sync();
+        
+        ConfirmConsole cc(Root, "您确定要删除吗?", false);
+        cc.Show();
+        if (cc.Value)
+        {
+            Globals::CurrentUser->DelDesc(Word, id);
+            Globals::UserDictDB->Sync();
+        }
     }
 }
 
@@ -153,15 +158,20 @@ void WordConsole::DelSent()
     txtId.Show();
     if (txtId.Value != "")
     {
-        // TODO: confirm
         size_t id = StringUtils::FromString<size_t>(txtId.Value);
         if (txtId.Value != StringUtils::ToString(id))
         {
             // is not number
             return;
         }
-        Globals::CurrentUser->DelSentence(Word, id);
-        Globals::UserSentDB->Sync();
+        
+        ConfirmConsole cc(Root, "您确定要删除吗?", false);
+        cc.Show();
+        if (cc.Value)
+        {
+            Globals::CurrentUser->DelSentence(Word, id);
+            Globals::UserSentDB->Sync();
+        }
     }
 }
 
