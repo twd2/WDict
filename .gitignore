@@ -39,4 +39,5 @@ config.personal
 wdict
 src/dict.txt
 src/level.txt
+src/sentences.txt
 default_*

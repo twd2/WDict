@@ -1,2 +1,2 @@
-hello, "Hello, world!", 你好，世界！
-world, "Hello, world!", 世界，你好！
+hello, "Hello, world!", ��ã����磡
+world, "Hello, world!", ���磬��ã�

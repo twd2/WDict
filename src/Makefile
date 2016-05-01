@@ -34,7 +34,7 @@ lib%_: lib%
 	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
 
 .PHONY: resources
-resources: .$(SLASH)dict.txt .$(SLASH)level.txt
+resources: .$(SLASH)dict.txt .$(SLASH)level.txt .$(SLASH)sentences.txt
 	
 
 .PHONY: clean
