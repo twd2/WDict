@@ -86,7 +86,7 @@ answer_t TestConsole::CheckAnswer(const string &word)
         bind(&TestConsole::CheckAnswerSelWord, this, placeholders::_1)
     };
     
-    discrete_distribution<size_t> dd {0, 1, 0};
+    discrete_distribution<size_t> dd {1, 2, 2};
     
     return handlers[dd(Globals::RandomEngine)](word);
 }
@@ -148,8 +148,6 @@ answer_t TestConsole::CheckAnswerSelDesc(const string &word)
     
     cout << word << "有哪个意思?" << endl;
     
-    cout << correctAnswer << endl;
-    
     SelectConsole sc(Root, "请作答:");
     sc.IgnoreCase = true;
 
@@ -200,8 +198,6 @@ answer_t TestConsole::CheckAnswerSelWord(const string &word)
     uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
     
     cout << "哪一个单词有\"" << wi.Desc[dist(Globals::RandomEngine)] << "\"的意思?" << endl;
-    
-    cout << correctAnswer << endl;
     
     SelectConsole sc(Root, "请作答:");
     sc.IgnoreCase = true;

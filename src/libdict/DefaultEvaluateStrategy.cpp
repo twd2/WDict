@@ -18,5 +18,5 @@ bool DefaultEvaluateStrategy::IsKnown(const std::string &word)
     {
         throw std::string("assert failed");
     }
-    return (c[COUNTER_PASS] >= 3) && (c[COUNTER_PASS] * 100 / c[COUNTER_TEST] > 60);
+    return (c[COUNTER_PASS] >= 1) && (c[COUNTER_PASS] * 100 / c[COUNTER_TEST] > 60);
 }
