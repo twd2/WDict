@@ -15,7 +15,7 @@ $(PROJECT)$(EXE_POSTFIX): $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
 
 %.o: %.cpp
-	g++ $(CC_FLAGS) -MD -MM -MP -c $<
+	g++ $(CC_FLAGS) -MMD -MP -c $<
 ifdef WIN32
 	$(ICONV) -f UTF-8 -t GBK $< > $<.win.cc
 	g++ $(CC_FLAGS) -o $@ -c $<.win.cc
