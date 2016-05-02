@@ -26,9 +26,10 @@ public:
     void Got();
     void Word();
     void Back();
+    
 private:
-    void initIter();
     std::string word;
+    void initIter();
 };
 
 #endif // _LEARNCONSOLE_H_

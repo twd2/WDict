@@ -14,7 +14,7 @@ class RandomWordIterator
 private:
     size_t lastSize = -1;
 protected:
-    std::function<bool (std::string)> pred;
+    std::function<bool (const std::string&)> pred;
     std::default_random_engine &engine;
     IDictionary &dict;
     std::unique_ptr<std::uniform_int_distribution<size_t> > dist;
@@ -26,7 +26,7 @@ public:
         pred = [] (std::string w) { return true; };
     }
     
-    RandomWordIterator(std::default_random_engine &engine, IDictionary &dict, std::function<bool (std::string)> pred)
+    RandomWordIterator(std::default_random_engine &engine, IDictionary &dict, std::function<bool (const std::string&)> pred)
         : pred(pred), engine(engine), dict(dict)
     {
         initRandom();

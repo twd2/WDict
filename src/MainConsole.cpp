@@ -45,12 +45,14 @@ void MainConsole::Text()
 
 void MainConsole::Learn()
 {
+    // TODO: specify limit
     Root.Goto(make_shared<WithTitleConsole>("学习", make_shared<LearnConsole>(Root, 20)));
 }
 
 void MainConsole::Test()
 {
-    Root.Goto(make_shared<WithTitleConsole>("测验", make_shared<TestConsole>(Root)));
+    // TODO: specify limit
+    Root.Goto(make_shared<WithTitleConsole>("测验", make_shared<TestConsole>(Root, 20)));
 }
 
 void MainConsole::About()

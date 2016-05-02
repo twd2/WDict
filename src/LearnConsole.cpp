@@ -51,7 +51,7 @@ bool LearnConsole::Show()
         {
             Back();
         }
-    }    
+    }
     
     return true;
 }

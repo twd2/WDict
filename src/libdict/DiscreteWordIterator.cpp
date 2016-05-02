@@ -1,6 +1,6 @@
 #include "DiscreteWordIterator.h"
 
-void DiscreteWordIterator::AddWeight(size_t weight, std::function<bool (std::string)> pred)
+void DiscreteWordIterator::AddWeight(size_t weight, std::function<bool (const std::string&)> pred)
 {
     weights.push_back(weight);
     preds.push_back(pred);

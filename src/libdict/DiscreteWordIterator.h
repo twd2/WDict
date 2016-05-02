@@ -15,7 +15,7 @@ class DiscreteWordIterator
 {
 protected:
     std::vector<size_t> weights;
-    std::vector<std::function<bool (std::string)> > preds;
+    std::vector<std::function<bool (const std::string&)> > preds;
     std::default_random_engine &engine;
     IDictionary &dict;
     std::unique_ptr<std::discrete_distribution<size_t> > dist = nullptr;
@@ -28,7 +28,7 @@ public:
         
     }
     
-    void AddWeight(size_t weight, std::function<bool (std::string)> pred);
+    void AddWeight(size_t weight, std::function<bool (const std::string&)> pred);
     void DelWeight(size_t index);
     std::string Next() override;
     bool HaveNext() override;

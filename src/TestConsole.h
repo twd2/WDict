@@ -6,22 +6,35 @@
 #include <libtextdb.h>
 #include <iostream>
 #include <string>
+#include "Globals.h"
 
 using namespace std;
+
+enum answer_t
+{
+    ANSWER_CORRECT,
+    ANSWER_WRONG,
+    ANSWER_BACK
+};
 
 class TestConsole
     : public ConsoleComponent
 {
 protected:
     ButtonConsole btnBack;
-    SelectConsole selAnswer;
+    shared_ptr<WordIterator> iter;
 public:
-    size_t Limit = 50;
-    TestConsole(Console &Root);
+    size_t Limit;
+    TestConsole(Console &Root, size_t Limit);
     
     bool Show() override;
     
     void Back();
+    
+private:
+    std::string word;
+    void initIter();
+    answer_t CheckAnswer(const std::string &word); // check if the answer is correct
 };
 
 #endif // _TESTCONSOLE_H_
