@@ -20,3 +20,9 @@ bool DefaultEvaluateStrategy::IsKnown(const std::string &word)
     }
     return (c[COUNTER_PASS] >= 1) && (c[COUNTER_PASS] * 100 / c[COUNTER_TEST] > 60);
 }
+
+bool DefaultEvaluateStrategy::IsLearned(const std::string &word)
+{
+    auto c = user.GetCounters(word).Counters;
+    return c[COUNTER_LEARN] > 0;
+}

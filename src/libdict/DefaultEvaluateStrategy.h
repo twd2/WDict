@@ -23,6 +23,7 @@ public:
     bool IsCommon(const std::string &word) override;
     bool IsForgettable(const std::string &word) override;
     bool IsKnown(const std::string &word) override;
+    bool IsLearned(const std::string &word) override;
 };
 
 #endif // _DEFAULTEVALUATESTRATEGY_H_

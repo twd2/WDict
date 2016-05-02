@@ -31,12 +31,12 @@ std::shared_ptr<WordIterator> DefaultWordIteratorCreator::CreateTestWordsIterato
     auto ptr = std::make_shared<DiscreteWordIterator>(engine, dict);
     ptr->AddWeight(50, [&] (const std::string &word)
     {
-        return user.WordEvaluate->IsKnown(word);
+        return user.WordEvaluate->IsLearned(word);
     });
     
     ptr->AddWeight(40, [&] (const std::string &word)
     {
-        return user.WordEvaluate->IsKnown(word) && user.WordEvaluate->IsForgettable(word);
+        return user.WordEvaluate->IsLearned(word) && user.WordEvaluate->IsForgettable(word);
     });
     
     ptr->AddWeight(10, [&] (const std::string &word)
