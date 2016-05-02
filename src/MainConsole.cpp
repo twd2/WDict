@@ -45,7 +45,7 @@ void MainConsole::Text()
 
 void MainConsole::Learn()
 {
-    Root.Goto(make_shared<WithTitleConsole>("学习", make_shared<LearnConsole>(Root)));
+    Root.Goto(make_shared<WithTitleConsole>("学习", make_shared<LearnConsole>(Root, 20)));
 }
 
 void MainConsole::Test()

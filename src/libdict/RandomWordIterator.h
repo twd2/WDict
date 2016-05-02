@@ -33,10 +33,7 @@ public:
     }
 
     std::string Next() override;
-    bool HaveNext() override
-    {
-        return true;
-    }
+    bool HaveNext() override;
     
 private:
     void initRandom();

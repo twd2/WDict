@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include "Globals.h"
+#include "WordConsole.h"
 
 using namespace std;
 
@@ -14,14 +15,20 @@ class LearnConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnBack;
+    ButtonConsole btnGot, btnWord, btnBack;
+    shared_ptr<WordIterator> iter;
 public:
-    size_t Limit = 5;
-    LearnConsole(Console &Root);
+    size_t Limit;
+    LearnConsole(Console &Root, size_t Limit);
     
     bool Show() override;
     
+    void Got();
+    void Word();
     void Back();
+private:
+    void initIter();
+    std::string word;
 };
 
 #endif // _LEARNCONSOLE_H_

@@ -56,7 +56,7 @@ bool TextConsole::Show()
     }
     cout << endl;
     
-    cout << "共" << Words.size() << "个不同的单词，显示了" << counter << "个释义。" << endl;
+    cout << "共" << Words.size() << "个不同的单词，显示了" << counter << "个生词释义。" << endl;
     
     txtWord.Show();
     if (txtWord.Value != "")

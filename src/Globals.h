@@ -19,6 +19,7 @@ public:
                               UserInfoDB, UserCounterDB, UserDictDB, UserSentDB;
     static unique_ptr<Dictionary> Dict;
     static unique_ptr<UserInfo> CurrentUser;
+    static unique_ptr<WordIteratorCreator> IterCreator;
     static void SwitchUser(const string &UserName);
     static void Init();
     static void Open(const string &path);

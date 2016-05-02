@@ -2,15 +2,17 @@ LS = ls
 RM = rm -f
 CP = cp
 SLASH = /
+EXE_POSTFIX = 
+DSO_POSTFIX = .so
 
 OS_NAME = $(shell uname)
 
 ifeq ($(OS_NAME),Linux)
-	DSO_POSTFIX = so
+	DSO_POSTFIX = .so
 else
 
 ifeq ($(OS_NAME),Darwin)
-	DSO_POSTFIX = dylib
+	DSO_POSTFIX = .dylib
 else
 	# May be Windows
 	OS_NAME = Windows
@@ -19,11 +21,13 @@ else
 	RM = del /f
 	CP = copy
 	SLASH = \\
-	DSO_POSTFIX = dll
+	DSO_POSTFIX = .dll
+	EXE_POSTFIX = .exe
 	ICONV = tools\\iconv\\iconv.exe
 endif
 
 -include config.personal
+-include ..$(SLASH)config.personal
 
 endif
 

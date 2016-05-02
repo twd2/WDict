@@ -11,10 +11,10 @@ all: libtextdb_ libdict_ libui_ resources $(PROJECT)
 
 -include $(DEPS)
 
-$(PROJECT): $(PROJECT).o $(OBJECTS)
+$(PROJECT)$(EXE_POSTFIX): $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
 
-%.o: %.cpp %.h
+%.o: %.cpp
 	g++ $(CC_FLAGS) -MD -MM -MP -c $<
 ifdef WIN32
 	$(ICONV) -f UTF-8 -t GBK $< > $<.win.cc
@@ -31,7 +31,7 @@ else
 endif
 
 lib%_: lib%
-	cd $< && make && $(CP) $<.$(DSO_POSTFIX) ..
+	cd $< && make && $(CP) $<$(DSO_POSTFIX) ..
 
 .PHONY: resources
 resources: ..$(SLASH)src$(SLASH)dict.txt ..$(SLASH)src$(SLASH)level.txt ..$(SLASH)src$(SLASH)sentences.txt
@@ -41,19 +41,17 @@ resources: ..$(SLASH)src$(SLASH)dict.txt ..$(SLASH)src$(SLASH)level.txt ..$(SLAS
 release: all
 	-mkdir ..$(SLASH)release
 	-mkdir ..$(SLASH)release$(SLASH)$(OS_NAME)
-	$(CP) *.$(DSO_POSTFIX) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
-	-$(CP) $(PROJECT) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
-	-$(CP) $(PROJECT).exe ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
-	$(CP) dict.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
-	$(CP) level.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
-	$(CP) sentences.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) *$(DSO_POSTFIX) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) $(PROJECT)$(EXE_POSTFIX) ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
+	$(CP) *.txt ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
 ifeq ($(OS_NAME),Linux)
 	$(CP) run_on_linux ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
 endif
 
 .PHONY: clean
 clean:
-	-$(RM) *.o *.d *.win.cc dict.txt level.txt sentences.txt $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
+	-$(RM) *.o *.d *.win.cc *.txt $(PROJECT)$(EXE_POSTFIX)
+	-$(RM) *$(DSO_POSTFIX)
 	cd libtextdb && make clean
 	cd libdict && make clean
 	cd libui && make clean

@@ -11,18 +11,7 @@ void RandomWordIterator::initRandom()
 
 std::string RandomWordIterator::Next()
 {
-    bool found = false;
-    
-    for (size_t i = 0; i < dict.Size(); ++i)
-    {
-        if (pred(dict[i]))
-        {
-            found = true;
-            break;
-        }
-    }
-    
-    if (!found)
+    if (!HaveNext())
     {
         return "";
     }
@@ -36,4 +25,20 @@ std::string RandomWordIterator::Next()
     while (!pred(word));
     
     return word;
+}
+
+bool RandomWordIterator::HaveNext()
+{
+    bool found = false;
+    
+    for (size_t i = 0; i < dict.Size(); ++i)
+    {
+        if (pred(dict[i]))
+        {
+            found = true;
+            break;
+        }
+    }
+
+    return found;
 }

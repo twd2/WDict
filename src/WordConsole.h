@@ -18,9 +18,9 @@ public:
     string Word;
     WordConsole(Console &Root, const string &Word);
     bool Show() override;
-
-private:
+    
     static void PrintWord(const string &str, WordInfo wi);
+private:
     void AddDesc();
     void AddSent();
     void DelDesc();
