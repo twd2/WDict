@@ -7,7 +7,7 @@ LD_FLAGS = -L./libtextdb -L./libdict -L./libui
 LD_LIBS = -ltextdb -ldict -lui
 
 .PHONY: all
-all: libtextdb_ libdict_ libui_ resources $(PROJECT)
+all: libtextdb_ libdict_ libui_ resources $(PROJECT)$(EXE_POSTFIX)
 
 -include $(DEPS)
 
