@@ -16,7 +16,7 @@ public:
 
     SyntaxError();
     SyntaxError(std::string what);
-    SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart ColumnEnd);
+    SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart);
     SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart, ptrdiff_t ColumnEnd);
 
     ~SyntaxError();
