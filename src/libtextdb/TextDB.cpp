@@ -1,6 +1,5 @@
 #include "TextDB.h"
 
-
 TextDB::TextDB(const std::string &fileName)
     : fileName(fileName)
 {

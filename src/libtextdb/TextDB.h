@@ -13,12 +13,13 @@
 
 typedef std::map<std::string, std::vector<std::string> > ITextDB;
 
-class TextDB : public ITextDB
+class TextDB
+    : public ITextDB
 {
 private:
     std::string fileName;
 public:
-    TextDB(const std::string&);
+    TextDB(const std::string &fileName);
     ~TextDB();
     void Sync();
 

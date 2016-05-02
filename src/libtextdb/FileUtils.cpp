@@ -1,6 +1,6 @@
 #include "FileUtils.h"
 
-std::string FileUtils::ReadAllText(std::istream& is)
+std::string FileUtils::ReadAllText(std::istream &is)
 {
     std::string line;
     std::stringstream ss;

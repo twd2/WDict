@@ -42,7 +42,7 @@ public:
     bool operator==(const Token &b);
     bool operator!=(const Token &b);
 
-    static std::string Name(TokenType);
+    static std::string Name(TokenType type);
 };
 
 #endif // _TOKEN_H_

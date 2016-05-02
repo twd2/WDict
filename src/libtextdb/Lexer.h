@@ -11,7 +11,8 @@
 class Lexer
 {
 public:
-    Lexer(std::string &str) : data(str)
+    Lexer(std::string &str)
+        : data(str)
     {
         length = str.length();
     }
@@ -19,14 +20,14 @@ public:
     ~Lexer();
     std::vector<Token> Do();
 
-    static bool isBlank(char);
-    static bool isIdFirst(char);
-    static bool isId(char);
-    static bool isDigitFirst(char);
-    static bool isDigit(char);
-    static bool isLetter(char);
-    static bool isUppercase(char);
-    static bool isLowercase(char);
+    static bool isBlank(char a);
+    static bool isIdFirst(char a);
+    static bool isId(char a);
+    static bool isDigitFirst(char a);
+    static bool isDigit(char a);
+    static bool isLetter(char a);
+    static bool isUppercase(char a);
+    static bool isLowercase(char a);
 
 private:
     std::string &data;
@@ -38,8 +39,8 @@ private:
     bool hasNext();
     char getNext();
     std::string nextChar();
-    bool nextIs(char);
-    bool nextIs(bool(*)(char));
+    bool nextIs(char what);
+    bool nextIs(bool (*pred)(char));
     SyntaxError Error(std::string, std::string);
     Token MakeToken(TokenType, std::string);
 };

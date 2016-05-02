@@ -15,9 +15,9 @@ public:
     ptrdiff_t LineNumber = 1, ColumnStart = -1, ColumnEnd = -1;
 
     SyntaxError();
-    SyntaxError(std::string);
-    SyntaxError(std::string, ptrdiff_t, ptrdiff_t);
-    SyntaxError(std::string, ptrdiff_t, ptrdiff_t, ptrdiff_t);
+    SyntaxError(std::string what);
+    SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart ColumnEnd);
+    SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart, ptrdiff_t ColumnEnd);
 
     ~SyntaxError();
 };

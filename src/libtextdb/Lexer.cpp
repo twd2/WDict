@@ -104,9 +104,9 @@ bool Lexer::nextIs(char what)
     return hasNext() && data[index + 1] == what;
 }
 
-bool Lexer::nextIs(bool (*cond)(char))
+bool Lexer::nextIs(bool (*pred)(char))
 {
-    return hasNext() && cond(data[index + 1]);
+    return hasNext() && pred(data[index + 1]);
 }
 
 SyntaxError Lexer::Error(std::string unexp, std::string exp)

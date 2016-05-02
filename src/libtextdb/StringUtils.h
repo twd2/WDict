@@ -7,13 +7,13 @@ class StringUtils
 {
 public:
     template <typename T>
-    static std::string ToString(const T&);
+    static std::string ToString(const T &a);
     
     template <typename T>
-    static T FromString(const std::string&);
+    static T FromString(const std::string &a);
     
-    static std::string Escape(const std::string&);
-    static std::string Unescape(const std::string&);
+    static std::string Escape(const std::string &str);
+    static std::string Unescape(const std::string &str);
 };
 
 template <typename T>

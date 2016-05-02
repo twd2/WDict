@@ -9,8 +9,8 @@
 class FileUtils
 {
 public:
-    static std::string ReadAllText(std::istream&);
-    static bool Exists(const std::string&);
+    static std::string ReadAllText(std::istream &is);
+    static bool Exists(const std::string &path);
 };
 
 #endif // _FILEUTILS_H_
