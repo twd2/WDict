@@ -9,6 +9,8 @@ TextConsole::TextConsole(Console &Root)
 
 bool TextConsole::Show()
 {
+    WithTitleConsole(Root, "文本分析").Show();
+    
     if (filename == "")
     {
         txtFilename.Show();
@@ -62,7 +64,7 @@ bool TextConsole::Show()
     if (txtWord.Value != "")
     {
         Globals::CurrentUser->AppendHistory(txtWord.Value);
-        Root.Goto(make_shared<WithTitleConsole>(txtWord.Value, make_shared<WordConsole>(Root, txtWord.Value)));
+        Root.Goto(make_shared<WordConsole>(Root, txtWord.Value));
     }
     else
     {

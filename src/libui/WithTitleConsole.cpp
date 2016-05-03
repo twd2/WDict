@@ -13,5 +13,13 @@ bool WithTitleConsole::Show()
     }
     
     std::cout << std::string(80, '=') << std::endl;
-    return comp->Show();
+    
+    if (comp)
+    {
+        return comp->Show();
+    }
+    else
+    {
+        return true;
+    }
 }

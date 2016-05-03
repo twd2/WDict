@@ -62,6 +62,8 @@ void WordConsole::PrintWord(const string &str, WordInfo wi)
 
 bool WordConsole::Show()
 {
+    WithTitleConsole(Root, Word).Show();
+    
     auto &evalPtr = Globals::CurrentUser->WordEvaluate;
     bool haveFlags = false;
     

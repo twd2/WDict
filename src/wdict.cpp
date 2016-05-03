@@ -18,7 +18,7 @@ int main(int argc, char **argv)
         
         // init user interface
         auto controller = make_shared<Console>(); // create a controller
-        controller->Goto(make_shared<WithTitleConsole>("WDict", make_shared<MainConsole>(*controller))); // goto MainConsole activity
+        controller->Goto(make_shared<MainConsole>(*controller)); // goto MainConsole activity
         UI::Init(controller); // init UI
         UI::Start(); // ui loop, blocked
         

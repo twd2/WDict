@@ -15,6 +15,12 @@ private:
     std::string title;
     std::shared_ptr<ConsoleComponent> comp;
 public:
+    WithTitleConsole(Console &Root, const std::string &title)
+        : ConsoleComponent(Root), title(title), comp(nullptr)
+    {
+        
+    }
+    
     WithTitleConsole(const std::string &title, std::shared_ptr<ConsoleComponent> comp)
         : ConsoleComponent(comp->Root), title(title), comp(comp)
     {

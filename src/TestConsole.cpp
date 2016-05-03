@@ -21,6 +21,8 @@ void TestConsole::initIter()
 
 bool TestConsole::Show()
 {
+    WithTitleConsole(Root, "测验").Show();
+    
     if (word != "")
     {
         answer_t ans = CheckAnswer(word);
@@ -46,7 +48,7 @@ bool TestConsole::Show()
             {
                 Globals::CurrentUser->IncCounter(word, COUNTER_LEARN);
                 Globals::UserCounterDB->Sync();
-                Root.Goto(make_shared<WithTitleConsole>(word, make_shared<WordConsole>(Root, word)));
+                Root.Goto(make_shared<WordConsole>(Root, word));
             }
         }
         

@@ -8,6 +8,8 @@ RetriveConsole::RetriveConsole(Console &Root)
 
 bool RetriveConsole::Show()
 {
+    WithTitleConsole(Root, "单词查询").Show();
+    
     auto history = Globals::CurrentUser->GetHistory(20);
     
     if (history.size() > 0)
@@ -24,7 +26,7 @@ bool RetriveConsole::Show()
     if (txtWord.Value != "")
     {
         Globals::CurrentUser->AppendHistory(txtWord.Value);
-        Root.Goto(make_shared<WithTitleConsole>(txtWord.Value, make_shared<WordConsole>(Root, txtWord.Value)));
+        Root.Goto(make_shared<WordConsole>(Root, txtWord.Value));
     }
     else
     {

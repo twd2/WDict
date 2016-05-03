@@ -23,6 +23,8 @@ void LearnConsole::initIter()
 
 bool LearnConsole::Show()
 {
+    WithTitleConsole(Root, "学习").Show();
+    
     if (word != "")
     {
         cout << word << "    ";
@@ -65,7 +67,7 @@ void LearnConsole::Got()
 
 void LearnConsole::Word()
 {
-    Root.Goto(make_shared<WithTitleConsole>(word, make_shared<WordConsole>(Root, word)));
+    Root.Goto(make_shared<WordConsole>(Root, word));
 }
 
 void LearnConsole::Back()

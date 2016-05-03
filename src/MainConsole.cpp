@@ -1,7 +1,7 @@
 #include "MainConsole.h"
 
 MainConsole::MainConsole(Console &Root)
-    : ConsoleComponent(Root), btnRetrive(Root, '0', "查词"), btnText(Root, '1', "分析文本"), btnLearn(Root, '2', "学习"),
+    : ConsoleComponent(Root), btnRetrive(Root, '0', "单词查询"), btnText(Root, '1', "分析文本"), btnLearn(Root, '2', "学习"),
                               btnTest(Root, '3', "测验"), btnAbout(Root, 'a', "关于"), btnExit(Root, 'x', "退出")
 {
     btnRetrive.OnClick = bind(&MainConsole::Retrive, this);
@@ -25,6 +25,8 @@ MainConsole::MainConsole(Console &Root)
 
 bool MainConsole::Show()
 {
+    WithTitleConsole(Root, "词典").Show();
+    
     cout << "欢迎使用词典, 您可以输入对应字符来进入相应功能:" << endl;
     
     ShowSubComponents();
@@ -35,24 +37,24 @@ bool MainConsole::Show()
 
 void MainConsole::Retrive()
 {
-    Root.Goto(make_shared<WithTitleConsole>("单词查询", make_shared<RetriveConsole>(Root)));
+    Root.Goto(make_shared<RetriveConsole>(Root));
 }
 
 void MainConsole::Text()
 {
-    Root.Goto(make_shared<WithTitleConsole>("文本分析", make_shared<TextConsole>(Root)));
+    Root.Goto(make_shared<TextConsole>(Root));
 }
 
 void MainConsole::Learn()
 {
     // TODO: specify limit
-    Root.Goto(make_shared<WithTitleConsole>("学习", make_shared<LearnConsole>(Root, 20)));
+    Root.Goto(make_shared<LearnConsole>(Root, 20));
 }
 
 void MainConsole::Test()
 {
     // TODO: specify limit
-    Root.Goto(make_shared<WithTitleConsole>("测验", make_shared<TestConsole>(Root, 20)));
+    Root.Goto(make_shared<TestConsole>(Root, 20));
 }
 
 void MainConsole::About()
