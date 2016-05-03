@@ -2,9 +2,9 @@
 #include <typeinfo>
 
 WordConsole::WordConsole(Console &Root, const string &Word)
-    : ConsoleComponent(Root), btnAddDesc(Root, '0', "添加释义"), btnAddSent(Root, '1', "添加例句"),
-                              btnDelDesc(Root, '2', "删除释义"), btnDelSent(Root, '3', "删除例句"),
-                              btnSearch(Root, '4', "搜索"), btnReport(Root, 'r', "报告错误"), btnBack(Root, 'b', "返回"), Word(Word)
+    : ConsoleComponent(Root), btnAddDesc(Root, '1', "添加释义"), btnAddSent(Root, '2', "添加例句"),
+                              btnDelDesc(Root, '3', "删除释义"), btnDelSent(Root, '4', "删除例句"),
+                              btnSearch(Root, 's', "搜索"), btnReport(Root, 'r', "报告错误"), btnBack(Root, 'b', "返回"), Word(Word)
 {
     btnAddDesc.OnClick = bind(&WordConsole::AddDesc, this);
     Add(btnAddDesc);
@@ -28,39 +28,39 @@ WordConsole::WordConsole(Console &Root, const string &Word)
     Add(btnBack);
 }
 
-void WordConsole::PrintWord(const string &str, WordInfo wi)
+void WordConsole::PrintWord(ostream &outs, const string &str, WordInfo wi)
 {
     if (wi.Desc.size() > 0)
     {
-        cout << str + "释义:" << endl;
+        outs << str + "释义:" << endl;
         size_t i = 0;
         for (string desc : wi.Desc)
         {
-            cout << "    " << i++ << ". " << desc << endl;
+            outs << "    " << ++i << ". " << desc << endl;
         }
     }
     else
     {
-        cout << string("未找到") + str + "释义。" << endl;
+        outs << string("未找到") + str + "释义。" << endl;
     }
-    cout << endl;
+    outs << endl;
     
     if (wi.Sentences.size() > 0)
     {
-        cout << str + "例句:" << endl;
+        outs << str + "例句:" << endl;
         size_t i = 0;
         for (auto p : wi.Sentences)
         {
-            cout << "  " << i++ << ". " << p.first << endl
+            outs << "  " << ++i << ". " << p.first << endl
                  << "    " << p.second << endl
                  << endl;
         }
     }
     else
     {
-        cout << string("未找到") + str + "例句。" << endl;
+        outs << string("未找到") + str + "例句。" << endl;
     }
-    cout << endl;
+    outs << endl;
 }
 
 bool WordConsole::Show()
@@ -72,41 +72,41 @@ bool WordConsole::Show()
     
     if (evalPtr->IsCommon(Word))
     {
-        cout << "*常见词*    ";
+        outs << "*常见词*    ";
         haveFlags = true;
     }
     else
     {
-        cout << "*生僻词*    ";
+        outs << "*生僻词*    ";
         haveFlags = true;
     }
     
     if (evalPtr->IsForgettable(Word))
     {
-        cout << "*您容易忘记*    ";
+        outs << "*您容易忘记*    ";
         haveFlags = true;
     }
     
     if (evalPtr->IsKnown(Word))
     {
-        cout << "*熟词*    ";
+        outs << "*熟词*    ";
         haveFlags = true;
     }
     else
     {
-        cout << "*生词*    ";
+        outs << "*生词*    ";
         haveFlags = true;
     }
     
     if (haveFlags)
     {
-        cout << endl;
+        outs << endl;
     }
     
-    cout << string(80, '-') << endl;
+    outs << string(80, '-') << endl;
     
-    PrintWord("系统", Globals::Dict->GetWord(Word));
-    PrintWord("您添加的", Globals::CurrentUser->GetWord(Word));
+    PrintWord(outs, "系统", Globals::Dict->GetWord(Word));
+    PrintWord(outs, "您添加的", Globals::CurrentUser->GetWord(Word));
     
     ShowSubComponents();
     DoButtons();
@@ -155,7 +155,7 @@ void WordConsole::DelDesc()
         cc.Show();
         if (cc.Value)
         {
-            Globals::CurrentUser->DelDesc(Word, id);
+            Globals::CurrentUser->DelDesc(Word, id - 1);
             Globals::UserDictDB->Sync();
         }
     }
@@ -178,7 +178,7 @@ void WordConsole::DelSent()
         cc.Show();
         if (cc.Value)
         {
-            Globals::CurrentUser->DelSentence(Word, id);
+            Globals::CurrentUser->DelSentence(Word, id - 1);
             Globals::UserSentDB->Sync();
         }
     }

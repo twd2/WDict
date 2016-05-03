@@ -1,4 +1,5 @@
 #include "Console.h"
+#include "ConsoleComponent.h"
 
 bool Console::Show()
 {
@@ -30,10 +31,10 @@ void Console::Back()
 
 void Console::IgnoreLeftNewline()
 {
-    while (std::cin.peek() == '\r' || std::cin.peek() == '\n') 
+    while (ins.peek() == '\r' || ins.peek() == '\n') 
     {
-        char ch = std::cin.peek();
-        std::cin.ignore();
+        char ch = ins.peek();
+        ins.ignore();
         if (ch == '\n')
         {
             break;

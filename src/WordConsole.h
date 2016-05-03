@@ -19,7 +19,7 @@ public:
     WordConsole(Console &Root, const string &Word);
     bool Show() override;
     
-    static void PrintWord(const string &str, WordInfo wi);
+    static void PrintWord(ostream &outs, const string &str, WordInfo wi);
 private:
     void AddDesc();
     void AddSent();

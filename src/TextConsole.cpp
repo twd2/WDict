@@ -21,7 +21,7 @@ bool TextConsole::Show()
             {
                 txtFilename.Value = txtFilename.Value.substr(1, txtFilename.Value.size() - 2);
             }
-            cout << txtFilename.Value << endl;
+            outs << txtFilename.Value << endl;
             
             ifstream ifs(txtFilename.Value, ios_base::in);
             Words = StringUtils::GetWords(FileUtils::ReadAllText(ifs), true);
@@ -40,25 +40,25 @@ bool TextConsole::Show()
     {
         if (!Globals::CurrentUser->WordEvaluate->IsKnown(word))
         {
-            cout << word << endl;
+            outs << word << endl;
             WordInfo wi = Globals::Dict->GetWord(word);
             if (wi.Desc.size() > 0)
             {
                 for (string desc : wi.Desc)
                 {
-                    cout << "    " << desc << endl;
+                    outs << "    " << desc << endl;
                 }
             }
             else
             {
-                cout << "    *未找到释义*" << endl;
+                outs << "    *未找到释义*" << endl;
             }
         }
         ++counter;
     }
-    cout << endl;
+    outs << endl;
     
-    cout << "共" << Words.size() << "个不同的单词，显示了" << counter << "个生词释义。" << endl;
+    outs << "共" << Words.size() << "个不同的单词，显示了" << counter << "个生词释义。" << endl;
     
     txtWord.Show();
     if (txtWord.Value != "")

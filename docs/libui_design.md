@@ -36,7 +36,7 @@
 
 ```
 // init user interface
-auto controller = make_shared<Console>(); // create a controller
+auto controller = make_shared<Console>(std::cin, std::cout); // create a controller
 controller->Goto(make_shared<MainConsole>(*controller)); // goto MainConsole activity
 UI::Init(controller); // init UI
 UI::Start(); // ui loop, blocked

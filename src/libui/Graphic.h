@@ -9,6 +9,8 @@ class Graphic
 {
 public:
     bool Show() override;
+private:
+    Graphic() = delete;
 };
 
 #endif // _GRAPHIC_H_

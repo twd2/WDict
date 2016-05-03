@@ -14,12 +14,12 @@ bool RetriveConsole::Show()
     
     if (history.size() > 0)
     {
-        cout << "查询历史" << endl;
+        outs << "查询历史" << endl;
         for (auto &word : history)
         {
-            cout << word << " ";
+            outs << word << " ";
         }
-        cout << endl;
+        outs << endl;
     }
     
     txtWord.Show();

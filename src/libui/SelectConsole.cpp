@@ -13,12 +13,12 @@ bool SelectConsole::Show()
 {
     for (auto &p : Choices)
     {
-        std::cout << "(" << p.first << ") " << p.second << std::endl;
+        outs << "(" << p.first << ") " << p.second << std::endl;
     }
-    std::cout << Message << " ";
+    outs << Message << " ";
     
     std::string selected;
-    std::getline(std::cin, selected);
+    std::getline(ins, selected);
     
     SelectedIndexes.clear();
     for (size_t i = 0; i < selected.length(); ++i)

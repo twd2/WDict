@@ -2,15 +2,15 @@
 
 bool TextInputConsole::Show()
 {
-    std::cout << Message << " ";
+    outs << Message << " ";
     switch (Type)
     {
     case TEXTINPUT_TOKEN:
-        std::cin >> Value;
+        ins >> Value;
         Root.IgnoreLeftNewline();
         break;
     case TEXTINPUT_LINE:
-        std::getline(std::cin, Value);
+        std::getline(ins, Value);
         break;
     }
     

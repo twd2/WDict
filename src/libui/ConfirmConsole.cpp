@@ -2,9 +2,9 @@
 
 bool ConfirmConsole::Show()
 {
-    std::cout << Message << "(Y/N)[" << (Default ? 'Y' : 'N') << "] ";
+    outs << Message << "(Y/N)[" << (Default ? 'Y' : 'N') << "] ";
     std::string ch;
-    while (std::getline(std::cin, ch))
+    while (std::getline(ins, ch))
     {
         if (ch == "Y" || ch == "y")
         {
@@ -21,7 +21,7 @@ bool ConfirmConsole::Show()
             Value = Default;
             break;
         }
-        std::cout << Message << "(Y/N)[" << (Default ? 'Y' : 'N') << "] ";
+        outs << Message << "(Y/N)[" << (Default ? 'Y' : 'N') << "] ";
     }
     return true;
 }

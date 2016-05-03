@@ -3,16 +3,18 @@
 
 #include <vector>
 #include <memory>
-
-class Console;
+#include "Console.h"
 
 class ConsoleComponent
 {
+protected:
+    std::istream &ins;
+    std::ostream &outs;
 public:
     std::vector<ConsoleComponent*> Components;
     Console &Root;
     ConsoleComponent(Console &Root)
-        : Root(Root)
+        : ins(Root.ins), outs(Root.outs), Root(Root)
     {
         
     }
