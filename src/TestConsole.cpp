@@ -39,9 +39,8 @@ bool TestConsole::Show()
         }
         Globals::UserCounterDB->Sync();
         
-        if (ans == ANSWER_WRONG)
+        if (ans == ANSWER_WRONG || ans == ANSWER_ABANDONED)
         {
-            cout << "回答错误 :(" << endl;
             ConfirmConsole cc(Root, "查看单词解释?", true);
             cc.Show();
             if (cc.Value)
@@ -85,10 +84,11 @@ answer_t TestConsole::CheckAnswer(const string &word)
     vector<function<answer_t (const string&)> > handlers {
         bind(&TestConsole::CheckAnswerTF, this, placeholders::_1),
         bind(&TestConsole::CheckAnswerSelDesc, this, placeholders::_1),
-        bind(&TestConsole::CheckAnswerSelWord, this, placeholders::_1)
+        bind(&TestConsole::CheckAnswerSelWord, this, placeholders::_1),
+        bind(&TestConsole::CheckAnswerInputWord, this, placeholders::_1)
     };
     
-    discrete_distribution<size_t> dd {1, 2, 2};
+    discrete_distribution<size_t> dd {1, 2, 2, 1};
     
     return handlers[dd(Globals::RandomEngine)](word);
 }
@@ -103,15 +103,16 @@ answer_t TestConsole::CheckAnswerTF(const string &word)
     {
         WordInfo wi = Globals::Dict->GetWord(word);
         uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
-        cout << word << ": "<< wi.Desc[dist(Globals::RandomEngine)] << endl;
+        cout << word << "有\"" << wi.Desc[dist(Globals::RandomEngine)] << "\"的意思。" << endl;
     }
     else
     {
         WordInfo wi = Globals::Dict->GetWord(wrongAnswerIter->Next());
         uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
-        cout << word << ": "<< wi.Desc[dist(Globals::RandomEngine)] << endl;
+        cout << word << "有\"" << wi.Desc[dist(Globals::RandomEngine)] << "\"的意思。" << endl;
     }
-    SelectConsole sc(Root, "请作答:");
+
+    SelectConsole sc(Root, "请作答(答案不区分大小写):");
     sc.IgnoreCase = true;
     sc.Add('T', "正确");
     sc.Add('F', "错误");
@@ -119,9 +120,16 @@ answer_t TestConsole::CheckAnswerTF(const string &word)
     sc.Add('Q', "停止测验");
     sc.Show();
     
-    if ((sc.Selected('T') && sc.Selected('F')) || sc.Selected('E'))
+    auto showAnswer = [&] ()
     {
-        return ANSWER_WRONG;
+        cout << "答案: " << (correctAnswer ? "正确" : "错误") << endl;
+    };
+    
+    if (sc.SelectedIndexes.size() == 0 || (sc.Selected('T') && sc.Selected('F')) || sc.Selected('E'))
+    {
+        cout << "已放弃。" << endl;
+        showAnswer();
+        return ANSWER_ABANDONED;
     }
     
     if (sc.Selected('Q'))
@@ -134,6 +142,8 @@ answer_t TestConsole::CheckAnswerTF(const string &word)
         return ANSWER_CORRECT;
     }
     
+    cout << "回答错误。" << endl;
+    showAnswer();
     return ANSWER_WRONG;
 }
 
@@ -148,9 +158,9 @@ answer_t TestConsole::CheckAnswerSelDesc(const string &word)
     uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
     string desc = wi.Desc[dist(Globals::RandomEngine)];
     
-    cout << word << "有哪个意思?" << endl;
+    cout << word << "有如下哪个意思?" << endl;
     
-    SelectConsole sc(Root, "请作答:");
+    SelectConsole sc(Root, "请作答(答案不区分大小写):");
     sc.IgnoreCase = true;
 
     for (size_t i = 0; i < count; ++i)
@@ -171,9 +181,16 @@ answer_t TestConsole::CheckAnswerSelDesc(const string &word)
     sc.Add('Q', "停止测验");
     sc.Show();
     
+    auto showAnswer = [&] ()
+    {
+        cout << "答案: " << (char)('A' + correctAnswer) << endl;
+    };
+    
     if (sc.SelectedIndexes.size() == 0 || sc.Selected('E'))
     {
-        return ANSWER_WRONG;
+        cout << "已放弃。" << endl;
+        showAnswer();
+        return ANSWER_ABANDONED;
     }
     
     if (sc.Selected('Q'))
@@ -186,6 +203,8 @@ answer_t TestConsole::CheckAnswerSelDesc(const string &word)
         return ANSWER_CORRECT;
     }
     
+    cout << "回答错误。" << endl;
+    showAnswer();
     return ANSWER_WRONG;
 }
 
@@ -201,7 +220,7 @@ answer_t TestConsole::CheckAnswerSelWord(const string &word)
     
     cout << "哪一个单词有\"" << wi.Desc[dist(Globals::RandomEngine)] << "\"的意思?" << endl;
     
-    SelectConsole sc(Root, "请作答:");
+    SelectConsole sc(Root, "请作答(答案不区分大小写):");
     sc.IgnoreCase = true;
 
     for (size_t i = 0; i < count; ++i)
@@ -220,9 +239,16 @@ answer_t TestConsole::CheckAnswerSelWord(const string &word)
     sc.Add('Q', "停止测验");
     sc.Show();
     
+    auto showAnswer = [&] ()
+    {
+        cout << "答案: " << (char)('A' + correctAnswer) << endl;
+    };
+    
     if (sc.SelectedIndexes.size() == 0 || sc.Selected('E'))
     {
-        return ANSWER_WRONG;
+        cout << "已放弃。" << endl;
+        showAnswer();
+        return ANSWER_ABANDONED;
     }
     
     if (sc.Selected('Q'))
@@ -235,5 +261,39 @@ answer_t TestConsole::CheckAnswerSelWord(const string &word)
         return ANSWER_CORRECT;
     }
     
+    cout << "回答错误。" << endl;
+    showAnswer();
+    return ANSWER_WRONG;
+}
+
+answer_t TestConsole::CheckAnswerInputWord(const string &word)
+{
+    WordInfo wi = Globals::Dict->GetWord(word);
+    uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
+    
+    cout << "哪一个单词有\"" << wi.Desc[dist(Globals::RandomEngine)] << "\"的意思?" << endl;
+    
+    TextInputConsole input(Root, "请作答(请小写, 输入空行放弃):", TEXTINPUT_LINE);
+    input.Show();
+    
+    auto showAnswer = [&] ()
+    {
+        cout << "答案: " << word << endl;
+    };
+
+    if (input.Value == "")
+    {
+        cout << "已放弃。" << endl;
+        showAnswer();
+        return ANSWER_ABANDONED;
+    }
+
+    if (input.Value == word)
+    {
+        return ANSWER_CORRECT;
+    }
+    
+    cout << "回答错误。" << endl;
+    showAnswer();
     return ANSWER_WRONG;
 }

@@ -31,8 +31,6 @@ void Globals::Init()
     LevelDB = make_unique<TextDB>("level.txt");
     
     Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
-    
-    SwitchUser(DEFAULT_USERNAME);
 }
 
 void Globals::Open(const string &path)

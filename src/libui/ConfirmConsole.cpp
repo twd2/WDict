@@ -4,7 +4,6 @@ bool ConfirmConsole::Show()
 {
     std::cout << Message << "(Y/N)[" << (Default ? 'Y' : 'N') << "] ";
     std::string ch;
-    Root.IgnoreLeftNewline();
     while (std::getline(std::cin, ch))
     {
         if (ch == "Y" || ch == "y")

@@ -13,7 +13,7 @@ class WordConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnAddDesc, btnAddSent, btnDelDesc, btnDelSent, btnSearch, btnBack;
+    ButtonConsole btnAddDesc, btnAddSent, btnDelDesc, btnDelSent, btnSearch, btnReport, btnBack;
 public:
     string Word;
     WordConsole(Console &Root, const string &Word);
@@ -27,6 +27,7 @@ private:
     void DelSent();
     void Back();
     void Search();
+    void Report();
 };
 
 #endif // _WORDCONSOLE_H_

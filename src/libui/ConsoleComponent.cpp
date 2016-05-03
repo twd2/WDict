@@ -16,7 +16,10 @@ void ConsoleComponent::ShowSubComponents()
 
 void ConsoleComponent::DoButtons()
 {
-    DoButtons(std::cin.get());
+    char ch;
+    ch = std::cin.get();
+    Root.IgnoreLeftNewline();
+    DoButtons(ch);
 }
 
 void ConsoleComponent::DoButtons(char key)

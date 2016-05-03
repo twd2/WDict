@@ -7,9 +7,9 @@ bool TextInputConsole::Show()
     {
     case TEXTINPUT_TOKEN:
         std::cin >> Value;
+        Root.IgnoreLeftNewline();
         break;
     case TEXTINPUT_LINE:
-        Root.IgnoreLeftNewline();
         std::getline(std::cin, Value);
         break;
     }

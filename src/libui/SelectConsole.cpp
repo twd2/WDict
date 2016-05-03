@@ -18,7 +18,6 @@ bool SelectConsole::Show()
     std::cout << Message << " ";
     
     std::string selected;
-    Root.IgnoreLeftNewline();
     std::getline(std::cin, selected);
     
     SelectedIndexes.clear();

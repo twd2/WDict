@@ -4,16 +4,30 @@ int main(int argc, char **argv)
 {
     try
     {
-        #ifdef DEBUG
-        cout << "Loading databases..." << endl;
-        // TODO: show ADs.
+        #ifdef _WIN32
+        system("cls");
+        #else
+        system("clear");
         #endif
+        cout << string(9, '\n');
+        cout << "                   __        __  ____    _          _                        \n"
+                "                   \\ \\      / / |  _ \\  (_)   ___  | |_                      \n"
+                "                    \\ \\ /\\ / /  | | | | | |  / __| | __|                     \n"
+                "                     \\ V  V /   | |_| | | | | (__  | |_                      \n" 
+                "                      \\_/\\_/    |____/  |_|  \\___|  \\__|                     \n" 
+                "                                   Loading...                               " << endl;
+        // cout << "                              广告位招租 QQ: ?????????                         " << endl; 
+        // TODO: show ADs.
         
         // init globals
         Globals::Init();
         if (argc >= 2)
         {
             Globals::SwitchUser(argv[1]);
+        }
+        else
+        {
+            Globals::SwitchUser(DEFAULT_USERNAME);
         }
         
         // init user interface

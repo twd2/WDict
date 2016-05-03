@@ -1,2 +1,11 @@
 # WDict
-An English dictionary.
+
+一个字典。
+
+## 目录说明
+
+- `docs`中存放各种文档。
+- `res`中存放词库等资源。
+- `src`为源代码目录。
+
+具体内容，请见各目录下`README.md`。

@@ -17,6 +17,7 @@ enum answer_t
 {
     ANSWER_CORRECT,
     ANSWER_WRONG,
+    ANSWER_ABANDONED,
     ANSWER_BACK
 };
 
@@ -42,6 +43,7 @@ private:
     answer_t CheckAnswerTF(const string &word);
     answer_t CheckAnswerSelDesc(const string &word);
     answer_t CheckAnswerSelWord(const string &word);
+    answer_t CheckAnswerInputWord(const string &word);
 };
 
 #endif // _TESTCONSOLE_H_

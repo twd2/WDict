@@ -4,7 +4,7 @@
 WordConsole::WordConsole(Console &Root, const string &Word)
     : ConsoleComponent(Root), btnAddDesc(Root, '0', "添加释义"), btnAddSent(Root, '1', "添加例句"),
                               btnDelDesc(Root, '2', "删除释义"), btnDelSent(Root, '3', "删除例句"),
-                              btnSearch(Root, '4', "搜索"), btnBack(Root, 'b', "返回"), Word(Word)
+                              btnSearch(Root, '4', "搜索"), btnReport(Root, 'r', "报告错误"), btnBack(Root, 'b', "返回"), Word(Word)
 {
     btnAddDesc.OnClick = bind(&WordConsole::AddDesc, this);
     Add(btnAddDesc);
@@ -20,6 +20,9 @@ WordConsole::WordConsole(Console &Root, const string &Word)
     
     btnSearch.OnClick = bind(&WordConsole::Search, this);
     Add(btnSearch);
+    
+    btnReport.OnClick = bind(&WordConsole::Report, this);
+    Add(btnReport);
     
     btnBack.OnClick = bind(&WordConsole::Back, this);
     Add(btnBack);
@@ -189,4 +192,9 @@ void WordConsole::Back()
 void WordConsole::Search()
 {
     Globals::Open(string("http://www.gglink.pw/search?site=&source=hp&btnG=Google+%E6%90%9C%E7%B4%A2&q=") + Word);
+}
+
+void WordConsole::Report()
+{
+    Globals::Open("https://github.com/twd2/WDict/issues/new");
 }
