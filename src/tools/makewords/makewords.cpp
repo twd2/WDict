@@ -17,7 +17,30 @@ int main()
             auto &vec = db[word];
             for (size_t i = 0; i < desc.length(); ++i)
             {
-                if (i > 0 && (desc[i] >= 'a' && desc[i] <= 'z') && !(desc[i - 1] >= 'a' && desc[i - 1] <= 'z'))
+                auto isPOSChar = [] (char ch)
+                {
+                    return ch >= 'a' && ch <= 'z';
+                };
+                bool isPOS = i > 0 && isPOSChar(desc[i]) && !isPOSChar(desc[i - 1]);
+                
+                if (isPOS) // further check
+                {
+                    isPOS = false;
+                    for (size_t j = i; j < desc.length(); ++j)
+                    {
+                        if (desc[j] == '.')
+                        {
+                            isPOS = true;
+                            break;
+                        }
+                        else if (!isPOSChar(desc[j]))
+                        {
+                            break;
+                        }
+                    }
+                }
+                
+                if (isPOS)
                 {
                     if (ss.str() != "")
                     {

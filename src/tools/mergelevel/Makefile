@@ -2,28 +2,26 @@ include ../../config.make
 
 PROJECT = mergelevel
 
-CC_FLAGS = -I../../libtextdb -I../../libdict $(CC_DBG_FLAGS) -Wall -std=c++11
-LD_FLAGS = -L../../libtextdb -L../../libdict
+CC_FLAGS = -I..$(SLASH)..$(SLASH)libtextdb -I..$(SLASH)..$(SLASH)libdict $(CC_DBG_FLAGS) -Wall -std=c++11
+LD_FLAGS = -L..$(SLASH)..$(SLASH)libtextdb -L..$(SLASH)..$(SLASH)libdict
 LD_LIBS = -ltextdb -ldict
 
 .PHONY: all
-all: libtextdb libdict $(PROJECT)
+all: libtextdb libdict $(PROJECT)$(EXE_POSTFIX)
 
-$(PROJECT): $(PROJECT).o $(OBJECTS)
+$(PROJECT)$(EXE_POSTFIX): $(OBJECTS)
 	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
 
-main.o: main.cpp $(HEADERS)
-	g++ $(CC_FLAGS) -o $@ -c $<
-
-%.o: %.cpp %.h
+%.o: %.cpp
+	g++ $(CC_FLAGS) -MMD -MP -c $<
 	g++ $(CC_FLAGS) -o $@ -c $<
 
 lib%: ..$(SLASH)..$(SLASH)lib%
 	cd $< && make
-	$(CP) $<$(SLASH)$@.$(DSO_POSTFIX) .
+	$(CP) $<$(SLASH)$@$(DSO_POSTFIX) .
 
 .PHONY: clean
 clean:
-	-$(RM) *.o $(PROJECT) $(PROJECT).exe *.$(DSO_POSTFIX)
-	cd libtextdb && make clean
-	cd libdict && make clean
+	-$(RM) *.o *.d $(PROJECT)$(EXE_POSTFIX) *$(DSO_POSTFIX)
+	cd ..$(SLASH)..$(SLASH)libtextdb && make clean
+	cd ..$(SLASH)..$(SLASH)libdict && make clean
