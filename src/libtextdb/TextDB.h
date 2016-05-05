@@ -19,7 +19,8 @@ class TextDB
 private:
     std::string fileName;
 public:
-    TextDB(const std::string &fileName);
+    bool ReadOnly;
+    TextDB(const std::string &fileName, bool ReadOnly = false);
     ~TextDB();
     void Sync();
 

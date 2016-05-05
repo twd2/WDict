@@ -1,7 +1,7 @@
 #include "TextDB.h"
 
-TextDB::TextDB(const std::string &fileName)
-    : fileName(fileName)
+TextDB::TextDB(const std::string &fileName, bool ReadOnly)
+    : fileName(fileName), ReadOnly(ReadOnly)
 {
     load();
 }
@@ -63,6 +63,12 @@ void TextDB::Sync()
     #ifdef DEBUG
     std::cout << "Persistencing databases..." << std::endl;
     #endif
+    
+    if (ReadOnly)
+    {
+        throw std::string("Writing to readonly TextDB.");
+    }
+    
     std::ofstream ofs(fileName, std::ios_base::out);
     for (auto iter = begin(); iter != end(); ++iter)
     {
@@ -87,5 +93,8 @@ void TextDB::Sync()
 
 TextDB::~TextDB()
 {
-    Sync();
+    if (!ReadOnly)
+    {
+        Sync();
+    }
 }

@@ -26,9 +26,9 @@ void Globals::Init()
 {
     RandomEngine.seed(std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1));
     
-    DictDB = make_unique<TextDB>("dict.txt");
-    SentDB = make_unique<TextDB>("sentences.txt");
-    LevelDB = make_unique<TextDB>("level.txt");
+    DictDB = make_unique<TextDB>("dict.txt", true);
+    SentDB = make_unique<TextDB>("sentences.txt", true);
+    LevelDB = make_unique<TextDB>("level.txt", true);
     
     Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
 }
