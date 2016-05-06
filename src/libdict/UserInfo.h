@@ -7,10 +7,13 @@
 #include <vector>
 #include <queue>
 #include <fstream>
-#include "StringUtils.h"
+#include <cstddef>
+#include "DictStringUtils.h"
 #include "Dictionary.h"
 
 class EvaluateStrategy;
+
+using std::ptrdiff_t;
 
 enum user_counter_t
 {
@@ -32,7 +35,7 @@ private:
     std::string historyFilename;
 public:
     std::string Name;
-    std::shared_ptr<EvaluateStrategy> WordEvaluate = nullptr;
+    std::shared_ptr<EvaluateStrategy> WordEvaluator = nullptr;
     
     UserInfo(IDictDB &infoDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
         : IDictionary(dictDB, sentDB), infoDB(infoDB), counterDB(counterDB), Name(Name)
@@ -40,9 +43,9 @@ public:
         historyFilename = Name + "_history";
     }
     
-    void IncCounter(const std::string &word, user_counter_t type, unsigned long value = 1);
-    void SetCounter(const std::string &word, user_counter_t type, unsigned long value);
-    WordInfo GetCounters(const std::string &word);
+    void IncCounter(const std::string &word, user_counter_t type, ptrdiff_t value = 1);
+    void SetCounter(const std::string &word, user_counter_t type, ptrdiff_t value);
+    std::vector<ptrdiff_t> GetCounters(const std::string &word);
     
     std::vector<std::string> GetHistory(size_t limit = -1);
     void AppendHistory(const std::string &word);
@@ -63,7 +66,7 @@ T UserInfo::Get(const std::string &key, T def)
         Set(key, def);
         return def;
     }
-    return StringUtils::FromString<T>(vec[0]);
+    return DictStringUtils::FromString<T>(vec[0]);
 }
     
 template <typename T>
@@ -74,7 +77,7 @@ void UserInfo::Set(const std::string &key, T value)
     {
         vec.push_back("");
     }
-    vec[0] = StringUtils::ToString(value);
+    vec[0] = DictStringUtils::ToString(value);
 }
 
 #endif // _USERINFO_H_

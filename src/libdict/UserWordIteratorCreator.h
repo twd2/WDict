@@ -1,5 +1,5 @@
-#ifndef _DEFAULTWORDITERATORCREATOR_H_
-#define _DEFAULTWORDITERATORCREATOR_H_
+#ifndef _USERWORDITERATORCREATOR_H_
+#define _USERWORDITERATORCREATOR_H_
 
 #include "WordIterator.h"
 #include "WordIteratorCreator.h"
@@ -10,7 +10,7 @@
 #include <random>
 #include <memory>
 
-class DefaultWordIteratorCreator
+class UserWordIteratorCreator
     : public WordIteratorCreator
 {
 protected:
@@ -18,14 +18,13 @@ protected:
     UserInfo &user;
     IDictionary &dict;
 public:
-    DefaultWordIteratorCreator(std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
+    UserWordIteratorCreator(std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
         : engine(engine), user(user), dict(dict)
     {
         
     }
     
-    std::shared_ptr<WordIterator> CreateNewWordsIterator() override;
-    std::shared_ptr<WordIterator> CreateTestWordsIterator() override;
+    std::shared_ptr<WordIterator> Create() override = 0;
 };
 
-#endif // _DEFAULTWORDITERATORCREATOR_H_
+#endif // _USERWORDITERATORCREATOR_H_

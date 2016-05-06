@@ -67,46 +67,74 @@ bool WordConsole::Show()
 {
     WithTitleConsole(Root, Word).Show();
     
-    auto &evalPtr = Globals::CurrentUser->WordEvaluate;
-    bool haveFlags = false;
+    bool found = Globals::Dict->GetWord(Word).Desc.size() != 0 || Globals::CurrentUser->GetWord(Word).Desc.size() != 0;
+    auto related = Globals::Dict->GetRelated(Word, 20);
     
-    if (evalPtr->IsCommon(Word))
+    if (!found) // no system or user desc
     {
-        outs << "*常见词*    ";
-        haveFlags = true;
-    }
-    else
-    {
-        outs << "*生僻词*    ";
-        haveFlags = true;
-    }
-    
-    if (evalPtr->IsForgettable(Word))
-    {
-        outs << "*您容易忘记*    ";
-        haveFlags = true;
-    }
-    
-    if (evalPtr->IsKnown(Word))
-    {
-        outs << "*熟词*    ";
-        haveFlags = true;
-    }
-    else
-    {
-        outs << "*生词*    ";
-        haveFlags = true;
-    }
-    
-    if (haveFlags)
-    {
+        outs << "没有找到这个单词, 您可以添加释义或者尝试查询以下单词: " << endl;
+        
+        for (auto w : related)
+        {
+            outs << w << " ";
+        }
         outs << endl;
+        outs << string(80, '-') << endl;
     }
-    
-    outs << string(80, '-') << endl;
+    else
+    {
+        auto &evalPtr = Globals::CurrentUser->WordEvaluator;
+        bool haveFlags = false;
+        
+        if (evalPtr->IsCommon(Word))
+        {
+            outs << "*常见词*    ";
+            haveFlags = true;
+        }
+        else
+        {
+            outs << "*生僻词*    ";
+            haveFlags = true;
+        }
+        
+        if (evalPtr->IsForgettable(Word))
+        {
+            outs << "*您容易忘记*    ";
+            haveFlags = true;
+        }
+        
+        if (evalPtr->IsKnown(Word))
+        {
+            outs << "*熟词*    ";
+            haveFlags = true;
+        }
+        else
+        {
+            outs << "*生词*    ";
+            haveFlags = true;
+        }
+        
+        if (haveFlags)
+        {
+            outs << endl;
+        }
+        
+        outs << string(80, '-') << endl;
+    }
     
     PrintWord(outs, "系统", Globals::Dict->GetWord(Word));
     PrintWord(outs, "您添加的", Globals::CurrentUser->GetWord(Word));
+    
+    if (found)
+    {
+        outs << "易混淆单词: " << endl;
+        
+        for (auto w : related)
+        {
+            outs << w << " ";
+        }
+        outs << endl;
+    }
     
     ShowSubComponents();
     DoButtons();

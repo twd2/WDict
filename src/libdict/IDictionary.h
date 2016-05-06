@@ -3,7 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 #include "types.h"
+#include "DictStringUtils.h"
 #include "WordInfo.h"
 
 // basic dictionary interface
@@ -25,6 +27,15 @@ public:
     {
         return words[index];
     }
+    
+    std::vector<std::string> GetRelated(const std::string &word, size_t limit = 50)
+    {
+        return GetRelated(word, std::function<size_t (const std::string&, const std::string&)>([] (const std::string &input, const std::string &temp) {
+            return DictStringUtils::Distance(input, temp);
+        }), limit);
+    }
+    
+    std::vector<std::string> GetRelated(const std::string &word, std::function<size_t (const std::string&, const std::string&)> pred, size_t limit = 50);
     
     virtual WordInfo GetWord(const std::string &word);
     virtual void AddDesc(const std::string &word, const std::string &desc);

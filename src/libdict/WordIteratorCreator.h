@@ -7,8 +7,7 @@
 class WordIteratorCreator
 {
 public:
-    virtual std::shared_ptr<WordIterator> CreateNewWordsIterator() = 0;
-    virtual std::shared_ptr<WordIterator> CreateTestWordsIterator() = 0;
+    virtual std::shared_ptr<WordIterator> Create() = 0;
 };
 
 #endif // _WORDITERATORCREATOR_H_

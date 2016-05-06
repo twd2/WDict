@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include "IDictionary.h"
-#include "StringUtils.h"
+#include "DictStringUtils.h"
 
 // extending basic interface, adding level data, used as global dictionary
 class Dictionary

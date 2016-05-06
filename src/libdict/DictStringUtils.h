@@ -1,12 +1,12 @@
-#ifndef _STRINGUTILS_H_
-#define _STRINGUTILS_H_
+#ifndef _DICTSTRINGUTILS_H_
+#define _DICTSTRINGUTILS_H_
 
 #include <algorithm>
 #include <sstream>
 #include <string>
 #include <vector>
 
-class StringUtils
+class DictStringUtils
 {
 public:
     template <typename T>
@@ -16,10 +16,11 @@ public:
     static T FromString(const std::string &a);
 	
 	static std::vector<std::string> GetWords(std::string text, bool unique = false);
+	static size_t Distance(const std::string &a, const std::string &b);
 };
 
 template <typename T>
-std::string StringUtils::ToString(const T &a)
+std::string DictStringUtils::ToString(const T &a)
 {
 	std::stringstream ss;
 	ss << a;
@@ -27,7 +28,7 @@ std::string StringUtils::ToString(const T &a)
 }
 
 template <typename T>
-T StringUtils::FromString(const std::string &a)
+T DictStringUtils::FromString(const std::string &a)
 {
 	std::stringstream ss;
 	ss << a;
@@ -36,4 +37,4 @@ T StringUtils::FromString(const std::string &a)
 	return t;
 }
 
-#endif // _STRINGUTILS_H_
+#endif // _DICTSTRINGUTILS_H_

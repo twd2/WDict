@@ -10,7 +10,6 @@ public:
     std::string Word;
     std::vector<std::string> Desc;
     std::vector<std::pair<std::string, std::string> > Sentences;
-    std::vector<unsigned long> Counters;
 };
 
 #endif // _WORDINFO_H_

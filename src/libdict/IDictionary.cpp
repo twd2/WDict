@@ -6,6 +6,34 @@ IDictionary::IDictionary(IDictDB &dictDB, IDictDB &sentDB)
     refreshWordsCache();
 }
 
+std::vector<std::string> IDictionary::GetRelated(const std::string &word, std::function<size_t (const std::string&, const std::string&)> pred, size_t limit)
+{
+    typedef std::pair<std::string, size_t> wordWithDistance;
+    std::vector<wordWithDistance> wordDistances;
+    for (auto temp : words)
+    {
+        wordDistances.push_back(std::make_pair(temp, pred(word, temp)));
+    }
+    
+    std::sort(wordDistances.begin(), wordDistances.end(), [] (const wordWithDistance &a, const wordWithDistance &b) {
+        return a.second < b.second;
+    });
+    
+    std::vector<std::string> result;
+    for (auto iter = wordDistances.begin(); iter != wordDistances.end(); ++iter)
+    {
+        if (result.size() < limit)
+        {
+            result.push_back(iter->first);
+        }
+        else
+        {
+            break;
+        }
+    }
+    return result;
+}
+
 void IDictionary::refreshWordsCache()
 {
     words.clear();
