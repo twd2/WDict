@@ -16,7 +16,7 @@ class Globals
 public:
     static default_random_engine RandomEngine;
     static unique_ptr<TextDB> DictDB, SentDB, LevelDB,
-                              UserInfoDB, UserCounterDB, UserDictDB, UserSentDB;
+                              UserConfigDB, UserCounterDB, UserDictDB, UserSentDB;
     static unique_ptr<Dictionary> Dict;
     static unique_ptr<UserInfo> CurrentUser;
     static unique_ptr<WordIteratorCreator> IterCreator;

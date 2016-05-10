@@ -3,19 +3,19 @@
 default_random_engine Globals::RandomEngine;
 
 unique_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
-                   Globals::UserInfoDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
+                   Globals::UserConfigDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
 unique_ptr<Dictionary> Globals::Dict;
 unique_ptr<UserInfo> Globals::CurrentUser;
 unique_ptr<WordIteratorCreator> Globals::IterCreator;
 
 void Globals::SwitchUser(const string &UserName)
 {
-    UserInfoDB = make_unique<TextDB>(UserName + "_info");
+    UserConfigDB = make_unique<TextDB>(UserName + "_config");
     UserCounterDB = make_unique<TextDB>(UserName + "_learn");
     UserDictDB = make_unique<TextDB>(UserName + "_dict");
     UserSentDB = make_unique<TextDB>(UserName + "_sentences");
     
-    CurrentUser = make_unique<UserInfo>(*UserInfoDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
+    CurrentUser = make_unique<UserInfo>(*UserConfigDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
     
     CurrentUser->WordEvaluate = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
     

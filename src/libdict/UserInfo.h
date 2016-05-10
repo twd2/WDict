@@ -27,15 +27,15 @@ class UserInfo
     : public IDictionary
 {
 private:
-    //     basic info, learning log
-    IDictDB &infoDB, &counterDB;
+    // configurations, learning log
+    IDictDB &configDB, &counterDB;
     std::string historyFilename;
 public:
     std::string Name;
     std::shared_ptr<EvaluateStrategy> WordEvaluate = nullptr;
     
-    UserInfo(IDictDB &infoDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
-        : IDictionary(dictDB, sentDB), infoDB(infoDB), counterDB(counterDB), Name(Name)
+    UserInfo(IDictDB &configDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
+        : IDictionary(dictDB, sentDB), configDB(configDB), counterDB(counterDB), Name(Name)
     {
         historyFilename = Name + "_history";
     }
@@ -57,7 +57,7 @@ public:
 template <typename T>
 T UserInfo::Get(const std::string &key, T def)
 {
-    auto &vec = infoDB[key];
+    auto &vec = configDB[key];
     if (vec.size() == 0 || vec[0] == "")
     {
         Set(key, def);
@@ -69,7 +69,7 @@ T UserInfo::Get(const std::string &key, T def)
 template <typename T>
 void UserInfo::Set(const std::string &key, T value)
 {
-    auto &vec = infoDB[key];
+    auto &vec = configDB[key];
     if (vec.size() == 0)
     {
         vec.push_back("");
