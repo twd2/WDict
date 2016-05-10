@@ -18,23 +18,22 @@ enum answer_t
     ANSWER_CORRECT,
     ANSWER_WRONG,
     ANSWER_ABANDONED,
-    ANSWER_BACK
+    ANSWER_BACK,
+    ANSWER_COUNT
 };
 
 class TestConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnBack;
     shared_ptr<WordIterator> wrongAnswerIter;
     shared_ptr<WordIterator> iter;
 public:
-    size_t Limit;
+    size_t Limit, Counters[ANSWER_COUNT] = {0};
+    vector<string> IncorrectWords;
     TestConsole(Console &Root, size_t Limit);
     
     bool Show() override;
-    
-    void Back();
     
 private:
     string word;

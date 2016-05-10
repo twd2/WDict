@@ -27,6 +27,9 @@ bool MainConsole::Show()
 {
     WithTitleConsole(Root, "词典").Show();
     
+    outs << Globals::CurrentUser->Name << ", 欢迎您!" << endl;
+    outs << string(80, '-') << endl;
+    
     outs << "欢迎使用词典, 您可以输入对应字符来进入相应功能:" << endl;
     
     ShowSubComponents();

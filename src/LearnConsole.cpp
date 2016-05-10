@@ -17,7 +17,7 @@ LearnConsole::LearnConsole(Console &Root, size_t Limit)
 
 void LearnConsole::initIter()
 {
-    iter = make_shared<WithLimitIterator>(Limit, Globals::IterCreator->CreateNewWordsIterator());
+    iter = make_shared<WithLimitIterator>(Limit, Globals::NewWordIteratorCreator->Create());
     word = iter->Next();
 }
 
@@ -29,7 +29,7 @@ bool LearnConsole::Show()
     {
         outs << word << "    ";
         
-        if (Globals::CurrentUser->WordEvaluate->IsKnown(word))
+        if (Globals::CurrentUser->WordEvaluator->IsKnown(word))
         {
             outs << "*复习*    ";
         }

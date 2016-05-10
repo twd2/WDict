@@ -24,7 +24,7 @@ bool TextConsole::Show()
             outs << txtFilename.Value << endl;
             
             ifstream ifs(txtFilename.Value, ios_base::in);
-            Words = StringUtils::GetWords(FileUtils::ReadAllText(ifs), true);
+            Words = DictStringUtils::GetWords(FileUtils::ReadAllText(ifs), true);
             ifs.close();
             filename = txtFilename.Value;
         }
@@ -38,7 +38,7 @@ bool TextConsole::Show()
     size_t counter = 0;
     for (string word : Words)
     {
-        if (!Globals::CurrentUser->WordEvaluate->IsKnown(word))
+        if (!Globals::CurrentUser->WordEvaluator->IsKnown(word))
         {
             outs << word << endl;
             WordInfo wi = Globals::Dict->GetWord(word);
@@ -53,8 +53,8 @@ bool TextConsole::Show()
             {
                 outs << "    *未找到释义*" << endl;
             }
+            ++counter;
         }
-        ++counter;
     }
     outs << endl;
     

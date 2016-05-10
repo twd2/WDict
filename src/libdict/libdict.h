@@ -2,7 +2,7 @@
 #define _LIBDICT_H_
 
 #include "types.h"
-#include "StringUtils.h"
+#include "DictStringUtils.h"
 #include "WordInfo.h"
 #include "IDictionary.h"
 #include "Dictionary.h"
@@ -14,7 +14,10 @@
 #include "RandomWordIterator.h"
 #include "DiscreteWordIterator.h"
 #include "WordIteratorCreator.h"
-#include "DefaultWordIteratorCreator.h"
-#include "HardWordIteratorCreator.h"
+#include "UserWordIteratorCreator.h"
+#include "DefaultNewWordIteratorCreator.h"
+#include "DefaultTestWordIteratorCreator.h"
+#include "HardNewWordIteratorCreator.h"
+#include "HardTestWordIteratorCreator.h"
 
 #endif // _LIBDICT_H_

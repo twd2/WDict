@@ -16,7 +16,7 @@ int Dictionary::GetLevel(const std::string &word)
     }
     else
     {
-        return StringUtils::FromString<int>(vec[0]);
+        return DictStringUtils::FromString<int>(vec[0]);
     }
 }
 

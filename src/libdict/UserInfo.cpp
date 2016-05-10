@@ -1,49 +1,48 @@
 #include "UserInfo.h"
 
-void UserInfo::IncCounter(const std::string &word, user_counter_t type, unsigned long value)
+void UserInfo::IncCounter(const std::string &word, user_counter_t type, ptrdiff_t value)
 {
-    WordInfo wi = GetCounters(word);
-    SetCounter(word, type, wi.Counters[type] + value);
+    std::vector<ptrdiff_t> counters = GetCounters(word);
+    SetCounter(word, type, counters[type] + value);
 }
 
-void UserInfo::SetCounter(const std::string &word, user_counter_t type, unsigned long value)
+void UserInfo::SetCounter(const std::string &word, user_counter_t type, ptrdiff_t value)
 {
     auto &vec = counterDB[word];
     while (vec.size() < COUNTER_COUNT)
     {
         vec.push_back("0");
     }
-    vec[type] = StringUtils::ToString(value);
+    vec[type] = DictStringUtils::ToString(value);
 }
 
-WordInfo UserInfo::GetCounters(const std::string &word)
+std::vector<ptrdiff_t> UserInfo::GetCounters(const std::string &word)
 {
-    WordInfo wi;
-    wi.Word = word;
+    std::vector<ptrdiff_t> counters;
     
     auto iter = counterDB.find(word);
     
     if (iter == counterDB.end())
     {
-        while (wi.Counters.size() < COUNTER_COUNT)
+        while (counters.size() < COUNTER_COUNT)
         {
-            wi.Counters.push_back(0);
+            counters.push_back(0);
         }
-        return wi;
+        return counters;
     }
     
     auto &vec = iter->second;
     for (std::string c : vec)
     {
-        wi.Counters.push_back(StringUtils::FromString<unsigned long>(c));
+        counters.push_back(DictStringUtils::FromString<ptrdiff_t>(c));
     }
     
-    while (wi.Counters.size() < COUNTER_COUNT)
+    while (counters.size() < COUNTER_COUNT)
     {
-        wi.Counters.push_back(0);
+        counters.push_back(0);
     }
     
-    return wi;
+    return counters;
 }
 
 std::vector<std::string> UserInfo::GetHistory(size_t limit)

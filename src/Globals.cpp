@@ -6,7 +6,8 @@ unique_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
                    Globals::UserConfigDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
 unique_ptr<Dictionary> Globals::Dict;
 unique_ptr<UserInfo> Globals::CurrentUser;
-unique_ptr<WordIteratorCreator> Globals::IterCreator;
+unique_ptr<WordIteratorCreator> Globals::NewWordIteratorCreator;
+unique_ptr<WordIteratorCreator> Globals::TestWordIteratorCreator;
 
 void Globals::SwitchUser(const string &UserName)
 {
@@ -17,9 +18,10 @@ void Globals::SwitchUser(const string &UserName)
     
     CurrentUser = make_unique<UserInfo>(*UserConfigDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
     
-    CurrentUser->WordEvaluate = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
+    CurrentUser->WordEvaluator = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
     
-    IterCreator = make_unique<DefaultWordIteratorCreator>(RandomEngine, *CurrentUser, *Dict);
+    NewWordIteratorCreator = make_unique<DefaultNewWordIteratorCreator>(RandomEngine, *CurrentUser, *Dict);
+    TestWordIteratorCreator = make_unique<HardTestWordIteratorCreator>(RandomEngine, *CurrentUser, *Dict);
 }
 
 void Globals::Init()

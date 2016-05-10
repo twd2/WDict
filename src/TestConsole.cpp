@@ -1,17 +1,14 @@
 #include "TestConsole.h"
 
 TestConsole::TestConsole(Console &Root, size_t Limit)
-    : ConsoleComponent(Root), btnBack(Root, 'b', "返回"), Limit(Limit)
+    : ConsoleComponent(Root), Limit(Limit)
 {
-    btnBack.OnClick = bind(&TestConsole::Back, this);
-    Add(btnBack);
-    
     initIter();
 }
 
 void TestConsole::initIter()
 {
-    iter = make_shared<WithLimitIterator>(Limit, Globals::IterCreator->CreateTestWordsIterator());
+    iter = make_shared<WithLimitIterator>(Limit, Globals::TestWordIteratorCreator->Create());
     word = iter->Next();
     wrongAnswerIter = make_shared<RandomWordIterator>(Globals::RandomEngine, *Globals::Dict, [this] (const string &w)
     {
@@ -28,14 +25,24 @@ bool TestConsole::Show()
         answer_t ans = CheckAnswer(word);
         if (ans == ANSWER_BACK)
         {
-            Back();
+            ConfirmConsole cc(Root, "确定要停止测验吗?", false);
+            cc.Show();
+            if (cc.Value)
+            {
+                Root.Back();
+            }
             return true;
         }
         
+        ++Counters[ans];
         Globals::CurrentUser->IncCounter(word, COUNTER_TEST);
         if (ans == ANSWER_CORRECT)
         {
             Globals::CurrentUser->IncCounter(word, COUNTER_PASS);
+        }
+        else
+        {
+            IncorrectWords.push_back(word);
         }
         Globals::UserCounterDB->Sync();
         
@@ -59,7 +66,28 @@ bool TestConsole::Show()
     }
     else
     {
-        outs << "本次测试完成!" << endl;
+        outs << "本次测验完成!" << endl;
+        
+        outs << string(36, ' ') << "测验结果" << endl;
+        outs << string(80, '-') << endl;
+        outs << "正确: \t" << Counters[ANSWER_CORRECT] << endl;
+        outs << "错误: \t" << Counters[ANSWER_WRONG] << endl;
+        outs << "放弃: \t" << Counters[ANSWER_ABANDONED] << endl;
+        size_t total = 0;
+        for (size_t i = 0; i < (size_t)(ANSWER_COUNT); ++i)
+        {
+            total += Counters[i];
+        }
+        outs << "      \t" << total << endl;
+        if (IncorrectWords.size() > 0)
+        {
+            outs << "请落实: ";
+            for (string w : IncorrectWords)
+            {
+                outs << w << " ";
+            }
+            outs << endl;
+        }
         ConfirmConsole cc(Root, "再来一轮?", false);
         cc.Show();
         if (cc.Value)
@@ -68,15 +96,10 @@ bool TestConsole::Show()
         }
         else
         {
-            Back();
+            Root.Back();
         }
     }
     return true;
-}
-
-void TestConsole::Back()
-{
-    Root.Back();
 }
 
 answer_t TestConsole::CheckAnswer(const string &word)
