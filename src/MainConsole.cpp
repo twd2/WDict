@@ -2,25 +2,17 @@
 
 MainConsole::MainConsole(Console &Root)
     : ConsoleComponent(Root), btnRetrive(Root, '1', "单词查询"), btnText(Root, '2', "分析文本"), btnLearn(Root, '3', "学习"),
-                              btnTest(Root, '4', "测验"), btnAbout(Root, 'a', "关于"), btnExit(Root, 'x', "退出")
+                              btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"), btnAbout(Root, 'a', "关于"), btnExit(Root, 'x', "退出")
 {
-    btnRetrive.OnClick = bind(&MainConsole::Retrive, this);
-    Add(btnRetrive);
-    
-    btnText.OnClick = bind(&MainConsole::Text, this);
-    Add(btnText);
-    
-    btnLearn.OnClick = bind(&MainConsole::Learn, this);
-    Add(btnLearn);
-    
-    btnTest.OnClick = bind(&MainConsole::Test, this);
-    Add(btnTest);
-    
-    btnAbout.OnClick = bind(&MainConsole::About, this);
-    Add(btnAbout);
-
-    btnExit.OnClick = bind(&MainConsole::Exit, this);
-    Add(btnExit);
+#define ONCLICK(name) BUTTON_ONCLICK(MainConsole, name)
+    ONCLICK(Retrive);
+    ONCLICK(Text);
+    ONCLICK(Learn);
+    ONCLICK(TestAsLearn);
+    ONCLICK(Test);
+    ONCLICK(About);
+    ONCLICK(Exit);
+#undef ONCLICK
 }
 
 bool MainConsole::Show()
@@ -50,14 +42,18 @@ void MainConsole::Text()
 
 void MainConsole::Learn()
 {
-    // TODO: specify limit
-    Root.Goto(make_shared<LearnConsole>(Root, 20));
+    Root.Goto(make_shared<LearnConsole>(Root, Globals::CurrentUser->Get("NewWordLimit", 20L)));
+}
+
+void MainConsole::TestAsLearn()
+{
+    // TODO
+    // Root.Goto(make_shared<TestConsole>(Root, Globals::CurrentUser->Get("TestWordLimit", 20L)));
 }
 
 void MainConsole::Test()
 {
-    // TODO: specify limit
-    Root.Goto(make_shared<TestConsole>(Root, 20));
+    Root.Goto(make_shared<TestConsole>(Root, Globals::CurrentUser->Get("TestWordLimit", 20L)));
 }
 
 void MainConsole::About()

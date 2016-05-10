@@ -15,12 +15,12 @@ class Globals
 {
 public:
     static default_random_engine RandomEngine;
-    static unique_ptr<TextDB> DictDB, SentDB, LevelDB,
+    static shared_ptr<TextDB> DictDB, SentDB, LevelDB,
                               UserConfigDB, UserCounterDB, UserDictDB, UserSentDB;
-    static unique_ptr<Dictionary> Dict;
-    static unique_ptr<UserInfo> CurrentUser;
-    static unique_ptr<WordIteratorCreator> NewWordIteratorCreator;
-    static unique_ptr<WordIteratorCreator> TestWordIteratorCreator;
+    static shared_ptr<Dictionary> Dict;
+    static shared_ptr<UserInfo> CurrentUser;
+    static shared_ptr<WordIteratorCreator> NewWordIteratorCreator;
+    static shared_ptr<WordIteratorCreator> TestWordIteratorCreator;
     static void SwitchUser(const string &UserName);
     static void Init();
     static void Open(const string &path);

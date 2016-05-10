@@ -2,12 +2,12 @@
 
 default_random_engine Globals::RandomEngine;
 
-unique_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
+shared_ptr<TextDB> Globals::DictDB, Globals::SentDB, Globals::LevelDB,
                    Globals::UserConfigDB, Globals::UserCounterDB, Globals::UserDictDB, Globals::UserSentDB;
-unique_ptr<Dictionary> Globals::Dict;
-unique_ptr<UserInfo> Globals::CurrentUser;
-unique_ptr<WordIteratorCreator> Globals::NewWordIteratorCreator;
-unique_ptr<WordIteratorCreator> Globals::TestWordIteratorCreator;
+shared_ptr<Dictionary> Globals::Dict;
+shared_ptr<UserInfo> Globals::CurrentUser;
+shared_ptr<WordIteratorCreator> Globals::NewWordIteratorCreator;
+shared_ptr<WordIteratorCreator> Globals::TestWordIteratorCreator;
 
 void Globals::SwitchUser(const string &UserName)
 {
@@ -20,8 +20,11 @@ void Globals::SwitchUser(const string &UserName)
     
     CurrentUser->WordEvaluator = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
     
-    NewWordIteratorCreator = make_unique<DefaultNewWordIteratorCreator>(RandomEngine, *CurrentUser, *Dict);
-    TestWordIteratorCreator = make_unique<HardTestWordIteratorCreator>(RandomEngine, *CurrentUser, *Dict);
+    NewWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("NewWordStrategy", "DefaultNew"),
+                                                             RandomEngine, *CurrentUser, *Dict);
+    
+    TestWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("TestWordStrategy", "DefaultTest"),
+                                                              RandomEngine, *CurrentUser, *Dict);
 }
 
 void Globals::Init()

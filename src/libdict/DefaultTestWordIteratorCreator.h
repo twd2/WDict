@@ -15,11 +15,7 @@ class DefaultTestWordIteratorCreator
     : public UserWordIteratorCreator
 {
 public:
-    DefaultTestWordIteratorCreator(std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
-        : UserWordIteratorCreator(engine, user, dict)
-    {
-        
-    }
+    using UserWordIteratorCreator::UserWordIteratorCreator;
     
     std::shared_ptr<WordIterator> Create() override;
 };

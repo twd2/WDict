@@ -16,7 +16,7 @@ class MainConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnRetrive, btnText, btnLearn, btnTest, btnAbout, btnExit;
+    ButtonConsole btnRetrive, btnText, btnLearn, btnTestAsLearn, btnTest, btnAbout, btnExit;
 public:
     MainConsole(Console &Root);
     bool Show() override;
@@ -25,6 +25,7 @@ private:
     void Retrive();
     void Text();
     void Learn();
+    void TestAsLearn();
     void Test();
     void About();
     void Exit();

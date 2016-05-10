@@ -10,6 +10,7 @@
 #include <random>
 #include <memory>
 
+// creates WordIterators that use user data.
 class UserWordIteratorCreator
     : public WordIteratorCreator
 {
@@ -25,6 +26,8 @@ public:
     }
     
     std::shared_ptr<WordIterator> Create() override = 0;
+    
+    static std::shared_ptr<UserWordIteratorCreator> ByName(std::string name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict);
 };
 
 #endif // _USERWORDITERATORCREATOR_H_

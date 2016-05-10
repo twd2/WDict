@@ -23,4 +23,10 @@ public:
     bool Show() override;
 };
 
+#define BUTTON_ONCLICK(cls, name) do \
+{ \
+btn##name.OnClick = bind(&cls::name, this); \
+Add(btn##name); \
+} while (false)
+
 #endif // _BUTTONCONSOLE_H_
