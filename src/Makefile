@@ -7,12 +7,12 @@ LD_FLAGS = -L./libtextdb -L./libdict -L./libui
 LD_LIBS = -ltextdb -ldict -lui
 
 .PHONY: all
-all: libtextdb_ libdict_ libui_ resources $(PROJECT)$(EXE_POSTFIX)
+all: resources $(PROJECT)$(EXE_POSTFIX)
 
 -include $(DEPS)
 
-$(PROJECT)$(EXE_POSTFIX): $(OBJECTS)
-	g++ $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
+$(PROJECT)$(EXE_POSTFIX): $(OBJECTS) libtextdb_ libdict_ libui_
+	g++ $(LD_FLAGS) -o $@ $(OBJECTS) $(LD_LIBS)
 
 %.o: %.cpp
 	g++ $(CC_FLAGS) -MMD -MP -c $<
