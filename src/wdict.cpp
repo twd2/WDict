@@ -43,11 +43,13 @@ int main(int argc, char **argv)
     }
     catch (SyntaxError err)
     {
-        cerr << err.what << endl;
+        cerr << "SyntaxError: " << err.what << endl;
+        cerr << "可能是由于词库或配置错误。" << endl;
     }
     catch (string err)
     {
         cerr << "Error: " << err << endl;
+        cerr << "可能是由于配置错误。" << endl;
     }
     return 1;
 }
