@@ -37,4 +37,10 @@ T DictStringUtils::FromString(const std::string &a)
 	return t;
 }
 
+template <>
+std::string DictStringUtils::ToString(const std::string &a);
+
+template <>
+std::string DictStringUtils::FromString(const std::string &a);
+
 #endif // _DICTSTRINGUTILS_H_

@@ -63,3 +63,15 @@ size_t DictStringUtils::Distance(const std::string &a, const std::string &b)
     
     return d[a.length()][b.length()];
 }
+
+template <>
+std::string DictStringUtils::ToString(const std::string &a)
+{
+	return a;
+}
+
+template <>
+std::string DictStringUtils::FromString(const std::string &a)
+{
+	return a;
+}
