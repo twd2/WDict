@@ -17,6 +17,7 @@ protected:
     std::vector<std::string> words;
 public:
     IDictionary(IDictDB &dictDB, IDictDB &sentDB);
+    virtual ~IDictionary() = default;
     
     size_t Size()
     {

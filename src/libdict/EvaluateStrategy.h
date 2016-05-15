@@ -7,6 +7,7 @@
 class EvaluateStrategy
 {
 public:
+    virtual ~EvaluateStrategy() = default;
     virtual bool IsCommon(const std::string &word) = 0;
     virtual bool IsForgettable(const std::string &word) = 0;
     virtual bool IsKnown(const std::string &word) = 0;

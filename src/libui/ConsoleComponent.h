@@ -13,11 +13,14 @@ protected:
 public:
     std::vector<ConsoleComponent*> Components;
     Console &Root;
+    
     ConsoleComponent(Console &Root)
         : ins(Root.ins), outs(Root.outs), Root(Root)
     {
         
     }
+    virtual ~ConsoleComponent() = default;
+    
     void Add(ConsoleComponent &comp);
     void ShowSubComponents();
     virtual bool Show() = 0;

@@ -7,6 +7,7 @@
 class WordIteratorCreator
 {
 public:
+    virtual ~WordIteratorCreator() = default;
     virtual std::shared_ptr<WordIterator> Create() = 0;
 };
 
