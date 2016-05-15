@@ -25,6 +25,6 @@ std::shared_ptr<UserWordIteratorCreator> UserWordIteratorCreator::ByName(std::st
     }
     else
     {
-        throw std::string("UserWordIteratorCreator::ByName: Unsupported type name.");
+        throw (std::string("UserWordIteratorCreator::ByName: Unsupported type name \"") + name + "\".");
     }
 }
