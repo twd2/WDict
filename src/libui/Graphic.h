@@ -4,7 +4,7 @@
 #include <string>
 #include "UIImpl.h"
 
-/// 未实现，GUI元件基类？
+/// 图形用户界面 (暂未实现)
 class Graphic
     : public UIImpl
 {
