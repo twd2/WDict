@@ -6,6 +6,7 @@
 class WordIterator
 {
 public:
+    virtual ~WordIterator() = default;
     virtual std::string Next() = 0;
     virtual bool HaveNext() = 0;
 };

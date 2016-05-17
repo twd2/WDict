@@ -4,6 +4,7 @@
 class UIImpl
 {
 public:
+    virtual ~UIImpl() = default;
     virtual bool Show() = 0;
 };
 
