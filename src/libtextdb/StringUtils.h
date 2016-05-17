@@ -3,15 +3,19 @@
 
 #include <sstream>
 
+/// 字符串处理工具
 class StringUtils
 {
 public:
+	/// 转化为字符串
     template <typename T>
     static std::string ToString(const T &a);
-    
+
+	/// 从字符串构造
     template <typename T>
     static T FromString(const std::string &a);
-    
+
+	/// 对字符串进行转义和反转义
     static std::string Escape(const std::string &str);
     static std::string Unescape(const std::string &str);
 };
