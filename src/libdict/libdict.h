@@ -19,5 +19,7 @@
 #include "DefaultTestWordIteratorCreator.h"
 #include "HardNewWordIteratorCreator.h"
 #include "HardTestWordIteratorCreator.h"
+#include "IQuestionBuilder.h"
+#include "QuestionGenerator.h"
 
 #endif // _LIBDICT_H_
