@@ -4,4 +4,4 @@ compiler:
 os:
 - linux
 - osx
-script: make
+script: cd src/ && make
