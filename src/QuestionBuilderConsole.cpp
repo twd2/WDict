@@ -2,24 +2,24 @@
 
 void QuestionBuilderConsole::BeginQuestion(std::string question)
 {
-    cout << question << endl;
+    this->question = question;
     inSelect = false;
     select = nullptr;
     text = nullptr;
 }
-    
-void QuestionBuilderConsole::BeginOption(char key, std::string option)
+
+void QuestionBuilderConsole::BeginSelect()
 {
-    if (!inSelect)
-    {
-        inSelect = true;
-        select = make_shared<SelectConsole>(Root, "请作答(答案不区分大小写):");
-        select->IgnoreCase = true;
-    }
+    select = make_shared<SelectConsole>(Root, "请作答(答案不区分大小写):");
+    select->IgnoreCase = true;
+}
+    
+void QuestionBuilderConsole::Option(char key, std::string option)
+{
     select->Add(key, option);
 }
 
-void QuestionBuilderConsole::EndOption()
+void QuestionBuilderConsole::EndSelect()
 {
     
 }
@@ -54,6 +54,7 @@ bool QuestionBuilderConsole::Show()
         throw string("neither select nor text");
     }
     
+    outs << question << endl;
     if (select)
     {
         select->Show();

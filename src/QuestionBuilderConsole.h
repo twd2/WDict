@@ -17,6 +17,7 @@ private:
     bool inSelect = false;
     shared_ptr<SelectConsole> select;
     shared_ptr<TextInputConsole> text;
+    string question = "";
 public:
     string UserAnswer;
     QuestionBuilderConsole(Console &Root)
@@ -27,8 +28,9 @@ public:
 
     void BeginQuestion(std::string question) override;
     
-    void BeginOption(char key, std::string option) override;
-    void EndOption() override;
+    void BeginSelect() override;
+    void Option(char key, std::string option) override;
+    void EndSelect() override;
     
     void BeginTextInput() override;
     void EndTextInput() override;

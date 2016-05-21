@@ -59,13 +59,12 @@ std::string QuestionGenerator::genTF(const std::string &word)
     
     WordInfo wi = dict.GetWord(descWord);
     std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
-    qb.BeginQuestion("请判断: \n" + word + "有\"" + wi.Desc[dist(engine)] + "\"的意思。");
     
+    qb.BeginQuestion("请判断: \n" + word + "有\"" + wi.Desc[dist(engine)] + "\"的意思。");
     qb.BeginSelect();
     qb.Option('T', "正确");
     qb.Option('F', "错误");
     qb.EndSelect();
-    
     qb.EndQuestion();
     
     return correctAnswer ? "T" : "F";
@@ -83,19 +82,21 @@ std::string QuestionGenerator::genSelDesc(const std::string &word)
     std::string desc = wi.Desc[dist(engine)];
     
     qb.BeginQuestion(word + "有如下哪个意思?");
+    qb.BeginSelect();
     for (size_t i = 0; i < count; ++i)
     {
         if (i == correctAnswer)
         {
-            qb.BeginOption('A' + i, desc); qb.EndOption();
+            qb.Option('A' + i, desc);
         }
         else
         {
             WordInfo wwi = dict.GetWord(wrongAnswerIter->Next());
             std::uniform_int_distribution<size_t> dist(0, wwi.Desc.size() - 1);
-            qb.BeginOption('A' + i, wwi.Desc[dist(engine)]); qb.EndOption();
+            qb.Option('A' + i, wwi.Desc[dist(engine)]);
         }
     }
+    qb.EndSelect();
     qb.EndQuestion();
     
     return std::string(1, 'A' + correctAnswer);
@@ -112,17 +113,19 @@ std::string QuestionGenerator::genSelWord(const std::string &word)
     std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
     
     qb.BeginQuestion("哪一个单词有\"" + wi.Desc[dist(engine)] + "\"的意思?");
+    qb.BeginSelect();
     for (size_t i = 0; i < count; ++i)
     {
         if (i == correctAnswer)
         {
-            qb.BeginOption('A' + i, word); qb.EndOption();
+            qb.Option('A' + i, word);
         }
         else
         {
-            qb.BeginOption('A' + i, wrongAnswerIter->Next()); qb.EndOption();
+            qb.Option('A' + i, wrongAnswerIter->Next());
         }
     }
+    qb.EndSelect();
     qb.EndQuestion();
     
     return std::string(1, 'A' + correctAnswer);

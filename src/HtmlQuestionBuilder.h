@@ -12,7 +12,6 @@ class HtmlQuestionBuilder
 {
 private:
     ostream &outs;
-    bool inSelect = false;
 public:
     HtmlQuestionBuilder(ostream &outs)
         : outs(outs)
@@ -29,8 +28,9 @@ public:
     
     void BeginQuestion(std::string question) override;
     
-    void BeginOption(char key, std::string option) override;
-    void EndOption() override;
+    void BeginSelect() override;
+    void Option(char key, std::string option) override;
+    void EndSelect() override;
     
     void BeginTextInput() override;
     void EndTextInput() override;
