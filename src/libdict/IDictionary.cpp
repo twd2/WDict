@@ -22,6 +22,11 @@ std::vector<std::string> IDictionary::GetRelated(const std::string &word, std::f
     std::vector<std::string> result;
     for (auto iter = wordDistances.begin(); iter != wordDistances.end(); ++iter)
     {
+        if (iter->first == word)
+        {
+            continue;
+        }
+        
         if (result.size() < limit)
         {
             result.push_back(iter->first);
