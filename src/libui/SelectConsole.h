@@ -50,9 +50,8 @@ public:
     bool Selected(char ch);
     bool Selected(size_t index);
 
-private:
 	/// 变为小写
-    static char toLower(char ch);
+    static char ToLower(char ch);
 };
 
 #endif // _SELECTCONSOLE_H_

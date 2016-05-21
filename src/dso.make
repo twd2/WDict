@@ -1,5 +1,7 @@
 include ../config.make
 
+ICONV := ..\\$(ICONV)
+
 CC_FLAGS = $(CC_DBG_FLAGS) -fPIC -Wall -std=c++11 $(CXXFLAGS)
 
 .PHONY: all
@@ -12,8 +14,13 @@ $(PROJECT)$(DSO_POSTFIX): $(OBJECTS)
 
 %.o: %.cpp
 	$(CXX) $(CC_FLAGS) -MMD -MP -c $<
+ifdef WIN32
+	$(ICONV) -f UTF-8 -t GBK $< > $<.win.cc
+	$(CXX) $(CC_FLAGS) -o $@ -c $<.win.cc
+else
 	$(CXX) $(CC_FLAGS) -o $@ -c $<
+endif
 
 .PHONY: clean
 clean:
-	-$(RM) *.o *.d $(PROJECT)$(DSO_POSTFIX)
+	-$(RM) *.win.cc *.o *.d $(PROJECT)$(DSO_POSTFIX)

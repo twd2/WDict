@@ -1,6 +1,6 @@
 #include "SelectConsole.h"
 
-char SelectConsole::toLower(char ch)
+char SelectConsole::ToLower(char ch)
 {
     if (ch >= 'A' && ch <= 'Z')
     {
@@ -36,7 +36,7 @@ bool SelectConsole::Show()
             }
             else
             {
-                if (toLower(selected[i]) == toLower(p.first))
+                if (ToLower(selected[i]) == ToLower(p.first))
                 {
                     SelectedIndexes.push_back(j);
                 }
@@ -59,7 +59,7 @@ bool SelectConsole::Selected(char ch)
         }
         else
         {
-            if (toLower(Choices[index].first) == toLower(ch))
+            if (ToLower(Choices[index].first) == ToLower(ch))
             {
                 return true;
             }

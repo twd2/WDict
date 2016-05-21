@@ -9,6 +9,7 @@
 #include "TextConsole.h"
 #include "LearnConsole.h"
 #include "TestConsole.h"
+#include "HtmlQuestionBuilder.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class MainConsole
     : public ConsoleComponent
 {
 protected:
-    ButtonConsole btnRetrive, btnText, btnLearn, btnTestAsLearn, btnTest, btnAbout, btnExit;
+    ButtonConsole btnRetrive, btnText, btnLearn, btnTestAsLearn, btnTest, btnAbout, btnHackMe, btnExit;
 public:
     MainConsole(Console &Root);
     bool Show() override;
@@ -28,6 +29,7 @@ private:
     void TestAsLearn();
     void Test();
     void About();
+    void HackMe();
     void Exit();
 };
 

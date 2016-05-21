@@ -10,7 +10,7 @@ void QuestionBuilderConsole::BeginQuestion(std::string question)
 
 void QuestionBuilderConsole::BeginSelect()
 {
-    select = make_shared<SelectConsole>(Root, "请作答(答案不区分大小写):");
+    select = make_shared<SelectConsole>(Root, "请作答(单选, 答案不区分大小写):");
     select->IgnoreCase = true;
 }
     
@@ -21,7 +21,8 @@ void QuestionBuilderConsole::Option(char key, std::string option)
 
 void QuestionBuilderConsole::EndSelect()
 {
-    
+    select->Add('E', "放弃");
+    select->Add('Q', "返回");
 }
     
 void QuestionBuilderConsole::BeginTextInput()
@@ -66,4 +67,44 @@ bool QuestionBuilderConsole::Show()
         UserAnswer = text->Value;
     }
     return true;
+}
+
+answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
+{
+    if (select)
+    {
+        if (select->SelectedIndexes.size() != 1 || select->Selected('E'))
+        {
+            return ANSWER_ABANDONED;
+        }
+        else if (select->Selected('Q'))
+        {
+            return ANSWER_BACK;
+        }
+        
+        if (SelectConsole::ToLower(select->Value[0]) == SelectConsole::ToLower(realAnswer[0]))
+        {
+            return ANSWER_CORRECT;
+        }
+        else
+        {
+            return ANSWER_WRONG;
+        }
+    }
+    else if (text)
+    {
+        if (text->Value == "")
+        {
+            return ANSWER_ABANDONED;
+        }
+        
+        if (text->Value == realAnswer)
+        {
+            return ANSWER_CORRECT;
+        }
+        else
+        {
+            return ANSWER_WRONG;
+        }
+    }
 }

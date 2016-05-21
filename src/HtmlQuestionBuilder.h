@@ -8,7 +8,7 @@
 using namespace std;
 
 class HtmlQuestionBuilder
-    : IQuestionBuilder
+    : public IQuestionBuilder
 {
 private:
     ostream &outs;

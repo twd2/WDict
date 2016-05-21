@@ -10,39 +10,32 @@
 #include <functional>
 #include "Globals.h"
 #include "WordConsole.h"
+#include "QuestionBuilderConsole.h"
 
 using namespace std;
 
-enum answer_t
-{
-    ANSWER_CORRECT,
-    ANSWER_WRONG,
-    ANSWER_ABANDONED,
-    ANSWER_BACK,
-    ANSWER_COUNT
-};
+
 
 class TestConsole
     : public ConsoleComponent
 {
 protected:
+    QuestionBuilderConsole questionBuilder;
+    shared_ptr<QuestionGenerator> questionGenerator;
     shared_ptr<WordIterator> wrongAnswerIter;
     shared_ptr<WordIterator> iter;
+    WordIteratorCreator &iterCreator;
 public:
     size_t Limit, Counters[ANSWER_COUNT] = {0};
+    string Title;
     vector<string> IncorrectWords;
-    TestConsole(Console &Root, size_t Limit);
+    TestConsole(Console &Root, WordIteratorCreator &iterCreator, size_t limit, const string &title);
     
     bool Show() override;
     
 private:
-    string word;
+    string word, answer;
     void initIter();
-    answer_t CheckAnswer(const string &word); // check if the answer is correct
-    answer_t CheckAnswerTF(const string &word);
-    answer_t CheckAnswerSelDesc(const string &word);
-    answer_t CheckAnswerSelWord(const string &word);
-    answer_t CheckAnswerInputWord(const string &word);
 };
 
 #endif // _TESTCONSOLE_H_

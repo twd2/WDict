@@ -17,7 +17,7 @@ void QuestionGenerator::Begin()
     
 }
 
-bool QuestionGenerator::GenerateOne(std::string &out_answer)
+std::string QuestionGenerator::GenerateOne(std::string &out_answer)
 {
     if (iter.HasNext())
     {
@@ -28,11 +28,11 @@ bool QuestionGenerator::GenerateOne(std::string &out_answer)
         });
         
         out_answer = handlers[dd(engine)](word);
-        return true;
+        return word;
     }
     else
     {
-        return false;
+        return "";
     }
 }
 

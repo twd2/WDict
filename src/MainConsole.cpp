@@ -2,7 +2,8 @@
 
 MainConsole::MainConsole(Console &Root)
     : ConsoleComponent(Root), btnRetrive(Root, '1', "单词查询"), btnText(Root, '2', "分析文本"), btnLearn(Root, '3', "学习"),
-                              btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"), btnAbout(Root, 'a', "关于"), btnExit(Root, 'x', "退出")
+                              btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"), 
+                              btnAbout(Root, 'a', "关于"), btnHackMe(Root, 'h', "HackMe"), btnExit(Root, 'x', "退出")
 {
 #define ONCLICK(name) BUTTON_ONCLICK(MainConsole, name)
     ONCLICK(Retrive);
@@ -11,6 +12,7 @@ MainConsole::MainConsole(Console &Root)
     ONCLICK(TestAsLearn);
     ONCLICK(Test);
     ONCLICK(About);
+    ONCLICK(HackMe);
     ONCLICK(Exit);
 #undef ONCLICK
 }
@@ -47,13 +49,12 @@ void MainConsole::Learn()
 
 void MainConsole::TestAsLearn()
 {
-    // TODO
-    // Root.Goto(make_shared<TestConsole>(Root, Globals::CurrentUser->Get("TestWordLimit", 20L)));
+    Root.Goto(make_shared<TestConsole>(Root, *Globals::NewWordIteratorCreator, Globals::CurrentUser->Get("NewWordLimit", 20L), "以考代学"));
 }
 
 void MainConsole::Test()
 {
-    Root.Goto(make_shared<TestConsole>(Root, Globals::CurrentUser->Get("TestWordLimit", 20L)));
+    Root.Goto(make_shared<TestConsole>(Root, *Globals::TestWordIteratorCreator, Globals::CurrentUser->Get("TestWordLimit", 20L), "测验"));
 }
 
 void MainConsole::About()
@@ -64,6 +65,64 @@ void MainConsole::About()
     if (cc.Value)
     {
         Globals::Open("https://github.com/twd2/WDict");
+    }
+}
+
+void MainConsole::HackMe()
+{
+    string cmdarg;
+    outs << ">";
+    while (getline(ins, cmdarg))
+    {
+        if (cmdarg == "")
+        {
+            break;
+        }
+        
+        string cmd = "", arg = "";
+        
+        size_t index = cmdarg.find(' ');
+        if (index == string::npos)
+        {
+            cmd = cmdarg;
+        }
+        else
+        {
+            cmd = cmdarg.substr(0, index);
+            arg = cmdarg.substr(index + 1);
+        }
+        
+        if (cmd == "genhtml")
+        {
+            ofstream outf(arg, ios_base::out);
+            HtmlQuestionBuilder html(outf);
+            auto iter = make_shared<WithLimitIterator>(Globals::CurrentUser->Get("TestWordLimit", 20L), Globals::TestWordIteratorCreator->Create());
+            QuestionGenerator gen(Globals::RandomEngine, *Globals::Dict, *iter, html);
+            
+            vector<string> answers;
+            string answer;
+            html.Begin();
+            html.BeginTitle("清华大学本科生试题专用纸"); html.EndTitle();
+            html.BeginBody();
+            while (gen.GenerateOne(answer) != "")
+            {
+                answers.push_back(answer);
+            }
+            html.EndBody();
+            html.End();
+            for (auto &ans : answers)
+            {
+                outf << ans << " ";
+            }
+            outf << endl;
+            outf.close();
+        }
+        else if (cmd == "exit")
+        {
+            return;
+        }
+        
+        outs << ">";
     }
 }
 

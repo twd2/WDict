@@ -28,7 +28,7 @@ public:
     QuestionGenerator(std::default_random_engine &engine, IDictionary &dict, WordIterator &iter, IQuestionBuilder &qb);
     
     void Begin();
-    bool GenerateOne(std::string &out_answer);
+    std::string GenerateOne(std::string &out_answer);
     void End();
     
 protected:

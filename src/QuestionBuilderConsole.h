@@ -10,6 +10,15 @@
 
 using namespace std;
 
+enum answer_t
+{
+    ANSWER_CORRECT,
+    ANSWER_WRONG,
+    ANSWER_ABANDONED,
+    ANSWER_BACK,
+    ANSWER_COUNT
+};
+
 class QuestionBuilderConsole
     : public ConsoleComponent, public IQuestionBuilder
 {
@@ -38,6 +47,7 @@ public:
     void EndQuestion() override;
     
     bool Show() override;
+    answer_t CheckAnswer(const string &realAnswer);
 };
 
 #endif // _QUESTIONBUILDERCONSOLE_H_
