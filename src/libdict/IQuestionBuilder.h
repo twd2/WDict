@@ -17,8 +17,9 @@ public:
     
     virtual void BeginQuestion(std::string question) { }
     
-    virtual void BeginOption(char key, std::string option) { }
-    virtual void EndOption() { }
+    virtual void BeginSelect() { }
+    virtual void Option(char key, std::string option) { }
+    virtual void EndSelect() { }
     
     virtual void BeginTextInput() { }
     virtual void EndTextInput() { }

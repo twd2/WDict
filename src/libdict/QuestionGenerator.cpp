@@ -62,8 +62,10 @@ std::string QuestionGenerator::genTF(const std::string &word)
     std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
     qb.BeginQuestion(word + "有\"" + wi.Desc[dist(engine)] + "\"的意思。");
     
-    qb.BeginOption('T', "正确"); qb.EndOption();
-    qb.BeginOption('F', "错误"); qb.EndOption();
+    qb.BeginSelect();
+    qb.Option('T', "正确");
+    qb.Option('F', "错误");
+    qb.EndSelect();
     
     qb.EndQuestion();
     
