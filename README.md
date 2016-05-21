@@ -1,4 +1,4 @@
-# WDict
+# WDict [![Build Status](https://travis-ci.org/twd2/WDict.svg?branch=master)](https://travis-ci.org/twd2/WDict)
 
 一个字典。
 

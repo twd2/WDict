@@ -2,7 +2,7 @@ include config.make
 
 PROJECT = wdict
 
-CC_FLAGS = -I./libtextdb -I./libdict -I./libui $(CC_DBG_FLAGS) -Wall -std=c++11
+CC_FLAGS = -I./libtextdb -I./libdict -I./libui $(CC_DBG_FLAGS) -Wall -std=c++11 $(CXXFLAGS)
 LD_FLAGS = -L./libtextdb -L./libdict -L./libui
 LD_LIBS = -ltextdb -ldict -lui
 
@@ -12,15 +12,15 @@ all: resources $(PROJECT)$(EXE_POSTFIX)
 -include $(DEPS)
 
 $(PROJECT)$(EXE_POSTFIX): $(OBJECTS) libtextdb_ libdict_ libui_
-	g++ $(LD_FLAGS) -o $@ $(OBJECTS) $(LD_LIBS)
+	$(CXX) $(LD_FLAGS) -o $@ $(OBJECTS) $(LD_LIBS)
 
 %.o: %.cpp
-	g++ $(CC_FLAGS) -MMD -MP -c $<
+	$(CXX) $(CC_FLAGS) -MMD -MP -c $<
 ifdef WIN32
 	$(ICONV) -f UTF-8 -t GBK $< > $<.win.cc
-	g++ $(CC_FLAGS) -o $@ -c $<.win.cc
+	$(CXX) $(CC_FLAGS) -o $@ -c $<.win.cc
 else
-	g++ $(CC_FLAGS) -o $@ -c $<
+	$(CXX) $(CC_FLAGS) -o $@ -c $<
 endif
 
 ..$(SLASH)src$(SLASH)%.txt: ..$(SLASH)res$(SLASH)%.txt

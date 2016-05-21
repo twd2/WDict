@@ -1,6 +1,6 @@
 include ../config.make
 
-CC_FLAGS = $(CC_DBG_FLAGS) -fPIC -Wall -std=c++11
+CC_FLAGS = $(CC_DBG_FLAGS) -fPIC -Wall -std=c++11 $(CXXFLAGS)
 
 .PHONY: all
 all: $(PROJECT)$(DSO_POSTFIX)
@@ -8,11 +8,11 @@ all: $(PROJECT)$(DSO_POSTFIX)
 -include $(DEPS)
 
 $(PROJECT)$(DSO_POSTFIX): $(OBJECTS)
-	g++ -shared -fPIC -o $@ $^
+	$(CXX) -shared -fPIC -o $@ $^
 
 %.o: %.cpp
-	g++ $(CC_FLAGS) -MMD -MP -c $<
-	g++ $(CC_FLAGS) -o $@ -c $<
+	$(CXX) $(CC_FLAGS) -MMD -MP -c $<
+	$(CXX) $(CC_FLAGS) -o $@ -c $<
 
 .PHONY: clean
 clean:
