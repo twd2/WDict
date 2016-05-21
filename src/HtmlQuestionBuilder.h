@@ -12,6 +12,7 @@ class HtmlQuestionBuilder
 {
 private:
     ostream &outs;
+    bool inSelect = false;
 public:
     HtmlQuestionBuilder(ostream &outs)
         : outs(outs)
