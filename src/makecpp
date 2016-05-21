@@ -10,7 +10,7 @@ MNAME=_`echo $1 | tr a-z A-Z`_H_
 
 echo $MNAME
 
-echo "#ifndef $MNAME" > $1.h
+echo "#ifndef $MNAME" >> $1.h
 echo "#define $MNAME" >> $1.h
 echo >> $1.h
 echo "class $1" >> $1.h
@@ -20,6 +20,6 @@ echo "};" >> $1.h
 echo >> $1.h
 echo "#endif // $MNAME" >> $1.h
 
-echo "#include \"$1.h\"" > $1.cpp
+echo "#include \"$1.h\"" >> $1.cpp
 echo >> $1.cpp
 

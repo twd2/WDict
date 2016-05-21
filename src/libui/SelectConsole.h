@@ -23,6 +23,8 @@ public:
     bool IgnoreCase = false;
 	/// 选项与描述文字
     std::vector<std::pair<char, std::string> > Choices;
+    /// 用户输入原文
+    std::string Value;
     /// 已选项的序号
 	std::vector<size_t> SelectedIndexes;
     /// 提示信息

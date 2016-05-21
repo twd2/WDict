@@ -22,13 +22,13 @@ protected:
     IQuestionBuilder &qb;
 private:
     std::vector<std::function<std::string (const std::string&)> > handlers;
-    std::discrete_distribution<size_t> dd {1, 2, 2, 1};
+    std::discrete_distribution<size_t> dd;
     
 public:
     QuestionGenerator(std::default_random_engine &engine, IDictionary &dict, WordIterator &iter, IQuestionBuilder &qb);
     
     void Begin();
-    bool Generate(std::string &out_answer);
+    bool GenerateOne(std::string &out_answer);
     void End();
     
 protected:

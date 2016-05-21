@@ -19,6 +19,7 @@ bool SelectConsole::Show()
     
     std::string selected;
     std::getline(ins, selected);
+    Value = selected;
     
     SelectedIndexes.clear();
     for (size_t i = 0; i < selected.length(); ++i)
