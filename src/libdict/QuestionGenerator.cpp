@@ -72,15 +72,69 @@ std::string QuestionGenerator::genTF(const std::string &word)
 
 std::string QuestionGenerator::genSelDesc(const std::string &word)
 {
-    return "";
+    const size_t count = 4;
+    
+    std::uniform_int_distribution<size_t> answerDist(0, count - 1);
+    std::size_t correctAnswer = answerDist(engine);
+    
+    WordInfo wi = dict.GetWord(word);
+    std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
+    std::string desc = wi.Desc[dist(engine)];
+    
+    qb.BeginQuestion(word + "有如下哪个意思?");
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (i == correctAnswer)
+        {
+            qb.BeginOption('A' + i, desc); qb.EndOption();
+        }
+        else
+        {
+            WordInfo wwi = dict.GetWord(wrongAnswerIter->Next());
+            std::uniform_int_distribution<size_t> dist(0, wwi.Desc.size() - 1);
+            qb.BeginOption('A' + i, wwi.Desc[dist(engine)]); qb.EndOption();
+        }
+    }
+    qb.EndQuestion();
+    
+    return std::string(1, 'A' + correctAnswer);
 }
 
 std::string QuestionGenerator::genSelWord(const std::string &word)
 {
-    return "";
+    const size_t count = 4;
+    
+    std::uniform_int_distribution<size_t> answerDist(0, count - 1);
+    size_t correctAnswer = answerDist(engine);
+    
+    WordInfo wi = dict.GetWord(word);
+    std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
+    
+    qb.BeginQuestion("哪一个单词有\"" + wi.Desc[dist(engine)] + "\"的意思?");
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (i == correctAnswer)
+        {
+            qb.BeginOption('A' + i, word); qb.EndOption();
+        }
+        else
+        {
+            qb.BeginOption('A' + i, wrongAnswerIter->Next()); qb.EndOption();
+        }
+    }
+    qb.EndQuestion();
+    
+    return std::string(1, 'A' + correctAnswer);
 }
 
 std::string QuestionGenerator::genInputWord(const std::string &word)
 {
-    return "";
+    WordInfo wi = dict.GetWord(word);
+    std::uniform_int_distribution<size_t> dist(0, wi.Desc.size() - 1);
+    
+    qb.BeginQuestion("哪一个单词有\"" + wi.Desc[dist(engine)] + "\"的意思?");
+    qb.BeginTextInput(); qb.EndTextInput();
+    qb.EndQuestion();
+    
+    return word;
 }
