@@ -26,11 +26,17 @@ void HtmlQuestionBuilder::BeginBody()
 void HtmlQuestionBuilder::BeginQuestion(std::string question)
 {
     outs << "<p>" << question << "</p>" << endl;
+    inSelect = false;
 }
     
 void HtmlQuestionBuilder::BeginOption(char key, std::string option)
 {
-    outs << "<p>" << key << ". " << option << "</p>" << endl;
+    if (!inSelect)
+    {
+        outs << "<select name=\"opt\">" << endl;
+        inSelect = true;
+    }
+    outs << "<option value=\"" << key << "\">" << key << ". " << option << "</option>" << endl;
 }
 
 void HtmlQuestionBuilder::EndOption()
@@ -50,12 +56,16 @@ void HtmlQuestionBuilder::EndTextInput()
     
 void HtmlQuestionBuilder::EndQuestion()
 {
-    
+    if (inSelect)
+    {
+        outs << "</select>" << endl;
+        inSelect = false;
+    }
 }
     
 void HtmlQuestionBuilder::EndBody()
 {
-    outs << "<input type=\"submit\" value=\"提交\">" << endl;
+    outs << "<input type=\"submit\" value=\"Submit\">" << endl;
     outs << "</form>" << endl;
     outs << "</body>" << endl;
 }
