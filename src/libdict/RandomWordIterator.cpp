@@ -11,7 +11,7 @@ void RandomWordIterator::initRandom()
 
 std::string RandomWordIterator::Next()
 {
-    if (!HaveNext())
+    if (!HasNext())
     {
         return "";
     }
@@ -27,7 +27,7 @@ std::string RandomWordIterator::Next()
     return word;
 }
 
-bool RandomWordIterator::HaveNext()
+bool RandomWordIterator::HasNext()
 {
     bool found = false;
     

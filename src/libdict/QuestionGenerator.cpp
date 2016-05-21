@@ -19,7 +19,7 @@ void QuestionGenerator::Begin()
 
 bool QuestionGenerator::GenerateOne(std::string &out_answer)
 {
-    if (iter.HaveNext())
+    if (iter.HasNext())
     {
         std::string word = iter.Next();
         wrongAnswerIter = std::make_shared<RandomWordIterator>(engine, dict, [=] (const std::string &w)

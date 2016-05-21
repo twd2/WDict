@@ -28,9 +28,9 @@ public:
         return iter->Next();
     }
     
-    bool HaveNext() override
+    bool HasNext() override
     {
-        return Counter < Limit && iter->HaveNext();
+        return Counter < Limit && iter->HasNext();
     }
 };
 

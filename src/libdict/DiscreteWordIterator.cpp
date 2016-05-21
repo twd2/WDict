@@ -19,7 +19,7 @@ void DiscreteWordIterator::DelWeight(size_t index)
 
 std::string DiscreteWordIterator::Next()
 {
-    if (!HaveNext())
+    if (!HasNext())
     {
         return "";
     }
@@ -35,14 +35,14 @@ std::string DiscreteWordIterator::Next()
     return word;
 }
 
-bool DiscreteWordIterator::HaveNext()
+bool DiscreteWordIterator::HasNext()
 {
     bool found = false;
     
     initRandom();
     for (auto &iter : iters)
     {
-        if (iter->HaveNext())
+        if (iter->HasNext())
         {
             found = true;
             break;

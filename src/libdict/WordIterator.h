@@ -8,7 +8,7 @@ class WordIterator
 public:
     virtual ~WordIterator() = default;
     virtual std::string Next() = 0;
-    virtual bool HaveNext() = 0;
+    virtual bool HasNext() = 0;
 };
 
 #endif // _WORDITERATOR_H_

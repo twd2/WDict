@@ -31,7 +31,7 @@ public:
     void AddWeight(size_t weight, std::function<bool (const std::string&)> pred);
     void DelWeight(size_t index);
     std::string Next() override;
-    bool HaveNext() override;
+    bool HasNext() override;
     
 private:
     void initRandom();
