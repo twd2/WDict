@@ -143,7 +143,7 @@ void MainConsole::HackMe()
         {
             return;
         }
-        else (cmdargPair.first == "help")
+        else
         {
             outs << "命令行使用说明:" << endl
                  << "exit\t返回" << endl
