@@ -71,6 +71,16 @@ bool QuestionBuilderConsole::Show()
 
 answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
 {
+    if (select && text)
+    {
+        throw string("both select and text");
+    }
+    
+    if (!select && !text)
+    {
+        throw string("neither select nor text");
+    }
+    
     if (select)
     {
         if (select->SelectedIndexes.size() != 1 || select->Selected('E'))
@@ -107,4 +117,6 @@ answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
             return ANSWER_WRONG;
         }
     }
+    
+    return ANSWER_ABANDONED;
 }

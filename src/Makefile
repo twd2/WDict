@@ -47,6 +47,7 @@ release: all
 ifeq ($(OS_NAME),Linux)
 	$(CP) run_on_linux ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
 endif
+	cd ..$(SLASH)release && tar cJvf $(OS_NAME).tar.gz $(OS_NAME)$(SLASH)*
 
 .PHONY: clean
 clean:

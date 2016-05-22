@@ -2,6 +2,7 @@ include ../src/config.make
 
 SOURCES := $(shell $(LS) *.md)
 
+.PHONY: all
 all: combined_design.md combined_usage.md
 	
 
@@ -16,3 +17,7 @@ combined_design.md: $(SOURCES)
 combined_usage.md: $(SOURCES)
 	$(CAT) building.md > $@
 	$(CAT) usage.md >> $@
+
+.PHONY: clean
+clean:
+	$(RM) combined_design.md combined_usage.md
