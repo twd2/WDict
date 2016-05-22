@@ -10,6 +10,7 @@ void HtmlQuestionBuilder::BeginTitle(std::string title)
 {
     outs << "<head>" << endl
          << "<title>" << title << "</title>" << endl;
+    this->title = title;
 }
 
 void HtmlQuestionBuilder::EndTitle()
@@ -20,32 +21,37 @@ void HtmlQuestionBuilder::EndTitle()
 void HtmlQuestionBuilder::BeginBody()
 {
     outs << "<body>" << endl;
-    outs << "<form action=\".\" method=\"POST\">" << endl;
+    if (title != "")
+    {
+        outs << "<h1>" << title << "</h1><hr />" << endl;
+    }
+    outs << "<form action=\"?\" method=\"POST\">" << endl;
 }
     
 void HtmlQuestionBuilder::BeginQuestion(std::string question)
 {
-    outs << "<p>" << question << "</p>" << endl;
+    ++questionId;
+    outs << "<p>" << questionId << ". " << question << "</p>" << endl;
 }
     
 void HtmlQuestionBuilder::BeginSelect()
 {
-    outs << "<select name=\"opt\">" << endl;
+    
 }
 
 void HtmlQuestionBuilder::Option(char key, std::string option)
 {
-    outs << "<option value=\"" << key << "\">" << key << ". " << option << "</option>" << endl;
+    outs << "<label><input name=\"Q" << questionId << "\" type=\"radio\" value=\"" << key << "\" />" << key << ". " << option << "</label>" << endl;
 }
 
 void HtmlQuestionBuilder::EndSelect()
 {
-    outs << "</select>" << endl;
+    
 }
     
 void HtmlQuestionBuilder::BeginTextInput()
 {
-    outs << "<input type=\"text\" value=\"\">" << endl;
+    outs << "<input name=\"Q" << questionId << "\" type=\"text\" value=\"\">" << endl;
 }
 
 void HtmlQuestionBuilder::EndTextInput()
@@ -60,7 +66,7 @@ void HtmlQuestionBuilder::EndQuestion()
     
 void HtmlQuestionBuilder::EndBody()
 {
-    outs << "<input type=\"submit\" value=\"Submit\">" << endl;
+    outs << "<p><input type=\"submit\" value=\"提交\"></p>" << endl;
     outs << "</form>" << endl;
     outs << "</body>" << endl;
 }

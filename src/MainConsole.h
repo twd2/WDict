@@ -29,6 +29,7 @@ private:
     void TestAsLearn();
     void Test();
     void About();
+    static pair<string, string> parseCommand(string cmdarg);
     void HackMe();
     void Exit();
 };

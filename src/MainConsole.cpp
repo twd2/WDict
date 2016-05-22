@@ -68,6 +68,22 @@ void MainConsole::About()
     }
 }
 
+pair<string, string> MainConsole::parseCommand(string cmdarg)
+{
+    string cmd = "", arg = "";
+    size_t index = cmdarg.find(' ');
+    if (index == string::npos)
+    {
+        cmd = cmdarg;
+    }
+    else
+    {
+        cmd = cmdarg.substr(0, index);
+        arg = cmdarg.substr(index + 1);
+    }
+    return make_pair(cmd, arg);
+}
+
 void MainConsole::HackMe()
 {
     string cmdarg;
@@ -79,22 +95,11 @@ void MainConsole::HackMe()
             break;
         }
         
-        string cmd = "", arg = "";
+        auto cmdargPair = parseCommand(cmdarg);
         
-        size_t index = cmdarg.find(' ');
-        if (index == string::npos)
+        if (cmdargPair.first == "genhtml")
         {
-            cmd = cmdarg;
-        }
-        else
-        {
-            cmd = cmdarg.substr(0, index);
-            arg = cmdarg.substr(index + 1);
-        }
-        
-        if (cmd == "genhtml")
-        {
-            ofstream outf(arg, ios_base::out);
+            ofstream outf(cmdargPair.second, ios_base::out);
             HtmlQuestionBuilder html(outf);
             auto iter = make_shared<WithLimitIterator>(Globals::CurrentUser->Get("TestWordLimit", 20L), Globals::TestWordIteratorCreator->Create());
             QuestionGenerator gen(Globals::RandomEngine, *Globals::Dict, *iter, html);
@@ -110,16 +115,44 @@ void MainConsole::HackMe()
             }
             html.EndBody();
             html.End();
-            for (auto &ans : answers)
+            for (size_t i = 0; i < answers.size(); ++i)
             {
-                outf << ans << " ";
+                outf << i + 1 << "." << answers[i] << " ";
             }
             outf << endl;
             outf.close();
         }
-        else if (cmd == "exit")
+        else if (cmdargPair.first == "get")
+        {
+            outs << Globals::CurrentUser->Get<string>(cmdargPair.second, "") << endl; 
+        }
+        else if (cmdargPair.first == "set")
+        {
+            auto kv = parseCommand(cmdargPair.second);
+            Globals::CurrentUser->Set<string>(kv.first, kv.second); 
+        }
+        else if (cmdargPair.first == "setuser")
+        {
+            Globals::SwitchUser(cmdargPair.second);
+        }
+        else if (cmdargPair.first == "whoami")
+        {
+            outs << Globals::CurrentUser->Name << endl;
+        }
+        else if (cmdargPair.first == "exit")
         {
             return;
+        }
+        else (cmdargPair.first == "help")
+        {
+            outs << "命令行使用说明:" << endl
+                 << "exit\t返回" << endl
+                 << "help\t显示本信息" << endl
+                 << "get <field name>\t获取当前用户配置字段" << endl
+                 << "set <field name> <data>\t设置当前用户配置字段" << endl
+                 << "setuser <username>\t切换用户" << endl
+                 << "whoami\t显示当前用户信息" << endl
+                 ;
         }
         
         outs << ">";

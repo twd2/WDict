@@ -12,6 +12,8 @@ class HtmlQuestionBuilder
 {
 private:
     ostream &outs;
+    string title = "";
+    size_t questionId = 0;
 public:
     HtmlQuestionBuilder(ostream &outs)
         : outs(outs)
