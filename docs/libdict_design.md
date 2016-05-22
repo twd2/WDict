@@ -134,7 +134,7 @@
 
 ### 测验问题生成器
 
-测验问题生成器`QuestionGenerator`，利用`WordIterator`抽取的单词和从`IDictionary`中抽取的干扰答案生成新题目，并通过测验问题构建器将整套题目集输出。
+测验问题生成器`QuestionGenerator`，利用`WordIterator`抽取的单词和从`IDictionary`中抽取的干扰答案选项生成新题目，并通过测验问题构建器将整套题目集输出。
 
 ### 测验问题构建器
 
