@@ -8,16 +8,16 @@ release: all
 
 .PHONY: exe
 exe:
-	# Building executables.
+	-# Building executables.
 	cd src/ && make
 
 .PHONY: doc
 doc:
-	# Building documentations.
+	-# Building documentations.
 	cd docs/ && make
 
 .PHONY: clean
 clean:
-	# Cleaning.
+	-# Cleaning.
 	cd src/ && make clean
 	cd docs/ && make clean
