@@ -2,6 +2,8 @@
 
 一个字典。
 
+使用说明请见`docs/building.md`以及`docs/usage.md`。
+
 ## 目录说明
 
 - `docs`中存放各种文档。
