@@ -1,6 +1,7 @@
 LS = ls
 RM = rm -f
 CP = cp
+CAT = cat
 SLASH = /
 EXE_POSTFIX = 
 DSO_POSTFIX = .so
@@ -20,6 +21,7 @@ else
 	LS = dir /b
 	RM = del /f
 	CP = copy
+	CAT = type
 	SLASH = \\
 	DSO_POSTFIX = .dll
 	EXE_POSTFIX = .exe

@@ -41,3 +41,4 @@ controller->Goto(make_shared<MainConsole>(*controller)); // goto MainConsole act
 UI::Init(controller); // init UI
 UI::Start(); // ui loop, blocked
 ```
+
