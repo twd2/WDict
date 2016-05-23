@@ -3,11 +3,13 @@
 
 #include "UserInfo.h"
 
-// evaluate words by user's situation, basic interface
+/// 单词难度评估接口
 class EvaluateStrategy
 {
 public:
+	/// 析构
     virtual ~EvaluateStrategy() = default;
+	/// 是否常见、易忘、已知、学会
     virtual bool IsCommon(const std::string &word) = 0;
     virtual bool IsForgettable(const std::string &word) = 0;
     virtual bool IsKnown(const std::string &word) = 0;

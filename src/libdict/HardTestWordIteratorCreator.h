@@ -11,12 +11,13 @@
 #include <random>
 #include <memory>
 
+/// 生成更具挑战性测试用单词迭代器
 class HardTestWordIteratorCreator
     : public UserWordIteratorCreator
 {
 public:
     using UserWordIteratorCreator::UserWordIteratorCreator;
-    
+
     std::shared_ptr<WordIterator> Create() override;
 };
 

@@ -1,6 +1,9 @@
 # vscode files
 .vscode/**/*
 
+# personal make config
+config.personal
+
 # Compiled Object files
 *.slo
 *.lo

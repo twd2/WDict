@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <memory>
 #include "MainConsole.h"
-#include "Globals.h" 
+#include "Globals.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,5 +18,6 @@
 #endif
 
 using namespace std;
+/// 主程序
 
 #endif // _WDICT_H_

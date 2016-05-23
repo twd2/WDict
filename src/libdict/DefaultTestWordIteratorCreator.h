@@ -11,12 +11,13 @@
 #include <random>
 #include <memory>
 
+/// 生成测试用单词迭代器
 class DefaultTestWordIteratorCreator
     : public UserWordIteratorCreator
 {
 public:
     using UserWordIteratorCreator::UserWordIteratorCreator;
-    
+
     std::shared_ptr<WordIterator> Create() override;
 };
 

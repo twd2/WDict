@@ -11,12 +11,13 @@
 #include <random>
 #include <memory>
 
+/// 生成新单词迭代器
 class DefaultNewWordIteratorCreator
     : public UserWordIteratorCreator
 {
 public:
     using UserWordIteratorCreator::UserWordIteratorCreator;
-    
+
     std::shared_ptr<WordIterator> Create() override;
 };
 

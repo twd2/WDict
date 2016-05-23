@@ -28,7 +28,7 @@
 
 ### 用户配置
 
-数据库文件名为`用户名_config`，存放了：
+数据库文件名为`[[用户名]]_config`，存放了：
 
 - 学习单词的方案(NewWordStrategy)
 - 考试的方案(TestWordStrategy)
@@ -106,7 +106,7 @@
 
 `RandomWordIterator`可以从给定的`IDictionary`实例中*随机*抽取满足特定“条件”（`std::function<bool (const std::string&)>`的实例，调用它返回`true`则称为满足条件）的单词。
 
-`DiscreteWordIterator`可以从给定的`IDictionary`实例中*随机*抽取一个“条件”（同上），并*随机*抽取满足这个“条件”的单词。其中，“条件”的概率分布可配置。
+`DiscreteWordIterator`可以从给定的多个“条件”（同上）中*随机*抽取一个“条件”，并从给定的`IDictionary`实例中*随机*抽取满足这个“条件”的单词。其中，给定的“条件”的概率分布可配置。
 
 `WithLimitIterator`类似于`WordIterator`的一个**装饰器**，控制了抽取单词的个数。
 
@@ -116,7 +116,7 @@
 
 函数每次需要创建`WordIterator`时，只需要调用`WordIteratorCreator`的实例的`Create`成员函数即可。
 
-此外，`RandomWordIterator`和`DiscreteWordIterator`等某些`WordIteratorz`在创建时或者创建之后需要配置（“条件”等），于是配置等操作就可以封装在特定`WordIteratorCreator`中。
+此外，`RandomWordIterator`和`DiscreteWordIterator`等某些`WordIterator`在创建时或者创建之后需要配置（“条件”等），于是配置等操作就可以封装在特定`WordIteratorCreator`中。
 
 同时，提供一个统一的创建`WordIterator`实例的接口是有好处的，这使得在运行时动态创建不同类型的`WordIterator`实例变得简单。
 

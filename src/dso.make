@@ -1,6 +1,6 @@
 include ../config.make
 
-ICONV := ..\\$(ICONV)
+ICONV := ..$(SLASH)$(ICONV)
 
 CC_FLAGS = $(CC_DBG_FLAGS) -fPIC -Wall -std=c++11 $(CXXFLAGS)
 

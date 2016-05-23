@@ -6,20 +6,22 @@
 #include "WordInfo.h"
 #include "UserInfo.h"
 
-// evaluate words by user's situation
-class DefaultEvaluateStrategy 
+/// 默认评估函数
+class DefaultEvaluateStrategy
     : public EvaluateStrategy
 {
 protected:
+	/// 关联用户与词典
     UserInfo &user;
     Dictionary &dict;
 public:
+	/// 构造
     DefaultEvaluateStrategy(UserInfo &user, Dictionary &dict)
         : user(user), dict(dict)
     {
-        
+
     }
-    
+
     bool IsCommon(const std::string &word) override;
     bool IsForgettable(const std::string &word) override;
     bool IsKnown(const std::string &word) override;

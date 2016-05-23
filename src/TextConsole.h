@@ -13,16 +13,20 @@
 
 using namespace std;
 
+/// 文本分析器界面
 class TextConsole
     : public ConsoleComponent
 {
 protected:
+	/// 文件名、单词输入框
     TextInputConsole txtFilename, txtWord;
+	/// 文件名，单词
     string filename;
     vector<string> Words;
 public:
+	///构造
     TextConsole(Console &Root);
-    
+
     bool Show() override;
 };
 
