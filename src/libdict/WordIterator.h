@@ -3,6 +3,7 @@
 
 #include <string>
 
+/// 单词迭代器接口
 class WordIterator
 {
 public:
