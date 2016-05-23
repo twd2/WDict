@@ -8,14 +8,17 @@
 
 using namespace std;
 
+/// 查询界面
 class RetriveConsole
     : public ConsoleComponent
 {
 protected:
+	/// 查询框
     TextInputConsole txtWord;
 public:
+	/// 构造
     RetriveConsole(Console &Root);
-    
+
     bool Show() override;
 };
 

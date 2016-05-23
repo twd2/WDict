@@ -18,7 +18,7 @@ using std::ptrdiff_t;
 /// 单词的用户状态计数器枚举
 enum user_counter_t
 {
-    COUNTER_RETRIVE,/// 被纠正次数
+    COUNTER_RETRIVE,/// 查询次数
     COUNTER_LEARN,/// 学习次数
     COUNTER_TEST,/// 测试次数
     COUNTER_PASS,/// 答对次数
