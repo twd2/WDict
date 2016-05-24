@@ -31,7 +31,7 @@ void ConsoleComponent::DoButtons(char key)
         {
             continue;
         }
-        
+
         if (bcptr->Key == key)
         {
             bcptr->OnClick();

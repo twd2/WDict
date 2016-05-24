@@ -11,9 +11,9 @@ bool WithTitleConsole::Show()
     {
         outs << title << std::endl;
     }
-    
+
     outs << std::string(80, '=') << std::endl;
-    
+
     if (comp)
     {
         return comp->Show();

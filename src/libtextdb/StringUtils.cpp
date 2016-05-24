@@ -3,9 +3,9 @@
 std::string StringUtils::Escape(const std::string &str)
 {
     std::stringstream ss;
-    
+
     bool need = false;
-    
+
     for (char ch : str)
     {
         if (ch == '\"' || ch == '\r' || ch == '\n' || ch == ',' || ch == '\\')
@@ -14,12 +14,12 @@ std::string StringUtils::Escape(const std::string &str)
             break;
         }
     }
-    
+
     if (!need)
     {
         return str;
     }
-    
+
     ss << "\"";
     for (char ch : str)
     {
@@ -45,19 +45,19 @@ std::string StringUtils::Escape(const std::string &str)
         }
     }
     ss << "\"";
-    
+
     return ss.str();
 }
 
 std::string StringUtils::Unescape(const std::string &str)
 {
     std::stringstream ss;
-    
+
     if (str == "" || str[0] != '\"')
     {
         return str;
     }
-    
+
     for (size_t i = 1; i < str.length() - 1; ++i)
     {
         const char &ch = str[i];
@@ -87,6 +87,6 @@ std::string StringUtils::Unescape(const std::string &str)
             ss << ch;
         }
     }
-    
+
     return ss.str();
 }

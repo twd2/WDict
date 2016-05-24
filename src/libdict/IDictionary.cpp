@@ -14,11 +14,11 @@ std::vector<std::string> IDictionary::GetRelated(const std::string &word, std::f
     {
         wordDistances.push_back(std::make_pair(temp, pred(word, temp)));
     }
-    
+
     std::sort(wordDistances.begin(), wordDistances.end(), [] (const wordWithDistance &a, const wordWithDistance &b) {
         return a.second < b.second;
     });
-    
+
     std::vector<std::string> result;
     for (auto iter = wordDistances.begin(); iter != wordDistances.end(); ++iter)
     {
@@ -26,7 +26,7 @@ std::vector<std::string> IDictionary::GetRelated(const std::string &word, std::f
         {
             continue;
         }
-        
+
         if (result.size() < limit)
         {
             result.push_back(iter->first);
@@ -55,16 +55,16 @@ WordInfo IDictionary::GetWord(const std::string &word)
 {
     WordInfo wi;
     wi.Word = word;
-    
+
     {
-        // don't use operator[](string) to avoid empty record being created auto 
+        // don't use operator[](string) to avoid empty record being created auto
         auto iter = dictDB.find(word);
         if (iter != dictDB.end())
         {
             wi.Desc = iter->second;
         }
     }
-    
+
     {
         auto iter = sentDB.find(word);
         if (iter != sentDB.end())
@@ -79,13 +79,13 @@ WordInfo IDictionary::GetWord(const std::string &word)
             }
         }
     }
-    
-    return wi;  
+
+    return wi;
 }
 
 void IDictionary::AddDesc(const std::string &word, const std::string &desc)
 {
-    dictDB[word].push_back(desc); 
+    dictDB[word].push_back(desc);
     refreshWordsCache();
 }
 

@@ -5,7 +5,7 @@ void HtmlQuestionBuilder::Begin()
     outs << "<!DOCTYPE html>" << endl;
     outs << "<html>" << endl;
 }
-    
+
 void HtmlQuestionBuilder::BeginTitle(std::string title)
 {
     outs << "<head>" << endl
@@ -17,7 +17,7 @@ void HtmlQuestionBuilder::EndTitle()
 {
     outs << "</head>" << endl;
 }
-    
+
 void HtmlQuestionBuilder::BeginBody()
 {
     outs << "<body>" << endl;
@@ -27,16 +27,16 @@ void HtmlQuestionBuilder::BeginBody()
     }
     outs << "<form action=\"?\" method=\"POST\">" << endl;
 }
-    
+
 void HtmlQuestionBuilder::BeginQuestion(std::string question)
 {
     ++questionId;
     outs << "<p>" << questionId << ". " << question << "</p>" << endl;
 }
-    
+
 void HtmlQuestionBuilder::BeginSelect()
 {
-    
+
 }
 
 void HtmlQuestionBuilder::Option(char key, std::string option)
@@ -46,9 +46,9 @@ void HtmlQuestionBuilder::Option(char key, std::string option)
 
 void HtmlQuestionBuilder::EndSelect()
 {
-    
+
 }
-    
+
 void HtmlQuestionBuilder::BeginTextInput()
 {
     outs << "<input name=\"Q" << questionId << "\" type=\"text\" value=\"\">" << endl;
@@ -56,21 +56,21 @@ void HtmlQuestionBuilder::BeginTextInput()
 
 void HtmlQuestionBuilder::EndTextInput()
 {
-    
+
 }
-    
+
 void HtmlQuestionBuilder::EndQuestion()
 {
 
 }
-    
+
 void HtmlQuestionBuilder::EndBody()
 {
     outs << "<p><input type=\"submit\" value=\"提交\"></p>" << endl;
     outs << "</form>" << endl;
     outs << "</body>" << endl;
 }
-    
+
 void HtmlQuestionBuilder::End()
 {
     outs << "</html>" << endl;

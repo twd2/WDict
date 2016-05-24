@@ -8,22 +8,22 @@ WordConsole::WordConsole(Console &Root, const string &Word)
 {
     btnAddDesc.OnClick = bind(&WordConsole::AddDesc, this);
     Add(btnAddDesc);
-    
+
     btnAddSent.OnClick = bind(&WordConsole::AddSent, this);
     Add(btnAddSent);
-    
+
     btnDelDesc.OnClick = bind(&WordConsole::DelDesc, this);
     Add(btnDelDesc);
-    
+
     btnDelSent.OnClick = bind(&WordConsole::DelSent, this);
     Add(btnDelSent);
-    
+
     btnSearch.OnClick = bind(&WordConsole::Search, this);
     Add(btnSearch);
-    
+
     btnReport.OnClick = bind(&WordConsole::Report, this);
     Add(btnReport);
-    
+
     btnBack.OnClick = bind(&WordConsole::Back, this);
     Add(btnBack);
 }
@@ -44,7 +44,7 @@ void WordConsole::PrintWord(ostream &outs, const string &str, WordInfo wi)
         outs << string("未找到") + str + "释义。" << endl;
     }
     outs << endl;
-    
+
     if (wi.Sentences.size() > 0)
     {
         outs << str + "例句:" << endl;
@@ -66,14 +66,14 @@ void WordConsole::PrintWord(ostream &outs, const string &str, WordInfo wi)
 bool WordConsole::Show()
 {
     WithTitleConsole(Root, Word).Show();
-    
+
     bool found = Globals::Dict->GetWord(Word).Desc.size() != 0 || Globals::CurrentUser->GetWord(Word).Desc.size() != 0;
     auto related = Globals::Dict->GetRelated(Word, 20);
-    
+
     if (!found) // no system or user desc
     {
         outs << "没有找到这个单词, 您可以添加释义或者尝试查询以下单词: " << endl;
-        
+
         for (auto w : related)
         {
             outs << w << " ";
@@ -85,7 +85,7 @@ bool WordConsole::Show()
     {
         auto &evalPtr = Globals::CurrentUser->WordEvaluator;
         bool haveFlags = false;
-        
+
         if (evalPtr->IsCommon(Word))
         {
             outs << "*常见词*    ";
@@ -96,13 +96,13 @@ bool WordConsole::Show()
             outs << "*生僻词*    ";
             haveFlags = true;
         }
-        
+
         if (evalPtr->IsForgettable(Word))
         {
             outs << "*您容易忘记*    ";
             haveFlags = true;
         }
-        
+
         if (evalPtr->IsKnown(Word))
         {
             outs << "*熟词*    ";
@@ -113,29 +113,29 @@ bool WordConsole::Show()
             outs << "*生词*    ";
             haveFlags = true;
         }
-        
+
         if (haveFlags)
         {
             outs << endl;
         }
-        
+
         outs << string(80, '-') << endl;
     }
-    
+
     PrintWord(outs, "系统", Globals::Dict->GetWord(Word));
     PrintWord(outs, "您添加的", Globals::CurrentUser->GetWord(Word));
-    
+
     if (found)
     {
         outs << "易混淆单词: " << endl;
-        
+
         for (auto w : related)
         {
             outs << w << " ";
         }
         outs << endl;
     }
-    
+
     ShowSubComponents();
     DoButtons();
 
@@ -178,7 +178,7 @@ void WordConsole::DelDesc()
             // is not number
             return;
         }
-        
+
         ConfirmConsole cc(Root, "您确定要删除吗?", false);
         cc.Show();
         if (cc.Value)
@@ -201,7 +201,7 @@ void WordConsole::DelSent()
             // is not number
             return;
         }
-        
+
         ConfirmConsole cc(Root, "您确定要删除吗?", false);
         cc.Show();
         if (cc.Value)

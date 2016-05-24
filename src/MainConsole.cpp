@@ -2,7 +2,7 @@
 
 MainConsole::MainConsole(Console &Root)
     : ConsoleComponent(Root), btnRetrive(Root, '1', "单词查询"), btnText(Root, '2', "分析文本"), btnLearn(Root, '3', "学习"),
-                              btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"), 
+                              btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"),
                               btnAbout(Root, 'a', "关于"), btnHackMe(Root, 'h', "HackMe"), btnExit(Root, 'x', "退出")
 {
 #define ONCLICK(name) BUTTON_ONCLICK(MainConsole, name)
@@ -20,12 +20,12 @@ MainConsole::MainConsole(Console &Root)
 bool MainConsole::Show()
 {
     WithTitleConsole(Root, "词典").Show();
-    
+
     outs << Globals::CurrentUser->Name << ", 欢迎您!" << endl;
     outs << string(80, '-') << endl;
-    
+
     outs << "欢迎使用词典, 您可以输入对应字符来进入相应功能:" << endl;
-    
+
     ShowSubComponents();
     DoButtons();
 
@@ -94,16 +94,16 @@ void MainConsole::HackMe()
         {
             break;
         }
-        
+
         auto cmdargPair = parseCommand(cmdarg);
-        
+
         if (cmdargPair.first == "genhtml")
         {
             ofstream outf(cmdargPair.second, ios_base::out);
             HtmlQuestionBuilder html(outf);
             auto iter = make_shared<WithLimitIterator>(Globals::CurrentUser->Get("TestWordLimit", 20L), Globals::TestWordIteratorCreator->Create());
             QuestionGenerator gen(Globals::RandomEngine, *Globals::Dict, *iter, html);
-            
+
             vector<string> answers;
             string answer;
             html.Begin();
@@ -124,12 +124,12 @@ void MainConsole::HackMe()
         }
         else if (cmdargPair.first == "get")
         {
-            outs << Globals::CurrentUser->Get<string>(cmdargPair.second, "") << endl; 
+            outs << Globals::CurrentUser->Get<string>(cmdargPair.second, "") << endl;
         }
         else if (cmdargPair.first == "set")
         {
             auto kv = parseCommand(cmdargPair.second);
-            Globals::CurrentUser->Set<string>(kv.first, kv.second); 
+            Globals::CurrentUser->Set<string>(kv.first, kv.second);
         }
         else if (cmdargPair.first == "setuser")
         {
@@ -154,7 +154,7 @@ void MainConsole::HackMe()
                  << "whoami\t显示当前用户信息" << endl
                  ;
         }
-        
+
         outs << ">";
     }
 }

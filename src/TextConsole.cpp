@@ -10,11 +10,11 @@ TextConsole::TextConsole(Console &Root)
 bool TextConsole::Show()
 {
     WithTitleConsole(Root, "文本分析").Show();
-    
+
     if (filename == "")
     {
         txtFilename.Show();
-        
+
         if (txtFilename.Value != "")
         {
             if (txtFilename.Value[0] == '\'' && txtFilename.Value.size() > 2)
@@ -22,7 +22,7 @@ bool TextConsole::Show()
                 txtFilename.Value = txtFilename.Value.substr(1, txtFilename.Value.size() - 2);
             }
             outs << txtFilename.Value << endl;
-            
+
             ifstream ifs(txtFilename.Value, ios_base::in);
             Words = DictStringUtils::GetWords(FileUtils::ReadAllText(ifs), true);
             ifs.close();
@@ -34,7 +34,7 @@ bool TextConsole::Show()
             return true;
         }
     }
-    
+
     size_t counter = 0;
     for (string word : Words)
     {
@@ -57,9 +57,9 @@ bool TextConsole::Show()
         }
     }
     outs << endl;
-    
+
     outs << "共" << Words.size() << "个不同的单词，显示了" << counter << "个生词释义。" << endl;
-    
+
     txtWord.Show();
     if (txtWord.Value != "")
     {
@@ -70,6 +70,6 @@ bool TextConsole::Show()
     {
         Root.Back();
     }
-    
+
     return true;
 }

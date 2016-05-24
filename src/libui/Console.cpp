@@ -31,7 +31,7 @@ void Console::Back()
 
 void Console::IgnoreLeftNewline()
 {
-    while (ins.peek() == '\r' || ins.peek() == '\n') 
+    while (ins.peek() == '\r' || ins.peek() == '\n')
     {
         char ch = ins.peek();
         ins.ignore();

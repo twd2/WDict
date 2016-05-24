@@ -3,12 +3,12 @@
 int Dictionary::GetLevel(const std::string &word)
 {
     auto iter = levelDB.find(word);
-    
+
     if (iter == levelDB.end())
     {
         return -1;
     }
-    
+
     auto &vec = iter->second;
     if (vec.size() == 0 || vec[0] == "")
     {

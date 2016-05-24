@@ -13,12 +13,12 @@ int main(int argc, char **argv)
         cout << "                   __        __  ____    _          _                        \n"
                 "                   \\ \\      / / |  _ \\  (_)   ___  | |_                      \n"
                 "                    \\ \\ /\\ / /  | | | | | |  / __| | __|                     \n"
-                "                     \\ V  V /   | |_| | | | | (__  | |_                      \n" 
-                "                      \\_/\\_/    |____/  |_|  \\___|  \\__|                     \n" 
+                "                     \\ V  V /   | |_| | | | | (__  | |_                      \n"
+                "                      \\_/\\_/    |____/  |_|  \\___|  \\__|                     \n"
                 "                                   Loading...                               " << endl;
-        // cout << "                              广告位招租 QQ: ?????????                         " << endl; 
+        // cout << "                              广告位招租 QQ: ?????????                         " << endl;
         // TODO: show ADs.
-        
+
         // init globals
         Globals::Init();
         if (argc >= 2)
@@ -29,13 +29,13 @@ int main(int argc, char **argv)
         {
             Globals::SwitchUser(DEFAULT_USERNAME);
         }
-        
+
         // init user interface
         auto controller = make_shared<Console>(cin, cout); // create a controller
         controller->Goto(make_shared<MainConsole>(*controller)); // goto MainConsole activity
         UI::Init(controller); // init UI
         UI::Start(); // ui loop, blocked
-        
+
         #ifdef DEBUG
         cout << "Persistencing databases..." << endl;
         #endif

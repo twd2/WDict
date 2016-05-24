@@ -5,13 +5,13 @@ LearnConsole::LearnConsole(Console &Root, size_t Limit)
 {
     btnGot.OnClick = bind(&LearnConsole::Got, this);
     Add(btnGot);
-    
+
     btnWord.OnClick = bind(&LearnConsole::Word, this);
     Add(btnWord);
-    
+
     btnBack.OnClick = bind(&LearnConsole::Back, this);
     Add(btnBack);
-    
+
     initIter();
 }
 
@@ -24,16 +24,16 @@ void LearnConsole::initIter()
 bool LearnConsole::Show()
 {
     WithTitleConsole(Root, "学习").Show();
-    
+
     if (word != "")
     {
         outs << word << "    ";
-        
+
         if (Globals::CurrentUser->WordEvaluator->IsKnown(word))
         {
             outs << "*复习*    ";
         }
-        
+
         outs << endl;
         WordConsole::PrintWord(outs, "系统", Globals::Dict->GetWord(word));
         WordConsole::PrintWord(outs, "您添加的", Globals::CurrentUser->GetWord(word));
@@ -54,7 +54,7 @@ bool LearnConsole::Show()
             Back();
         }
     }
-    
+
     return true;
 }
 

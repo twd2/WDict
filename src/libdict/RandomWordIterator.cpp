@@ -15,7 +15,7 @@ std::string RandomWordIterator::Next()
     {
         return "";
     }
-    
+
     initRandom();
     std::string word;
     do
@@ -23,14 +23,14 @@ std::string RandomWordIterator::Next()
         word = dict[(*dist)(engine)];
     }
     while (!pred(word));
-    
+
     return word;
 }
 
 bool RandomWordIterator::HasNext()
 {
     bool found = false;
-    
+
     for (size_t i = 0; i < dict.Size(); ++i)
     {
         if (pred(dict[i]))

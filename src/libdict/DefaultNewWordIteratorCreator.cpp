@@ -7,21 +7,21 @@ std::shared_ptr<WordIterator> DefaultNewWordIteratorCreator::Create()
     {
         return !user.WordEvaluator->IsKnown(word) && user.WordEvaluator->IsCommon(word);
     });
-    
+
     ptr->AddWeight(20, [&] (const std::string &word)
     {
         return user.WordEvaluator->IsForgettable(word) && user.WordEvaluator->IsCommon(word);
     });
-    
+
     ptr->AddWeight(20, [&] (const std::string &word)
     {
         return !user.WordEvaluator->IsCommon(word);
     });
-    
+
     ptr->AddWeight(10, [&] (const std::string &word)
     {
         return user.WordEvaluator->IsKnown(word);
     });
-    
+
     return ptr;
 }

@@ -3,15 +3,15 @@
 RetriveConsole::RetriveConsole(Console &Root)
     : ConsoleComponent(Root), txtWord(Root, "请输入要查询的单词(输入空行返回):", TEXTINPUT_LINE)
 {
-    
+
 }
 
 bool RetriveConsole::Show()
 {
     WithTitleConsole(Root, "单词查询").Show();
-    
+
     auto history = Globals::CurrentUser->GetHistory(20);
-    
+
     if (history.size() > 0)
     {
         outs << "查询历史" << endl;
@@ -21,7 +21,7 @@ bool RetriveConsole::Show()
         }
         outs << endl;
     }
-    
+
     txtWord.Show();
     if (txtWord.Value != "")
     {
@@ -32,6 +32,6 @@ bool RetriveConsole::Show()
     {
         Root.Back();
     }
-    
+
     return true;
 }

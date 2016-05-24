@@ -12,7 +12,7 @@ void TextDB::load()
     std::string txt = FileUtils::ReadAllText(ifs);
     Lexer lex(txt);
     auto tokens = lex.Do();
-    
+
     std::vector<std::string> vecbuff;
     std::string strbuff;
     for (Token token : tokens)
@@ -33,7 +33,7 @@ void TextDB::load()
                 vecbuff.push_back(strbuff);
                 strbuff = "";
             }
-            
+
             if (vecbuff.size() > 0)
             {
                 std::vector<std::string> &val = this->operator[](vecbuff[0]);
@@ -42,13 +42,13 @@ void TextDB::load()
             }
         }
     }
-    
+
     if (strbuff != "")
     {
         vecbuff.push_back(strbuff);
         strbuff = "";
     }
-    
+
     if (vecbuff.size() > 0)
     {
         std::vector<std::string> &val = this->operator[](vecbuff[0]);
@@ -63,12 +63,12 @@ void TextDB::Sync()
     #ifdef DEBUG
     std::cout << "Persistencing databases..." << std::endl;
     #endif
-    
+
     if (ReadOnly)
     {
         throw std::string("Writing to readonly TextDB.");
     }
-    
+
     std::ofstream ofs(fileName, std::ios_base::out);
     for (auto iter = begin(); iter != end(); ++iter)
     {

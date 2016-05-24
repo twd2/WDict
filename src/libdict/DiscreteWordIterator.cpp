@@ -23,7 +23,7 @@ std::string DiscreteWordIterator::Next()
     {
         return "";
     }
-    
+
     initRandom();
     std::string word;
     do
@@ -31,14 +31,14 @@ std::string DiscreteWordIterator::Next()
         word = iters[(*dist)(engine)]->Next();
     }
     while (word == "");
-    
+
     return word;
 }
 
 bool DiscreteWordIterator::HasNext()
 {
     bool found = false;
-    
+
     initRandom();
     for (auto &iter : iters)
     {

@@ -19,12 +19,12 @@ void TestConsole::initIter()
 bool TestConsole::Show()
 {
     WithTitleConsole(Root, Title).Show();
-    
+
     if (word != "")
     {
         questionBuilder.Show();
         answer_t userAnswer = questionBuilder.CheckAnswer(answer);
-        
+
         auto showAnswer = [&] ()
         {
             outs << "答案: ";
@@ -53,7 +53,7 @@ bool TestConsole::Show()
             }
             return true;
         }
-        
+
         ++Counters[userAnswer];
         Globals::CurrentUser->IncCounter(word, COUNTER_TEST);
         if (userAnswer == ANSWER_CORRECT)
@@ -65,7 +65,7 @@ bool TestConsole::Show()
             IncorrectWords.push_back(word);
         }
         Globals::UserCounterDB->Sync();
-        
+
         if (userAnswer == ANSWER_WRONG || userAnswer == ANSWER_ABANDONED)
         {
             if (userAnswer == ANSWER_ABANDONED)
@@ -86,13 +86,13 @@ bool TestConsole::Show()
                 Root.Goto(make_shared<WordConsole>(Root, word));
             }
         }
-        
+
         word = questionGenerator->GenerateOne(answer);
     }
     else
     {
         outs << "本次测验完成!" << endl;
-        
+
         outs << string(36, ' ') << "测验结果" << endl;
         outs << string(80, '-') << endl;
         outs << "正确: \t" << Counters[ANSWER_CORRECT] << endl;

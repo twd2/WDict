@@ -19,9 +19,9 @@ void UserInfo::SetCounter(const std::string &word, user_counter_t type, ptrdiff_
 std::vector<ptrdiff_t> UserInfo::GetCounters(const std::string &word)
 {
     std::vector<ptrdiff_t> counters;
-    
+
     auto iter = counterDB.find(word);
-    
+
     if (iter == counterDB.end())
     {
         while (counters.size() < COUNTER_COUNT)
@@ -30,18 +30,18 @@ std::vector<ptrdiff_t> UserInfo::GetCounters(const std::string &word)
         }
         return counters;
     }
-    
+
     auto &vec = iter->second;
     for (std::string c : vec)
     {
         counters.push_back(DictStringUtils::FromString<ptrdiff_t>(c));
     }
-    
+
     while (counters.size() < COUNTER_COUNT)
     {
         counters.push_back(0);
     }
-    
+
     return counters;
 }
 
@@ -56,11 +56,11 @@ std::vector<std::string> UserInfo::GetHistory(size_t limit)
         {
             Q.pop();
         }
-        
+
         Q.push(word);
     }
     ifs.close();
-    
+
     std::vector<std::string> history;
     while (!Q.empty())
     {

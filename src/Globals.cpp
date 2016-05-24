@@ -15,14 +15,14 @@ void Globals::SwitchUser(const string &UserName)
     UserCounterDB = make_unique<TextDB>(UserName + "_learn");
     UserDictDB = make_unique<TextDB>(UserName + "_dict");
     UserSentDB = make_unique<TextDB>(UserName + "_sentences");
-    
+
     CurrentUser = make_unique<UserInfo>(*UserConfigDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
-    
+
     CurrentUser->WordEvaluator = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
-    
+
     NewWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("NewWordStrategy", "DefaultNew"),
                                                              RandomEngine, *CurrentUser, *Dict);
-    
+
     TestWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("TestWordStrategy", "DefaultTest"),
                                                               RandomEngine, *CurrentUser, *Dict);
 }
@@ -30,11 +30,11 @@ void Globals::SwitchUser(const string &UserName)
 void Globals::Init()
 {
     RandomEngine.seed(std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1));
-    
+
     DictDB = make_unique<TextDB>("dict.txt", true);
     SentDB = make_unique<TextDB>("sentences.txt", true);
     LevelDB = make_unique<TextDB>("level.txt", true);
-    
+
     Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
 }
 

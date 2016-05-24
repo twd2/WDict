@@ -2,18 +2,18 @@
 
 SyntaxError::SyntaxError()
 {
-    
+
 }
 
 SyntaxError::SyntaxError(std::string what) : what(what)
 {
-    
+
 }
 
 SyntaxError::SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart)
     : SyntaxError(what, LineNumber, ColumnStart, ColumnStart)
 {
-    
+
 }
 
 SyntaxError::SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart, ptrdiff_t ColumnEnd)
@@ -32,5 +32,5 @@ SyntaxError::SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t Colum
 
 SyntaxError::~SyntaxError()
 {
-    
+
 }

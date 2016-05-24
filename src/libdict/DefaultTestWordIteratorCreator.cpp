@@ -7,16 +7,16 @@ std::shared_ptr<WordIterator> DefaultTestWordIteratorCreator::Create()
     {
         return user.WordEvaluator->IsLearned(word);
     });
-    
+
     ptr->AddWeight(40, [&] (const std::string &word)
     {
         return user.WordEvaluator->IsLearned(word) && user.WordEvaluator->IsForgettable(word);
     });
-    
+
     ptr->AddWeight(10, [&] (const std::string &word)
     {
         return !user.WordEvaluator->IsKnown(word);
     });
-    
+
     return ptr;
 }

@@ -13,6 +13,6 @@ bool TextInputConsole::Show()
         std::getline(ins, Value);
         break;
     }
-    
+
     return true;
 }

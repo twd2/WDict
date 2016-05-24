@@ -13,7 +13,7 @@ void QuestionBuilderConsole::BeginSelect()
     select = make_shared<SelectConsole>(Root, "请作答(单选, 答案不区分大小写):");
     select->IgnoreCase = true;
 }
-    
+
 void QuestionBuilderConsole::Option(char key, std::string option)
 {
     select->Add(key, option);
@@ -24,7 +24,7 @@ void QuestionBuilderConsole::EndSelect()
     select->Add('E', "放弃");
     select->Add('Q', "返回");
 }
-    
+
 void QuestionBuilderConsole::BeginTextInput()
 {
     text = make_shared<TextInputConsole>(Root, "请作答(请小写, 输入空行放弃):", TEXTINPUT_LINE);
@@ -32,9 +32,9 @@ void QuestionBuilderConsole::BeginTextInput()
 
 void QuestionBuilderConsole::EndTextInput()
 {
-    
+
 }
-    
+
 void QuestionBuilderConsole::EndQuestion()
 {
     if (inSelect)
@@ -49,12 +49,12 @@ bool QuestionBuilderConsole::Show()
     {
         throw string("both select and text");
     }
-    
+
     if (!select && !text)
     {
         throw string("neither select nor text");
     }
-    
+
     outs << question << endl;
     if (select)
     {
@@ -75,12 +75,12 @@ answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
     {
         throw string("both select and text");
     }
-    
+
     if (!select && !text)
     {
         throw string("neither select nor text");
     }
-    
+
     if (select)
     {
         if (select->SelectedIndexes.size() != 1 || select->Selected('E'))
@@ -91,7 +91,7 @@ answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
         {
             return ANSWER_BACK;
         }
-        
+
         if (SelectConsole::ToLower(select->Value[0]) == SelectConsole::ToLower(realAnswer[0]))
         {
             return ANSWER_CORRECT;
@@ -107,7 +107,7 @@ answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
         {
             return ANSWER_ABANDONED;
         }
-        
+
         if (text->Value == realAnswer)
         {
             return ANSWER_CORRECT;
@@ -117,6 +117,6 @@ answer_t QuestionBuilderConsole::CheckAnswer(const string &realAnswer)
             return ANSWER_WRONG;
         }
     }
-    
+
     return ANSWER_ABANDONED;
 }
