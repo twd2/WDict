@@ -4,10 +4,11 @@ WDict基于`libui`、`libtextdb`以及最核心的`libdict`库设计开发，实
 
 WDict主要采用了MVC（模型-视图-控制器）的架构模式。其中，模型是`libtextdb`以及`libdict`；视图是`libui`和WDict中`ConsoleComponent`的派生类；控制器是所有的WDict中`ConsoleComponent`的派生类。
 
-另外，WDict主程序中，还提供了一个实现`libdict`库`IQuestionBuilder`接口的示例，可以生成HTML文档。
+另外，WDict主程序中，还提供了一个实现`libdict`库中`IQuestionBuilder`接口的示例，可以用来生成HTML文档。
 
 ## 可能的改进之处
 
-- i18n，提示信息多语言化
+- i18n，提示信息多语言化，语言可配置
 - 可选的图形用户界面
+
 
