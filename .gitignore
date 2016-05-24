@@ -1,7 +1,7 @@
 # vscode files
 .vscode/**/*
 
-# personal make config
+# Personal make config
 config.personal
 
 # Compiled Object files
@@ -38,8 +38,12 @@ config.personal
 
 *.win.cc
 
-config.personal
+# Releases
 wdict
+release
+combined_*.md
+
+# Data files
 src/dict.txt
 src/level.txt
 src/sentences.txt
@@ -48,6 +52,4 @@ src/sentences.txt
 *_sentences
 *_config
 *_learn
-release
 *~
-combined_*.md
