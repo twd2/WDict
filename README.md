@@ -2,6 +2,10 @@
 
 一个字典。
 
+![](https://raw.githubusercontent.com/twd2/WDict/master/docs/29.pic.jpg)
+
+![](https://raw.githubusercontent.com/twd2/WDict/master/docs/3.pic_hd.jpg)
+
 使用说明请见`docs/building.md`以及`docs/usage.md`。
 
 ## 目录说明
