@@ -13,16 +13,16 @@ class RandomWordIterator
     : public WordIterator
 {
 private:
-	/// 词典大小缓存
+    /// 词典大小缓存
     size_t lastSize = -1;
 protected:
-	/// 单词条件，随机数生成器，词典，随机数区间
+    /// 单词条件，随机数生成器，词典，随机数区间
     std::function<bool (const std::string&)> pred;
     std::default_random_engine &engine;
     IDictionary &dict;
     std::unique_ptr<std::uniform_int_distribution<size_t> > dist;
 public:
-	/// 构造
+    /// 构造
     RandomWordIterator(std::default_random_engine &engine, IDictionary &dict)
         : engine(engine), dict(dict)
     {
@@ -40,7 +40,7 @@ public:
     bool HasNext() override;
 
 private:
-	/// 初始化随机数生成器
+    /// 初始化随机数生成器
     void initRandom();
 };
 

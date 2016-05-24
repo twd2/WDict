@@ -11,11 +11,11 @@ class DefaultEvaluateStrategy
     : public EvaluateStrategy
 {
 protected:
-	/// 关联用户与词典
+    /// 关联用户与词典
     UserInfo &user;
     Dictionary &dict;
 public:
-	/// 构造
+    /// 构造
     DefaultEvaluateStrategy(UserInfo &user, Dictionary &dict)
         : user(user), dict(dict)
     {

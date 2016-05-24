@@ -12,11 +12,11 @@ using std::ptrdiff_t;
 class SyntaxError
 {
 public:
-	/// 错误原因与位置
+    /// 错误原因与位置
     std::string what;
     ptrdiff_t LineNumber = 1, ColumnStart = -1, ColumnEnd = -1;
 
-	/// 生成错误
+    /// 生成错误
     SyntaxError();
     SyntaxError(std::string what);
     SyntaxError(std::string what, ptrdiff_t LineNumber, ptrdiff_t ColumnStart);

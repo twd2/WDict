@@ -9,12 +9,12 @@ class WithLimitIterator
     : public WordIterator
 {
 private:
-	/// 原始迭代器
+    /// 原始迭代器
     std::shared_ptr<WordIterator> iter;
 public:
-	/// 已产生个数与总个数限制
+    /// 已产生个数与总个数限制
     size_t Counter, Limit;
-	/// 构造
+    /// 构造
     WithLimitIterator(size_t limit, std::shared_ptr<WordIterator> iter)
         : iter(iter), Counter(0), Limit(limit)
     {

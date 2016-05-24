@@ -67,11 +67,11 @@ size_t DictStringUtils::Distance(const std::string &a, const std::string &b)
 template <>
 std::string DictStringUtils::ToString(const std::string &a)
 {
-	return a;
+    return a;
 }
 
 template <>
 std::string DictStringUtils::FromString(const std::string &a)
 {
-	return a;
+    return a;
 }

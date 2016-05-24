@@ -14,24 +14,24 @@ class DiscreteWordIterator
     : public WordIterator
 {
 protected:
-	/// 条件权重，条件，随机数生成器，字典，随机区间
+    /// 条件权重，条件，随机数生成器，字典，随机区间
     std::vector<size_t> weights;
     std::vector<std::function<bool (const std::string&)> > preds;
     std::default_random_engine &engine;
     IDictionary &dict;
     std::unique_ptr<std::discrete_distribution<size_t> > dist = nullptr;
 private:
-	/// 各条件对应的RandomWordIterator
+    /// 各条件对应的RandomWordIterator
     std::vector<std::unique_ptr<RandomWordIterator> > iters;
 public:
-	/// 构造
+    /// 构造
     DiscreteWordIterator(std::default_random_engine &engine, IDictionary &dict)
         : engine(engine), dict(dict)
     {
 
     }
 
-	/// 为各条件设定权重
+    /// 为各条件设定权重
     void AddWeight(size_t weight, std::function<bool (const std::string&)> pred);
     void DelWeight(size_t index);
 
@@ -39,7 +39,7 @@ public:
     bool HasNext() override;
 
 private:
-	/// 初始化随机数生成器
+    /// 初始化随机数生成器
     void initRandom();
 };
 

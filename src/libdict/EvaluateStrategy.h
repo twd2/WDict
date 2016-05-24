@@ -7,9 +7,9 @@
 class EvaluateStrategy
 {
 public:
-	/// 析构
+    /// 析构
     virtual ~EvaluateStrategy() = default;
-	/// 是否常见、易忘、学会、学过
+    /// 是否常见、易忘、学会、学过
     virtual bool IsCommon(const std::string &word) = 0;
     virtual bool IsForgettable(const std::string &word) = 0;
     virtual bool IsKnown(const std::string &word) = 0;

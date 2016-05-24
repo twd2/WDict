@@ -12,12 +12,12 @@ class HtmlQuestionBuilder
     : public IQuestionBuilder
 {
 private:
-	/// 输出流，标题，问题Id
+    /// 输出流，标题，问题Id
     ostream &outs;
     string title = "";
     size_t questionId = 0;
 public:
-	/// 构造
+    /// 构造
     HtmlQuestionBuilder(ostream &outs)
         : outs(outs)
     {

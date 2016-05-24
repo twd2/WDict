@@ -5,9 +5,9 @@
 class UIImpl
 {
 public:
-	/// 默认析构
+    /// 默认析构
     virtual ~UIImpl() = default;
-	/// 显示UI对象
+    /// 显示UI对象
     virtual bool Show() = 0;
 };
 

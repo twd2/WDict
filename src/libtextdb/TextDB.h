@@ -19,20 +19,20 @@ class TextDB
     : public ITextDB
 {
 private:
-	/// 对应的文件
+    /// 对应的文件
     std::string fileName;
 public:
-	/// 是否只读
+    /// 是否只读
     bool ReadOnly;
-	/// 从文件名构造
+    /// 从文件名构造
     TextDB(const std::string &fileName, bool ReadOnly = false);
     ~TextDB();
 
-	/// 将数据输出至原文件（当非只读时）
+    /// 将数据输出至原文件（当非只读时）
     void Sync();
 
 private:
-	/// 从文件名加载
+    /// 从文件名加载
     void load();
 
     /// 避免拷贝

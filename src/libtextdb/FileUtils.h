@@ -10,10 +10,10 @@
 class FileUtils
 {
 public:
-	/// 读取文件的全部内容
+    /// 读取文件的全部内容
     static std::string ReadAllText(std::istream &is);
     /// 检测文件是否存在
-	static bool Exists(const std::string &path);
+    static bool Exists(const std::string &path);
 };
 
 #endif // _FILEUTILS_H_

@@ -13,18 +13,18 @@ class ConfirmConsole
     : public ConsoleComponent
 {
 public:
-	/// 消息前缀
+    /// 消息前缀
     std::string Message;
-	/// 默认值，输入值
+    /// 默认值，输入值
     bool Default, Value;
-	/// 构造
+    /// 构造
     ConfirmConsole(Console &Root, const std::string &Message, bool Default)
         : ConsoleComponent(Root), Message(Message), Default(Default)
     {
         Value = Default;
     }
 
-	/// 显示
+    /// 显示
     bool Show() override;
 };
 

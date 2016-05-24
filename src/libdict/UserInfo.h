@@ -35,27 +35,27 @@ private:
     IDictDB &configDB, &counterDB;
     std::string historyFilename;
 public:
-	/// 用户名与估值函数
+    /// 用户名与估值函数
     std::string Name;
     std::shared_ptr<EvaluateStrategy> WordEvaluator = nullptr;
 
-	/// 构造
+    /// 构造
     UserInfo(IDictDB &configDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
         : IDictionary(dictDB, sentDB), configDB(configDB), counterDB(counterDB), Name(Name)
     {
         historyFilename = Name + "_history";
     }
 
-	/// 设定与获取单词的用户状态
+    /// 设定与获取单词的用户状态
     void IncCounter(const std::string &word, user_counter_t type, ptrdiff_t value = 1);
     void SetCounter(const std::string &word, user_counter_t type, ptrdiff_t value);
     std::vector<ptrdiff_t> GetCounters(const std::string &word);
 
-	/// 获取与添加历史
+    /// 获取与添加历史
     std::vector<std::string> GetHistory(size_t limit = -1);
     void AppendHistory(const std::string &word);
 
-	/// 获取与设定设置
+    /// 获取与设定设置
     template <typename T>
     T Get(const std::string &key, T def);
 

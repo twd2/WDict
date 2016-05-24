@@ -13,10 +13,10 @@ class RetriveConsole
     : public ConsoleComponent
 {
 protected:
-	/// 查询框
+    /// 查询框
     TextInputConsole txtWord;
 public:
-	/// 构造
+    /// 构造
     RetriveConsole(Console &Root);
 
     bool Show() override;

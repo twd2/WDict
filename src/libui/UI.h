@@ -9,15 +9,15 @@
 class UI
 {
 private:
-	/// 当前使用的UIImpl
+    /// 当前使用的UIImpl
     static std::shared_ptr<UIImpl> ui;
 
 public:
     // static interfaces
-	/// 用UIImpl初始化
+    /// 用UIImpl初始化
     static void Init(std::shared_ptr<UIImpl> ui);
     /// 开始显示UIImpl
-	static void Start();
+    static void Start();
 };
 
 #endif // _UI_H_

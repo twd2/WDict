@@ -25,16 +25,16 @@ class QuestionBuilderConsole
     : public ConsoleComponent, public IQuestionBuilder
 {
 private:
-	/// 是否是选择，选择子界面，输入子界面，问题串
+    /// 是否是选择，选择子界面，输入子界面，问题串
     bool inSelect = false;
     shared_ptr<SelectConsole> select;
     shared_ptr<TextInputConsole> text;
     string question = "";
 public:
-	/// 回答
+    /// 回答
     string UserAnswer;
     ///构造
-	QuestionBuilderConsole(Console &Root)
+    QuestionBuilderConsole(Console &Root)
         : ConsoleComponent(Root)
     {
 
@@ -52,7 +52,7 @@ public:
     void EndQuestion() override;
 
     bool Show() override;
-	/// 检查答案
+    /// 检查答案
     answer_t CheckAnswer(const string &realAnswer);
 };
 

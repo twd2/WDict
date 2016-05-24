@@ -16,28 +16,28 @@
 class QuestionGenerator
 {
 protected:
-	/// 错误答案生成器，随机数引擎，词典，正确答案生成器，试卷字符串生成器
+    /// 错误答案生成器，随机数引擎，词典，正确答案生成器，试卷字符串生成器
     std::shared_ptr<WordIterator> wrongAnswerIter;
     std::default_random_engine &engine;
     IDictionary &dict;
     WordIterator &iter;
     IQuestionBuilder &qb;
 private:
-	/// 问题生成器，随机数区间
+    /// 问题生成器，随机数区间
     std::vector<std::function<std::string (const std::string&)> > handlers;
     std::discrete_distribution<size_t> dd;
 
 public:
-	/// 构造
+    /// 构造
     QuestionGenerator(std::default_random_engine &engine, IDictionary &dict, WordIterator &iter, IQuestionBuilder &qb);
 
-	/// 生成卷首，卷尾与中间部分
+    /// 生成卷首，卷尾与中间部分
     void Begin();
     std::string GenerateOne(std::string &out_answer);
     void End();
 
 protected:
-	/// 生成判断，选择释义，选择单词，输入单词的问题
+    /// 生成判断，选择释义，选择单词，输入单词的问题
     std::string genTF(const std::string &word);
     std::string genSelDesc(const std::string &word);
     std::string genSelWord(const std::string &word);

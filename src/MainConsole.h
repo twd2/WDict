@@ -19,22 +19,22 @@ class MainConsole
     : public ConsoleComponent
 {
 protected:
-	/// 按钮们
+    /// 按钮们
     ButtonConsole btnRetrive, btnText, btnLearn, btnTestAsLearn, btnTest, btnAbout, btnHackMe, btnExit;
 public:
-	/// 构造
+    /// 构造
     MainConsole(Console &Root);
     bool Show() override;
 
 private:
-	/// 进入各功能
+    /// 进入各功能
     void Retrive();
     void Text();
     void Learn();
     void TestAsLearn();
     void Test();
     void About();
-	/// 命令解析
+    /// 命令解析
     static pair<string, string> parseCommand(string cmdarg);
     void HackMe();
     void Exit();

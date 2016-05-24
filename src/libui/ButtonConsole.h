@@ -13,21 +13,21 @@ class ButtonConsole
     : public ConsoleComponent
 {
 public:
-	/// 事件监听函数
+    /// 事件监听函数
     std::function<void ()> OnClick;
-	/// 对应的字符
+    /// 对应的字符
     char Key;
-	/// 标题
+    /// 标题
     std::string Title;
 
-	/// 构造
+    /// 构造
     ButtonConsole(Console &Root, char key, const std::string &title)
         : ConsoleComponent(Root), Key(key), Title(title)
     {
 
     }
 
-	/// 显示
+    /// 显示
     bool Show() override;
 };
 

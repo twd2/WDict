@@ -13,18 +13,18 @@ class Lexer
 {
 public:
 
-	/// 使用待解析字符串构造
+    /// 使用待解析字符串构造
     Lexer(std::string &str)
         : data(str)
     {
         length = str.length();
     }
-	~Lexer();
+    ~Lexer();
 
-	/// 进行词法分析
+    /// 进行词法分析
     std::vector<Token> Do();
 
-	/// 字符种类
+    /// 字符种类
     static bool isBlank(char a);// 空格，回车，Tab
     static bool isIdFirst(char a);// 非引号，回车，逗号
     static bool isId(char a);// 非引号，回车，逗号
@@ -36,24 +36,24 @@ public:
 
 private:
 
-	/// 输入字符串
+    /// 输入字符串
     std::string &data;
 
-	/// 当前分析位置
+    /// 当前分析位置
     size_t length = 0;
     size_t index = 0;
     ptrdiff_t lineNumber = 1, lineStart = -1, tokenStart = 0;
 
-	/// 寻找下一个字符
+    /// 寻找下一个字符
     bool hasNext();
     char getNext();
     std::string nextChar();
     bool nextIs(char what);
     bool nextIs(bool (*pred)(char));
 
-	/// 生成错误
+    /// 生成错误
     SyntaxError Error(std::string, std::string);
-	/// 生成Token
+    /// 生成Token
     Token MakeToken(TokenType, std::string);
 };
 

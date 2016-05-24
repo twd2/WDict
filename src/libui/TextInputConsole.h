@@ -19,18 +19,18 @@ class TextInputConsole
     : public ConsoleComponent
 {
 public:
-	/// 输入值与提示信息
+    /// 输入值与提示信息
     std::string Value, Message;
-	/// 文本框类型
+    /// 文本框类型
     textinput_type_t Type;
-	/// 构造
+    /// 构造
     TextInputConsole(Console &Root, const std::string &Message, textinput_type_t Type)
         : ConsoleComponent(Root), Message(Message), Type(Type)
     {
 
     }
 
-	/// 显示
+    /// 显示
     bool Show() override;
 };
 

@@ -22,14 +22,14 @@ enum TokenType
 class Token
 {
 public:
-	/// 类型与内容
+    /// 类型与内容
     TokenType Type;
     std::string Value; // raw string / Value
 
-	/// Token在原文件中的位置
+    /// Token在原文件中的位置
     ptrdiff_t LineNumber, ColumnStart, ColumnEnd;
 
-	/// 构造Token
+    /// 构造Token
     Token(TokenType type, std::string value)
         : Type(type), Value(value), LineNumber(-1), ColumnStart(-1), ColumnEnd(-1)
     {
@@ -44,11 +44,11 @@ public:
 
     ~Token();
 
-	/// 检测Token值与内容是否相同
+    /// 检测Token值与内容是否相同
     bool operator==(const Token &b);
     bool operator!=(const Token &b);
 
-	/// 获取Token类型名
+    /// 获取Token类型名
     static std::string Name(TokenType type);
 };
 
