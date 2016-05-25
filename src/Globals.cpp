@@ -9,8 +9,26 @@ shared_ptr<UserInfo> Globals::CurrentUser;
 shared_ptr<WordIteratorCreator> Globals::NewWordIteratorCreator;
 shared_ptr<WordIteratorCreator> Globals::TestWordIteratorCreator;
 
+bool Globals::CheckName(const string &Name)
+{
+    for (const auto &ch : Name)
+    {
+        if (!(ch >= 'A' && ch <= 'Z') && !(ch >= 'a' && ch <= 'z') &&
+            !(ch >= '0' && ch <= '9') && ch != '_')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 void Globals::SwitchUser(const string &UserName)
 {
+    if (!CheckName(UserName))
+    {
+        throw std::string("Bad user name.");
+    }
+    
     UserConfigDB = make_unique<TextDB>(UserName + "_config");
     UserCounterDB = make_unique<TextDB>(UserName + "_learn");
     UserDictDB = make_unique<TextDB>(UserName + "_dict");

@@ -3,7 +3,7 @@
 MainConsole::MainConsole(Console &Root)
     : ConsoleComponent(Root), btnRetrive(Root, '1', "单词查询"), btnText(Root, '2', "分析文本"), btnLearn(Root, '3', "学习"),
                               btnTestAsLearn(Root, '4', "以考代学"), btnTest(Root, '5', "测验"),
-                              btnAbout(Root, 'a', "关于"), btnHackMe(Root, 'h', "HackMe"), btnExit(Root, 'x', "退出")
+                              btnAbout(Root, 'a', "关于"), btnHackMe(Root, 'h', "Hack Me"), btnExit(Root, 'x', "退出")
 {
 #define ONCLICK(name) BUTTON_ONCLICK(MainConsole, name)
     ONCLICK(Retrive);
@@ -133,7 +133,14 @@ void MainConsole::HackMe()
         }
         else if (cmdargPair.first == "setuser")
         {
-            Globals::SwitchUser(cmdargPair.second);
+            if (Globals::CheckName(cmdargPair.second))
+            {
+                Globals::SwitchUser(cmdargPair.second);
+            }
+            else
+            {
+                outs << "非法用户名。" << endl;
+            }
         }
         else if (cmdargPair.first == "whoami")
         {

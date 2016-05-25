@@ -14,7 +14,6 @@
 using namespace std;
 
 /// 首页
-/// 注意“h”按钮不显示
 class MainConsole
     : public ConsoleComponent
 {

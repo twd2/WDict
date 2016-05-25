@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     catch (string err)
     {
         cerr << "Error: " << err << endl;
-        cerr << "可能是由于配置错误。" << endl;
+        cerr << "可能是由于参数或配置错误。" << endl;
     }
     return 1;
 }

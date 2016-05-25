@@ -28,7 +28,8 @@ public:
     static shared_ptr<WordIteratorCreator> NewWordIteratorCreator;
     static shared_ptr<WordIteratorCreator> TestWordIteratorCreator;
 
-    /// 改变用户，初始化，在文件管理器打开
+    /// 检查名称，改变用户，初始化，在文件管理器打开
+    static bool CheckName(const string &Name);
     static void SwitchUser(const string &UserName);
     static void Init();
     static void Open(const string &path);
