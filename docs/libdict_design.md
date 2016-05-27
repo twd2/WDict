@@ -1,12 +1,12 @@
 # 单词程序库设计
 
-单词程序库，最基本的功能是存储和检索单词。
+单词程序库`libdict`，最基本的功能是存储和检索单词。
 
 这里，我们统一使用`std::map<std::string, std::vector<std::string> >`作为数据库接口。
 
 `std::map<std::string, std::vector<std::string> >`中每一个`std::pair<std::string, std::vector<std::string> >`是一条记录，它的`first`是第一项，`second`中存放下面几项。
 
-这个接口和`TextDB`吻合，所以我们可以使用`TextDB`作为单词程序库的数据库。
+这个接口和`libtextdb`中的`TextDB`吻合，所以我们可以使用`TextDB`作为单词程序库的数据库。
 
 ## 词库数据
 
@@ -30,8 +30,8 @@
 
 数据库文件名为`[[用户名]]_config`，存放了：
 
-- 学习单词的方案(NewWordStrategy)
-- 考试的方案(TestWordStrategy)
+- 学习单词的方案（NewWordStrategy）
+- 考试的方案（TestWordStrategy）
 
 ### 学习情况
 
@@ -81,7 +81,7 @@
 - 获取/追加用户查词历史
 - 获取/设定用户配置
 
-另外`UserInfo`存放了一个`EvaluateStrategy`的智能指针`WordEvaluator`，用于评估某个单词相对于该用户的状态（见下）。
+另外`UserInfo`存放了一个`EvaluateStrategy`的智能指针（`std::shared_ptr<EvaluateStrategy>`）`WordEvaluator`，用于评估某个单词相对于该用户的状态（见下）。
 
 ### 单词状态评估
 
@@ -126,11 +126,11 @@
 
 `DefaultNewWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成标准难度的新单词的`WordIterator`。
 
-`HardNewWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成难的新单词的`WordIterator`。
+`HardNewWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成具有挑战性的新单词的`WordIterator`。
 
 `DefaultTestWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成标准难度的测验用单词的`WordIterator`。
 
-`HardTestWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成难的测验用单词的`WordIterator`。
+`HardTestWordIteratorCreator`是一个`WordIteratorCreator`的实现，它可利用用户数据创建能够生成具有挑战性的测验用单词的`WordIterator`。
 
 ### 测验问题生成器
 
