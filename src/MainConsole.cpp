@@ -124,7 +124,9 @@ void MainConsole::HackMe()
         }
         else if (cmdargPair.first == "get")
         {
-            outs << Globals::CurrentUser->Get<string>(cmdargPair.second, "") << endl;
+            string v = "";
+            Globals::CurrentUser->TryGet<string>(cmdargPair.second, v);
+            outs << v << endl;
         }
         else if (cmdargPair.first == "set")
         {

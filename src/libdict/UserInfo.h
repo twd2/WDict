@@ -18,12 +18,12 @@ using std::ptrdiff_t;
 /// 单词的用户状态计数器枚举
 enum user_counter_t
 {
-    COUNTER_RETRIVE,/// 查询次数
-    COUNTER_LEARN,/// 学习次数
-    COUNTER_TEST,/// 测试次数
-    COUNTER_PASS,/// 答对次数
-    COUNTER_LEVEL,/// 未使用
-    COUNTER_COUNT // above counter(now is 5)
+    COUNTER_RETRIVE, /// 查询次数
+    COUNTER_LEARN, /// 学习次数
+    COUNTER_TEST, /// 测试次数
+    COUNTER_PASS, /// 答对次数
+    COUNTER_LEVEL, /// 未使用
+    COUNTER_COUNT /// 计数器个数(5)
 };
 
 /// 用户信息
@@ -31,7 +31,7 @@ class UserInfo
     : public IDictionary
 {
 private:
-    /// 设置，历史纪录
+    /// 设置，历史记录
     IDictDB &configDB, &counterDB;
     std::string historyFilename;
 public:
@@ -40,10 +40,10 @@ public:
     std::shared_ptr<EvaluateStrategy> WordEvaluator = nullptr;
 
     /// 构造
-    UserInfo(IDictDB &configDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &Name)
-        : IDictionary(dictDB, sentDB), configDB(configDB), counterDB(counterDB), Name(Name)
+    UserInfo(const std::string &Name, IDictDB &configDB, IDictDB &counterDB, IDictDB &dictDB, IDictDB &sentDB, const std::string &historyFilename)
+        : IDictionary(dictDB, sentDB), configDB(configDB), counterDB(counterDB), historyFilename(historyFilename), Name(Name)
     {
-        historyFilename = Name + "_history";
+
     }
 
     /// 设定与获取单词的用户状态
@@ -58,6 +58,8 @@ public:
     /// 获取与设定设置
     template <typename T>
     T Get(const std::string &key, T def);
+    template <typename T>
+    bool TryGet(const std::string &key, T &outResult);    
 
     template <typename T>
     void Set(const std::string &key, T value);
@@ -73,6 +75,18 @@ T UserInfo::Get(const std::string &key, T def)
         return def;
     }
     return DictStringUtils::FromString<T>(vec[0]);
+}
+
+template <typename T>
+bool UserInfo::TryGet(const std::string &key, T &outResult)
+{
+    auto iter = configDB.find(key);
+    if (iter == configDB.end() || iter->second.size() == 0 || iter->second[0] == "")
+    {
+        return false;
+    }
+    outResult = DictStringUtils::FromString<T>(iter->second[0]);
+    return true;
 }
 
 template <typename T>

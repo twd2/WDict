@@ -31,7 +31,9 @@ public:
     std::shared_ptr<WordIterator> Create() override = 0;
 
     /// 按名称创建Creator
-    static std::shared_ptr<UserWordIteratorCreator> ByName(std::string name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict);
+    static std::shared_ptr<UserWordIteratorCreator> ByName(const std::string &name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict);
+    /// 尝试按名称创建Creator
+    static std::shared_ptr<UserWordIteratorCreator> TryByName(const std::string &name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict);
 };
 
 #endif // _USERWORDITERATORCREATOR_H_

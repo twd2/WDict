@@ -26,34 +26,42 @@ void Globals::SwitchUser(const string &UserName)
 {
     if (!CheckName(UserName))
     {
-        throw std::string("Bad user name.");
+        throw string("Bad user name.");
     }
     
-    UserConfigDB = make_unique<TextDB>(UserName + "_config");
-    UserCounterDB = make_unique<TextDB>(UserName + "_learn");
-    UserDictDB = make_unique<TextDB>(UserName + "_dict");
-    UserSentDB = make_unique<TextDB>(UserName + "_sentences");
+    UserConfigDB = make_shared<TextDB>(UserName + "_config");
+    UserCounterDB = make_shared<TextDB>(UserName + "_learn");
+    UserDictDB = make_shared<TextDB>(UserName + "_dict");
+    UserSentDB = make_shared<TextDB>(UserName + "_sentences");
+    CurrentUser = make_shared<UserInfo>(UserName, *UserConfigDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName + "_history");
 
-    CurrentUser = make_unique<UserInfo>(*UserConfigDB, *UserCounterDB, *UserDictDB, *UserSentDB, UserName);
+    DictDB = make_shared<TextDB>(CurrentUser->Get<string>("DictDB", "dict.txt"), true);
+    SentDB = make_shared<TextDB>(CurrentUser->Get<string>("SentDB", "sentences.txt"), true);
+    LevelDB = make_shared<TextDB>(CurrentUser->Get<string>("LevelDB", "level.txt"), true);
+    Dict = make_shared<Dictionary>(*DictDB, *SentDB, *LevelDB);
 
-    CurrentUser->WordEvaluator = make_unique<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
+    CurrentUser->WordEvaluator = make_shared<DefaultEvaluateStrategy>(*CurrentUser, *Dict);
 
-    NewWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("NewWordStrategy", "DefaultNew"),
-                                                             RandomEngine, *CurrentUser, *Dict);
+    NewWordIteratorCreator = UserWordIteratorCreator::TryByName(CurrentUser->Get<string>("NewWordStrategy", "DefaultNew"),
+                                                                RandomEngine, *CurrentUser, *Dict);
+    if (!NewWordIteratorCreator)
+    {
+        UserWordIteratorCreator::ByName("DefaultNew", RandomEngine, *CurrentUser, *Dict);
+        CurrentUser->Set<string>("NewWordStrategy", "DefaultNew"); 
+    }
 
-    TestWordIteratorCreator = UserWordIteratorCreator::ByName(CurrentUser->Get<string>("TestWordStrategy", "DefaultTest"),
-                                                              RandomEngine, *CurrentUser, *Dict);
+    TestWordIteratorCreator = UserWordIteratorCreator::TryByName(CurrentUser->Get<string>("TestWordStrategy", "DefaultTest"),
+                                                                 RandomEngine, *CurrentUser, *Dict);
+    if (!TestWordIteratorCreator)
+    {
+        UserWordIteratorCreator::ByName("DefaultTest", RandomEngine, *CurrentUser, *Dict);
+        CurrentUser->Set<string>("TestWordStrategy", "DefaultTest"); 
+    }
 }
 
 void Globals::Init()
 {
     RandomEngine.seed(std::chrono::system_clock::now().time_since_epoch() / std::chrono::milliseconds(1));
-
-    DictDB = make_unique<TextDB>("dict.txt", true);
-    SentDB = make_unique<TextDB>("sentences.txt", true);
-    LevelDB = make_unique<TextDB>("level.txt", true);
-
-    Dict = make_unique<Dictionary>(*DictDB, *SentDB, *LevelDB);
 }
 
 void Globals::Open(const string &path)

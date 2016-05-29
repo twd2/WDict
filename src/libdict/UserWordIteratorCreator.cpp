@@ -4,7 +4,20 @@
 #include "HardNewWordIteratorCreator.h"
 #include "HardTestWordIteratorCreator.h"
 
-std::shared_ptr<UserWordIteratorCreator> UserWordIteratorCreator::ByName(std::string name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
+std::shared_ptr<UserWordIteratorCreator> UserWordIteratorCreator::ByName(const std::string &name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
+{
+    auto ptr = TryByName(name, engine, user, dict);
+    if (ptr)
+    {
+        return ptr;
+    }
+    else
+    {
+        throw (std::string("UserWordIteratorCreator::ByName: Unsupported type name \"") + name + "\".");
+    }
+}
+
+std::shared_ptr<UserWordIteratorCreator> UserWordIteratorCreator::TryByName(const std::string &name, std::default_random_engine &engine, UserInfo &user, IDictionary &dict)
 {
     // TODO: more elegant
     if (name == "DefaultNew")
@@ -25,6 +38,6 @@ std::shared_ptr<UserWordIteratorCreator> UserWordIteratorCreator::ByName(std::st
     }
     else
     {
-        throw (std::string("UserWordIteratorCreator::ByName: Unsupported type name \"") + name + "\".");
+        return nullptr;
     }
 }

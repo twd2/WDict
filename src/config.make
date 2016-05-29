@@ -2,6 +2,7 @@ LS = ls
 RM = rm -f
 CP = cp
 CAT = cat
+TAR = tar
 SLASH = /
 EXE_POSTFIX = 
 DSO_POSTFIX = .so
@@ -26,6 +27,7 @@ else
 	DSO_POSTFIX = .dll
 	EXE_POSTFIX = .exe
 	ICONV = tools\\iconv\\iconv.exe
+	TAR = 
 endif
 
 -include config.personal

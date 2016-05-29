@@ -47,7 +47,11 @@ release: all
 ifeq ($(OS_NAME),Linux)
 	$(CP) run_on_linux ..$(SLASH)release$(SLASH)$(OS_NAME)$(SLASH)
 endif
-	cd ..$(SLASH)release && tar cJvf $(OS_NAME).tar.xz $(OS_NAME)$(SLASH)*
+ifdef WIN32
+	cd ..$(SLASH)release && $(RM) $(OS_NAME).7z && 7z a -r $(OS_NAME).7z $(OS_NAME)/*
+else
+	cd ..$(SLASH)release && $(TAR) cJvf $(OS_NAME).tar.xz $(OS_NAME)$(SLASH)*
+endif
 
 .PHONY: clean
 clean:
