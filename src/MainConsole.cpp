@@ -153,6 +153,7 @@ void MainConsole::HackMe()
             else
             {
                 Globals::CurrentUser->Set<string>(kv.first, kv.second);
+                Globals::UserConfigDB->Sync();
             }
         }
         else if (cmdargPair.first == "setuser")
@@ -179,6 +180,7 @@ void MainConsole::HackMe()
             outs << "命令行使用说明:" << endl
                  << "exit\t返回" << endl
                  << "help\t显示本信息" << endl
+                 << "genhtml <file name>\t生成HTML试卷" << endl
                  << "get [<field name>]\t获取当前用户配置字段" << endl
                  << "set <field name> <data>\t设置当前用户配置字段" << endl
                  << "setuser <username>\t切换用户" << endl
