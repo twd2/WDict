@@ -86,6 +86,7 @@ pair<string, string> MainConsole::parseCommand(string cmdarg)
 
 void MainConsole::HackMe()
 {
+    // TODO: refactor
     string cmdarg;
     outs << ">";
     while (getline(ins, cmdarg))
@@ -124,14 +125,35 @@ void MainConsole::HackMe()
         }
         else if (cmdargPair.first == "get")
         {
-            string v = "";
-            Globals::CurrentUser->TryGet<string>(cmdargPair.second, v);
-            outs << v << endl;
+            if (cmdargPair.second != "")
+            {
+                string v = "";
+                Globals::CurrentUser->TryGet<string>(cmdargPair.second, v);
+                outs << v << endl;
+            }
+            else
+            {
+                for (auto &p : *Globals::UserConfigDB)
+                {
+                    if (p.second.size() >= 1)
+                    {
+                        outs << p.first << ": " << p.second[0] << endl;
+                    }
+                }
+            }
         }
         else if (cmdargPair.first == "set")
         {
             auto kv = parseCommand(cmdargPair.second);
-            Globals::CurrentUser->Set<string>(kv.first, kv.second);
+            string dummy = "";
+            if (!Globals::CurrentUser->TryGet<string>(kv.first, dummy))
+            {
+                outs << "暂无此字段。" << endl;
+            }
+            else
+            {
+                Globals::CurrentUser->Set<string>(kv.first, kv.second);
+            }
         }
         else if (cmdargPair.first == "setuser")
         {
@@ -157,7 +179,7 @@ void MainConsole::HackMe()
             outs << "命令行使用说明:" << endl
                  << "exit\t返回" << endl
                  << "help\t显示本信息" << endl
-                 << "get <field name>\t获取当前用户配置字段" << endl
+                 << "get [<field name>]\t获取当前用户配置字段" << endl
                  << "set <field name> <data>\t设置当前用户配置字段" << endl
                  << "setuser <username>\t切换用户" << endl
                  << "whoami\t显示当前用户信息" << endl
