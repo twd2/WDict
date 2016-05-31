@@ -46,7 +46,7 @@ void Globals::SwitchUser(const string &UserName)
                                                                 RandomEngine, *CurrentUser, *Dict);
     if (!NewWordIteratorCreator)
     {
-        UserWordIteratorCreator::ByName("DefaultNew", RandomEngine, *CurrentUser, *Dict);
+        NewWordIteratorCreator = UserWordIteratorCreator::ByName("DefaultNew", RandomEngine, *CurrentUser, *Dict);
         CurrentUser->Set<string>("NewWordStrategy", "DefaultNew"); 
     }
 
@@ -54,7 +54,7 @@ void Globals::SwitchUser(const string &UserName)
                                                                  RandomEngine, *CurrentUser, *Dict);
     if (!TestWordIteratorCreator)
     {
-        UserWordIteratorCreator::ByName("DefaultTest", RandomEngine, *CurrentUser, *Dict);
+        TestWordIteratorCreator = UserWordIteratorCreator::ByName("DefaultTest", RandomEngine, *CurrentUser, *Dict);
         CurrentUser->Set<string>("TestWordStrategy", "DefaultTest"); 
     }
 }
